@@ -6,6 +6,13 @@ const Sidebar = () => {
     return (
         <div className="Sidebar">
             
+            <div className='title'>
+                Boards: 
+            </div>
+            <div className='content'>
+
+            </div>
+
         </div>
     );
 }
