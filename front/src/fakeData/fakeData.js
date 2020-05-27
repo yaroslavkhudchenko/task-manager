@@ -6,5 +6,12 @@ export const fakeData =
             nbTask: 0,
             tasks: [],
             archived: false
+        },
+        {
+            name: 'project2',
+            id: 2,
+            nbTask: 4,
+            tasks: [],
+            archived: false
         }
     ]
