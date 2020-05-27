@@ -5,7 +5,6 @@ export const AddProject = () => {
     console.log('in hook I am')
     const [projects, addProject] = useState('a');
     console.log(projects)
-
    // addProject();
 
 
