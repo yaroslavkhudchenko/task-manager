@@ -15,8 +15,14 @@ const Header = () => {
         })
         console.log(fakeData) */
 
-
-
+        axios.post('http://localhost:5000/addproject',
+            {
+                name: 'project4',
+                nbTask: 0,
+                tasks: [],
+                archived: false
+            }
+        )
 
     }
     return(

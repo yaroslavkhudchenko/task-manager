@@ -13,7 +13,7 @@ router.route('/addproject').post((req, res) => {
 router.route('/add').post((req, res) => {
 
 
-    const name = 'prokec';// req.body.name; // from the input - the rest are the default values for the new empty project
+    const name = req.body.name; // from the input - the rest are the default values for the new empty project
     const nbTask = 0;
     const tasks = []; 
     const archived = false; 
