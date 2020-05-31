@@ -1,10 +1,11 @@
 import React from 'react';
 import '../css/Header.scss';
 import { fakeData } from './../fakeData/fakeData';
+import axios from 'axios';
 
 const Header = () => {
     const AddProject = () => {
-        console.log('add project hehe')
+        /* console.log('add project hehe')
         fakeData.push({
             name: 'project4',
             id: 4,
@@ -12,7 +13,11 @@ const Header = () => {
             tasks: [],
             archived: false
         })
-        console.log(fakeData)
+        console.log(fakeData) */
+
+
+
+
     }
     return(
         <div className="Header">
