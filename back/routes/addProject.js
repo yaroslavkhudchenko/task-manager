@@ -19,15 +19,15 @@ router.route('/add').post((req, res) => {
     const archived = false; 
 
 
-    const newProject = new Exercise({
+    const newProject = new Addproject({
         name,
         nbTask,
         tasks,
         archived
-    }); // create the Exercise with the given values
+    }); // create the Addproject with the given values
 
     newProject.save() // save to databse
-        .then(() => res.json('Exercise added!'))
+        .then(() => res.json('Addproject added!'))
         .catch(err => res.status(400).json('Error: ' + err)); // if error return 400 with err message
 });
 

@@ -8,8 +8,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const addProjectScheme = new Schema({ // create new schema
-    projectname: { // field with validations
-        name: String,
+    name: { // field with validations
+        type: String,
         required: true,
         unique: true,
         trim: true, // white space at the end
