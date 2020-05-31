@@ -5,7 +5,7 @@ import { GetProjects } from './../Hooks/GetProjects';
 const Sidebar = () => {
     const [projectsState, setProjectsState] = useState({GetProjects});
 
-    useEffect(() => console.log(GetProjects))
+    useEffect(() => console.log('adfawefawf'))
     return (
         <div className="Sidebar">
             
