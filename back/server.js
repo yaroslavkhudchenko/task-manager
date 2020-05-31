@@ -24,13 +24,15 @@ const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MONGODB database connection established");
 });
-/* 
+
 // require routes
-const exercisesRouter = require("./routes/exercises");
-const usersRouter = require("./routes/users");
+const addProjectRouter = require("./routes/newProject");
+app.use("/exercises", addProjectRouter);
+
+/* const usersRouter = require("./routes/users");
 
 // app to use routes
-app.use("/exercises", exercisesRouter); // when user go to app / exerices load exercisesRouter
+ // when user go to app / exerices load exercisesRouter
 app.use("/users", usersRouter); // when user go to app / users load usersRouter */
 
 // listen to the server(start server on port)
