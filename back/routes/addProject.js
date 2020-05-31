@@ -3,7 +3,7 @@ const router = require('express').Router();// import Router from express
 let  projects= require('../models/addproject.model'); // import mongoose model
 
 // route => handles imcoming http get requests /users
-router.route('/').post((req, res) => {
+router.route('/').get((req, res) => {
     projects.find() // get list of all the users from mongodb database 
         .then(user => res.json(user)) // in json
         .catch(err => res.status(400).json('Errorй: ' + err)); // if error return 400 with err message

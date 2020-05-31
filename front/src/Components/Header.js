@@ -17,7 +17,7 @@ const Header = () => {
 
         axios.post('http://localhost:5000/projects/addproject',
             {
-                name: 'project4',
+                name: 'project5',
                 nbTask: 0,
                 tasks: [],
                 archived: false
