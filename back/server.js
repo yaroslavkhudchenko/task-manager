@@ -26,8 +26,8 @@ connection.once("open", () => {
 });
 
 // require routes
-const addProjectRouter = require("./routes/addProject");
-app.use("/exercises", addProjectRouter);
+const ProjectsRouter = require("./routes/addProject");
+app.use("/projects", ProjectsRouter);
 
 /* const usersRouter = require("./routes/users");
 
