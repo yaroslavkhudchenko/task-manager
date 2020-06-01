@@ -12,15 +12,38 @@
         display: flex;
         justify-content: space-evenly;
         margin: 10px 0;
+        padding: 20px 12px;
+        cursor: pointer;
         .projectTitle {
             font-size: 20px;
             font-weight: 700;
         }
-        .deleteSingleProject {
+        /* .deleteSingleProject {
             background: red;
             color: white;
             cursor: pointer;
         }
+ */
+        .deleteSingleProject {
+                position: absolute;
+    right: 25px;
+        }
+        .deleteSingleProject:after {
+            content: '';
+            height: 25px;
+            border-left: 2px solid red;
+            position: absolute;
+            transform: rotate(45deg);
+        }
+
+        .deleteSingleProject:before {
+            content: '';
+            height: 25px;
+            border-left: 2px solid red;
+            position: absolute;
+            transform: rotate(-45deg);
+        }
+
     }
     .singleProjectActive {
         background: lightgrey;
