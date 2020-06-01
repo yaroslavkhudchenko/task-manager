@@ -5,7 +5,14 @@ import axios from 'axios';
 export const GetProjects = () => {
     console.log('in hook I am')
     const [projectsState, setProjectsState] = useState([]);
-    console.log(projectsState)
+    console.log(projectsState);
+
+    // to delete single project
+    const deleteSingleProject = (id) => {
+        console.log('delete')
+        console.log(id)
+        axios.delete(`http://localhost:5000/projects/${id}`);
+    }
 
     useEffect(()=>{
         axios.get('http://localhost:5000/projects')
@@ -15,9 +22,14 @@ export const GetProjects = () => {
 
             });
             
-    }, [])
+    }, [projectsState])
     // addProject();
 
-    return (projectsState.map(single=><div className='projectTitle'>{single.name}</div>))
+    return (projectsState.map(single=> 
+        <div className='singleProject'>
+            <div className='projectTitle'>{single.name}</div>
+            <div className='deleteSingleProject' onClick={() => deleteSingleProject(single._id)}>delete</div>
+        </div>
+    ))
 };
 

@@ -7,4 +7,19 @@
     left: 0;
     top: 100px;
 
+    .singleProject {
+        background: teal;
+        display: flex;
+        justify-content: space-evenly;
+        margin: 10px 0;
+        .projectTitle {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .deleteSingleProject {
+            background: red;
+            color: white;
+            cursor: pointer;
+        }
+    }
 }
