@@ -15,7 +15,7 @@ export const GetProjects = () => {
 
             });
             
-    },[])
+    }, [])
     // addProject();
 
     return (projectsState.map(single=><div className='projectTitle'>{single.name}</div>))
