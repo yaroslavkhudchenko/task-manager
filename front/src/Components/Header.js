@@ -4,16 +4,9 @@ import { fakeData } from './../fakeData/fakeData';
 import axios from 'axios';
 
 const Header = () => {
+    let nameNeeded = false;
+    // add new project to the database
     const AddProject = () => {
-        /* console.log('add project hehe')
-        fakeData.push({
-            name: 'project4',
-            id: 4,
-            nbTask: 0,
-            tasks: [],
-            archived: false
-        })
-        console.log(fakeData) */
 
         axios.post('http://localhost:5000/projects/addproject',
             {
@@ -25,9 +18,17 @@ const Header = () => {
         )
 
     }
-    return(
+    return (
         <div className="Header">
-            <div className='addBoard' onClick={AddProject}>Add</div>
+            <div className='addBoard' onClick={() => nameNeeded = true}>Add</div>
+            {nameNeeded ?
+                <div className='addNameModule'>
+                    <div className='addNameModuleTitle'>Provide the name</div>
+                    <input type='text' required />
+                    <div className='saveNamebutton' onClick={AddProject}>Save</div>
+                </div>
+                : false
+            }
         </div>
     )
 }

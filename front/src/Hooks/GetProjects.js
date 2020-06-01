@@ -5,8 +5,9 @@ import axios from 'axios';
 export const GetProjects = () => {
     console.log('in hook I am')
     const [projectsState, setProjectsState] = useState([]);
-    console.log(projectsState);
 
+
+    let newData = null;
     // to delete single project
     const deleteSingleProject = (id) => {
         console.log('delete')
@@ -19,10 +20,10 @@ export const GetProjects = () => {
             .then(res=>{
                 console.log(res.data);
                 setProjectsState(res.data);
-
+                newData = res.data;
             });
             
-    }, [projectsState])
+    }, [])
     // addProject();
 
     return (projectsState.map(single=> 
