@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import '../css/Header.scss';
-import { fakeData } from './../fakeData/fakeData';
 import axios from 'axios';
 
 const Header = () => {
@@ -11,16 +10,19 @@ const Header = () => {
     const AddProject = () => {
 
         let name = document.querySelector('.addNameModule input').value;
-        axios.post('http://localhost:5000/projects/addproject',
-            {
-                name: name,
-                nbTask: 0,
-                tasks: [],
-                archived: false
-            }
-        )
-        nameNeededSet(false);
 
+        // if name is not empty
+        if(name) {
+            axios.post('http://localhost:5000/projects/addproject',
+                {
+                    name: name,
+                    nbTask: 0,
+                    tasks: [],
+                    archived: false
+                }
+            )
+            nameNeededSet(false);
+        }        
     }
     return (
         <div className="Header">

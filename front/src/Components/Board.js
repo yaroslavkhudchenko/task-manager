@@ -5,7 +5,7 @@ import '../css/Board.scss';
 const Board = () => {
     return (
         <div className="Board">
-
+            
         </div>
     );
 }

@@ -31,6 +31,6 @@ const addProjectScheme = new Schema({ // create new schema
     timestamps: true // stamps when created/modified
 });
 
-const addProject = mongoose.model('addProject', addProjectScheme);
+const projects = mongoose.model('projects', addProjectScheme);
 
-module.exports = addProject; // export addProject variable
+module.exports = projects; // export projects variable

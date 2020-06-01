@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { fakeData } from './../fakeData/fakeData';
 import axios from 'axios';
+import { AppContext } from './../Context/AppContext';
 
 export const GetProjects = () => {
     console.log('in hook I am')
     const [projectsState, setProjectsState] = useState([]);
 
-
-    let newData = null;
     // to delete single project
     const deleteSingleProject = (id) => {
         console.log('delete')
@@ -20,7 +19,6 @@ export const GetProjects = () => {
             .then(res=>{
                 console.log(res.data);
                 setProjectsState(res.data);
-                newData = res.data;
             });
             
     }, [])
