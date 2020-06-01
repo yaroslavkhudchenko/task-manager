@@ -7,7 +7,10 @@ import { AppContext } from './../Context/AppContext';
 
 
 const App = () => {
-  const [activeproject, setactiveproject] = useState(0);
+  const [activeproject, setactiveproject] = useState({
+    activeProject:0,
+    activeProjectName:'defaultName'
+  });
 
   return (
     <AppContext.Provider value={{

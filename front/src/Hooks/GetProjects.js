@@ -27,7 +27,7 @@ export const GetProjects = () => {
     return (projectsState.map((single, index)=> 
         <AppContext.Consumer>
             {value =>
-                <div className={value.state == index ? 'singleProject singleProjectActive' : 'singleProject'} onClick={() => value.changeState(index)}>
+                <div className={value.state.activeProject == index ? 'singleProject singleProjectActive' : 'singleProject'} onClick={() => value.changeState(index)}>
                     <div className='projectTitle'>{single.name}</div>
                     <div className='deleteSingleProject' onClick={() => deleteSingleProject(single._id)}></div>
                 </div>

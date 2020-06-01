@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import '../css/Header.scss';
 import axios from 'axios';
+import { AppContext } from './../Context/AppContext';
 
 const Header = () => {
 
@@ -25,19 +26,26 @@ const Header = () => {
         }        
     }
     return (
-        <div className="Header">
-            <div className='addBoard' onClick={() => nameNeededSet(true)}>Add</div>
-            {nameNeeded ?
-                <div className='addNameModule'>
-                    <div className='addNameModuleContent'>
-                        <div className='addNameModuleTitle'>Provide the name</div>
-                        <input type='text' required />
-                        <div className='saveNamebutton' onClick={AddProject}>Save</div>
+        <AppContext.Consumer>
+            {value =>
+                <div className="Header">
+                    <div className='addBoard' onClick={() => nameNeededSet(true)}>Add</div>
+                    <div className='projectHeaderName'>
+                        {value.state.activeProjectName}
                     </div>
+                    {nameNeeded ?
+                        <div className='addNameModule'>
+                            <div className='addNameModuleContent'>
+                                <div className='addNameModuleTitle'>Provide the name</div>
+                                <input type='text' required />
+                                <div className='saveNamebutton' onClick={AddProject}>Save</div>
+                            </div>
+                        </div>
+                        : false
+                    }
                 </div>
-                : false
             }
-        </div>
+        </AppContext.Consumer>
     )
 }
 
