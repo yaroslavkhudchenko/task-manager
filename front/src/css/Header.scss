@@ -14,10 +14,20 @@
         padding: 4px;
     }
     .addNameModule {
-        display: flex;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background: #00000096;
+        .addNameModuleContent{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            background: beige;
+            padding: 19px;
+            justify-content: space-between;
+            width: 400px;
+        }
     }
 }

@@ -27,9 +27,11 @@ const Header = () => {
             <div className='addBoard' onClick={() => nameNeededSet(true)}>Add</div>
             {nameNeeded ?
                 <div className='addNameModule'>
-                    <div className='addNameModuleTitle'>Provide the name</div>
-                    <input type='text' required />
-                    <div className='saveNamebutton' onClick={AddProject}>Save</div>
+                    <div className='addNameModuleContent'>
+                        <div className='addNameModuleTitle'>Provide the name</div>
+                        <input type='text' required />
+                        <div className='saveNamebutton' onClick={AddProject}>Save</div>
+                    </div>
                 </div>
                 : false
             }
