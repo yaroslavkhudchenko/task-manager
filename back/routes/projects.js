@@ -1,6 +1,6 @@
 const router = require('express').Router();// import Router from express
 
-let  projects= require('../models/addproject.model'); // import mongoose model
+let projects= require('../models/addproject.model'); // import mongoose model
 
 // route => handles imcoming http get requests /users
 router.route('/').get((req, res) => {
@@ -30,5 +30,15 @@ router.route('/addproject').post((req, res) => {
         .then(() => res.json('New project added!'))
         .catch(err => res.status(400).json('Errorц: ' + err)); // if error return 400 with err message
 });
+
+
+// to delete project with id
+router.route('/:id').delete((req, res) => {
+    projects.findByIdAndDelete(req.params.id)// will find the exact project in the db and delete it
+        .then(() => res.json('Project successfully deleted.'))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 
 module.exports = router; // export router
