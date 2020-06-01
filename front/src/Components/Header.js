@@ -17,7 +17,7 @@ const Header = () => {
 
         axios.post('http://localhost:5000/projects/addproject',
             {
-                name: 'project52',
+                name: `project${Math.floor(Math.random() * Math.floor(100))}`,
                 nbTask: 0,
                 tasks: [],
                 archived: false
