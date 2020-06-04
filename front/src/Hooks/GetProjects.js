@@ -5,6 +5,7 @@ import { AppContext } from './../Context/AppContext';
 
 export const GetProjects = () => {
     console.log('in hook I am')
+    console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuunnnnnnnnnnnnnnnnnnnnnnnnnnnnn')
     const [projectsState, setProjectsState] = useState([]);
 
     // to delete single project
@@ -15,6 +16,7 @@ export const GetProjects = () => {
     }
 
     useEffect(()=>{
+        
         axios.get('http://localhost:5000/projects')
             .then(res=>{
                 console.log(res.data);
@@ -27,7 +29,13 @@ export const GetProjects = () => {
     return (projectsState.map((single, index)=> 
         <AppContext.Consumer>
             {value =>
-                <div className={value.state.activeProject == index ? 'singleProject singleProjectActive' : 'singleProject'} onClick={() => value.changeState(index)}>
+                <div className={value.state.activeProject == index ? 'singleProject singleProjectActive' : 'singleProject'} 
+                    onClick={() => value.changeState(
+                        {
+                            ...value.state,
+                            activeProject: index
+                        }
+                    )}>
                     <div className='projectTitle'>{single.name}</div>
                     <div className='deleteSingleProject' onClick={() => deleteSingleProject(single._id)}></div>
                 </div>

@@ -11,6 +11,7 @@ const App = () => {
     activeProject:0,
     activeProjectName:'defaultName'
   });
+  
 
   return (
     <AppContext.Provider value={{

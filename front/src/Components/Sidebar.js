@@ -3,7 +3,7 @@ import '../css/Sidebar.scss';
 import { GetProjects } from './../Hooks/GetProjects';
 
 const Sidebar = () => {
-    const [projectsState, setProjectsState] = useState({GetProjects});
+    // const [projectsState, setProjectsState] = useState({GetProjects});
 
     useEffect(() => console.log('adfawefawf'))
     return (
