@@ -22,6 +22,10 @@ const Tasks = new Schema({ // create new schema
     archived: {
         type: Boolean,
         required: true
+    },
+    projectID: {
+        type: Number,
+        required:true
     }
 }, {
     timestamps: true // stamps when created/modified

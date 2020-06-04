@@ -4,8 +4,7 @@ import axios from 'axios';
 import { AppContext } from './../Context/AppContext';
 
 export const GetProjects = () => {
-    console.log('in hook I am projects')
-    console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuunnnnnnnnnnnnnnnnnnnnnnnnnnnnn')
+   
     const [projectsState, setProjectsState] = useState([]);
 
     // to delete single project
@@ -33,7 +32,8 @@ export const GetProjects = () => {
                     onClick={() => value.changeState(
                         {
                             ...value.state,
-                            activeProject: index
+                            activeProject: index,
+                            activeProjectID: single._id
                         }
                     )}>
                     <div className='projectTitle'>{single.name}</div>
