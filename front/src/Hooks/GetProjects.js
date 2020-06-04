@@ -4,7 +4,7 @@ import axios from 'axios';
 import { AppContext } from './../Context/AppContext';
 
 export const GetProjects = () => {
-    console.log('in hook I am')
+    console.log('in hook I am projects')
     console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuunnnnnnnnnnnnnnnnnnnnnnnnnnnnn')
     const [projectsState, setProjectsState] = useState([]);
 

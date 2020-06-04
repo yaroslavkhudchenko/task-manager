@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const tasks = new Schema({ // create new schema
+const Tasks = new Schema({ // create new schema
     name: { // field with validations
         type: String,
         required: true,
@@ -27,6 +27,6 @@ const tasks = new Schema({ // create new schema
     timestamps: true // stamps when created/modified
 });
 
-const tasks = mongoose.model('tasks', tasks);
+const tasks = mongoose.model('tasks', Tasks);
 
-module.exports = projects; // export projects variable
+module.exports = tasks; // export projects variable
