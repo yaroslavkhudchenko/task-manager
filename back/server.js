@@ -27,13 +27,10 @@ connection.once("open", () => {
 
 // require routes
 const ProjectsRouter = require("./routes/projects");
+const TasksRouter = require("./routes/tasks");
+
 app.use("/projects", ProjectsRouter);
-
-/* const usersRouter = require("./routes/users");
-
-// app to use routes
- // when user go to app / exerices load exercisesRouter
-app.use("/users", usersRouter); // when user go to app / users load usersRouter */
+app.use("/tasks", TasksRouter);
 
 // listen to the server(start server on port)
 app.listen(port, () => {
