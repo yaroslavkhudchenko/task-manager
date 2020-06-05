@@ -49,3 +49,17 @@
         background: lightgrey;
     }
 }
+.Sidebar.hiddenSidebar {
+    left:-300px;
+   
+}
+.hiddenSidebar::after {
+    content: '';
+    background: yellow;
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}

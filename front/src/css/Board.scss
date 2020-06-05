@@ -5,6 +5,7 @@
     width: calc(100% - 300px);
     height: calc(100% - 100px);
     display: flex;
+    overflow-x: scroll;
     #addTaskButton {
         position: absolute;
         bottom: 0;
@@ -12,7 +13,8 @@
     }
     
     .singeTask {
-        width: 200px;
+        width: 275px;
+        min-width: 275px;
         background: red;
         min-height: 270px;
         margin: 20px;

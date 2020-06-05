@@ -3,14 +3,17 @@ import '../css/Sidebar.scss';
 import { GetProjects } from './../Hooks/GetProjects';
 
 const Sidebar = () => {
-    // const [projectsState, setProjectsState] = useState({GetProjects});
+    const [SidebarState, setSidebarState] = useState({
+        hidden:false
+    });
 
-    useEffect(() => console.log('adfawefawf'))
+    //useEffect(() => console.log('adfawefawf'))
+    
     return (
-        <div className="Sidebar">
+        <div className={SidebarState.hidden ? 'Sidebar hiddenSidebar' : 'Sidebar'}>
             
             <div className='title'>
-                Boards: 
+                Projects: 
             </div>
             <div className='content'>
                 <GetProjects />
