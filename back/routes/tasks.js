@@ -12,10 +12,10 @@ router.route('/').get((req, res) => {
 // route => if url /users/add run this post(if post only)
 router.route('/addtask').post((req, res) => {
 
-    const name = 'default task name :(' // req.body.name; // from the input - the rest are the default values for the new empty task
+    const name = 'adefaultq task name :(' // req.body.name; // from the input - the rest are the default values for the new empty task
     const subtasks = [];
     const archived = false;
-    const projectName = 'durr';//req.body.projectName;
+    const projectName = 'faw';//req.body.projectName;
 
 
     const newTask = new tasks({
@@ -27,7 +27,7 @@ router.route('/addtask').post((req, res) => {
 
     newTask.save() // save to databse
         .then(() => res.json('New task added!'))
-        .catch(err => res.status(400).json('Errorц: ' + err)); // if error return 400 with err message
+        .catch(err => res.status(400).json('Erwwwrorц: ' + err)); // if error return 400 with err message
 });
 
 

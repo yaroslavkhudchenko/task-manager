@@ -8,8 +8,8 @@ export const AppContext = React.createContext();
 
 const App = () => {
   const [activeproject, setactiveproject] = useState({
-    activeProjectNb:0,
-    activeProjectName:"faw"
+    activeProjectNb:null,
+    activeProjectName:""
   });
   
 
