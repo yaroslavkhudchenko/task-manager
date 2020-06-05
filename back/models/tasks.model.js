@@ -11,7 +11,6 @@ const Tasks = new Schema({ // create new schema
     name: { // field with validations
         type: String,
         required: true,
-        unique: false,
         trim: true, // white space at the end
         minlength: 3 // min length for name
     },

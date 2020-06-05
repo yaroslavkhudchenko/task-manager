@@ -6,7 +6,7 @@ let tasks = require('../models/tasks.model'); // import mongoose model
 router.route('/').get((req, res) => {
     tasks.find() // get list of all the users from mongodb database 
         .then(user => res.json(user)) // in json
-        .catch(err => res.status(400).json('Error: ' + err)); // if error return 400 with err message
+        .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message
 });
 
 // route => if url /users/add run this post(if post only)
@@ -35,7 +35,7 @@ router.route('/addtask').post((req, res) => {
 router.route('/:id').delete((req, res) => {
     tasks.findByIdAndDelete(req.params.id)// will find the exact task in the db and delete it
         .then(() => res.json('Task successfully deleted.'))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => res.status(400).json('2Error: ' + err));
 });
 
 
