@@ -12,8 +12,11 @@ const Sidebar = () => {
     return (
         <AppContext.Consumer>
             {value =>
-                <div className={value.state.isHiddenSidebar ? 'Sidebar hiddenSidebar' : 'Sidebar'}>
-                    <div id='sidebarCloser' onClick={() =>value.changeState({...value.state,isHiddenSidebar:!value.state.isHiddenSidebar})}>closeit</div>
+                <div 
+                    className={value.state.isHiddenSidebar ? 'Sidebar hiddenSidebar' : 'Sidebar'}
+                    onClick={value.state.isHiddenSidebar ? () => value.changeState({ ...value.state, isHiddenSidebar: false }) : false}
+                >
+                    <div id='sidebarCloser' onClick={() =>value.changeState({...value.state,isHiddenSidebar:true})}>closeit</div>
                     <div className='title'>
                         Projects: 
                     </div>
