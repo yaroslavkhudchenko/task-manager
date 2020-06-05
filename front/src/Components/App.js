@@ -7,16 +7,17 @@ export const AppContext = React.createContext();
 
 
 const App = () => {
-  const [activeproject, setactiveproject] = useState({
+  const [appState, setAppState] = useState({
     activeProjectNb:null,
-    activeProjectName:""
+    activeProjectName:"",
+    isHiddenSidebar: false
   });
   
 
   return (
     <AppContext.Provider value={{
-      state: activeproject,
-      changeState: setactiveproject
+      state: appState,
+      changeState: setAppState
     }}>
       <div className="App">
         <Header />
