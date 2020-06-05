@@ -2,7 +2,7 @@ import React from 'react';
 import '../css/Board.scss';
 import axios from 'axios';
 import { GetTasks } from './../Hooks/GetTasks';
-
+import { AppContext } from './../Components/App';
 const Board = () => {
 
 
@@ -26,10 +26,14 @@ const Board = () => {
 
 
     return (
-        <div className="Board">
-            <div id='addTaskButton' onClick={AddTask}>awgagawgwagwawwww</div>
-            <GetTasks />
-        </div>
+        <AppContext.Consumer>
+            {value =>
+                <div className="Board">
+                    <div id='addTaskButton' onClick={() => AddTask(value.state.activeProjectName)}>awgagawgwagwawwww</div>
+                    <GetTasks />
+                </div>
+            }
+        </AppContext.Consumer>
     );
 }
 

@@ -25,7 +25,7 @@ const Tasks = new Schema({ // create new schema
     },
     projectName: {
         type: String,
-        required:true
+        required:false
     }
 }, {
     timestamps: true // stamps when created/modified
