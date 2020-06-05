@@ -4,6 +4,7 @@
     left: 300px;
     width: calc(100% - 300px);
     height: calc(100% - 100px);
+    display: flex;
     #addTaskButton {
         position: absolute;
         bottom: 0;
