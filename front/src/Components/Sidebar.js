@@ -14,7 +14,7 @@ const Sidebar = () => {
             {value =>
                 <div 
                     className={value.state.isHiddenSidebar ? 'Sidebar hiddenSidebar' : 'Sidebar'}
-                    onClick={value.state.isHiddenSidebar ? () => value.changeState({ ...value.state, isHiddenSidebar: false }) : false}
+                    onClick={value.state.isHiddenSidebar ? () => value.changeState({ ...value.state, isHiddenSidebar: false }) : undefined}
                 >
                     <div id='sidebarCloser' onClick={() =>value.changeState({...value.state,isHiddenSidebar:true})}>closeit</div>
                     <div className='title'>
