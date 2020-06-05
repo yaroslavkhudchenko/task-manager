@@ -11,7 +11,7 @@ const Tasks = new Schema({ // create new schema
     name: { // field with validations
         type: String,
         required: true,
-        unique: true,
+        unique: false,
         trim: true, // white space at the end
         minlength: 3 // min length for name
     },
@@ -25,7 +25,7 @@ const Tasks = new Schema({ // create new schema
     },
     projectName: {
         type: String,
-        required:false
+        required:true
     }
 }, {
     timestamps: true // stamps when created/modified
