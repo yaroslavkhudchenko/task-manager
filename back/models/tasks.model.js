@@ -23,8 +23,8 @@ const Tasks = new Schema({ // create new schema
         type: Boolean,
         required: true
     },
-    projectID: {
-        type: Number,
+    projectName: {
+        type: String,
         required:true
     }
 }, {

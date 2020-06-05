@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fakeData } from './../fakeData/fakeData';
 import axios from 'axios';
-import { AppContext } from './../Context/AppContext';
+import { AppContext } from './../Components/App';
 
 export const GetProjects = () => {
    
@@ -28,12 +28,12 @@ export const GetProjects = () => {
     return (projectsState.map((single, index)=> 
         <AppContext.Consumer>
             {value =>
-                <div className={value.state.activeProject == index ? 'singleProject singleProjectActive' : 'singleProject'} 
+                <div className={value.state.activeProjectNb == index ? 'singleProject singleProjectActive' : 'singleProject'} 
                     onClick={() => value.changeState(
                         {
                             ...value.state,
-                            activeProject: index,
-                            activeProjectID: single._id
+                            activeProjectNb: index,
+                            activeProjectName: single.name
                         }
                     )}>
                     <div className='projectTitle'>{single.name}</div>

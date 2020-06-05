@@ -15,14 +15,14 @@ router.route('/addtask').post((req, res) => {
     const name = 'default task name :(' // req.body.name; // from the input - the rest are the default values for the new empty task
     const subtasks = [];
     const archived = false;
-    const projectID = req.body.projectID;
+    const projectName = req.body.projectName;
 
 
     const newTask = new tasks({
         name,
         subtasks,
         archived,
-        projectID
+        projectName
     }); // create the tasks with the given values
 
     newTask.save() // save to databse

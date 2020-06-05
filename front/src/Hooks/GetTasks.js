@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
-import { AppContext } from './../Context/AppContext';
+import { AppContext } from './../Components/App';
 
 export const GetTasks = () => {
     console.log('in hook I am tasks')
@@ -24,18 +24,17 @@ export const GetTasks = () => {
             });
 
             console.log(tasksState)
-
     }, [])
     // addProject();
 
     return (tasksState.map((single, index) =>
         <AppContext.Consumer>
-            {value => value.activeProjectID === single.projectID ?
-                        <div className='singeTask'>
-                            <div className='TaskTitle'>{single.name}</div>
-                            <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}></div>
-                        </div>
-                    :false
+            {value => value.state.activeProjectName === single.projectName ?
+                    <div className='singeTask'>
+                        <div className='TaskTitle'>{single.name}</div>
+                        <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}></div>
+                    </div>
+                :false
             }
         </AppContext.Consumer>
                

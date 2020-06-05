@@ -16,7 +16,7 @@ const Board = () => {
                 {
                     name: name,
                     subtasks: [],
-                    projectID: undefined,
+                    projectName: undefined,
                     archived: false
                 }
             )

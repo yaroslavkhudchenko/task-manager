@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import '../css/Header.scss';
 import axios from 'axios';
-import { AppContext } from './../Context/AppContext';
+import { AppContext } from './../Components/App';
 
 const Header = () => {
 
