@@ -25,6 +25,18 @@ export const GetTasks = () => {
             name:good.name,
             descr:good.descr
         })
+    };
+
+    const handleTitleChange = (e) => {
+        console.log('hnadlea wgawgwa')
+        console.log(e.target.value)
+        console.log(tasksState)
+        let good = tasksState;
+        good[0].name = e.target.value;
+        console.log(good)
+        setTaskState({ ...tasksState, name: e.target.value})
+        console.log(tasksState)
+
     }
 
     useEffect(() => {
@@ -36,17 +48,20 @@ export const GetTasks = () => {
             });
 
             console.log(tasksState)
-    }, [])
+    }, []);
+
     // addProject();
 
     return (tasksState.map((single, index) =>
         <AppContext.Consumer>
             {value => value.state.activeProjectName === single.projectName ?
                     <div className='singeTask'>
-                        <div className='taskTitle'><input value={single.name} /></div>
+                        <div className='taskTitle'>
+                            <input value={single.name} onChange={(e)=>setTaskState({...tasksState,name:e.target.value})}/>
+                        </div>
                         <div className='taskBody'>
-                            {single.subtasks.map(one =>
-                                <div className='singleSubTask'>
+                            {single.subtasks.map((one,index) =>
+                                <div key={index} className='singleSubTask'>
                                     <div className='subTaskTitle' onClick={()=>handleOpenModalClick(one)}>
                                         {one.name}
                                     </div>
