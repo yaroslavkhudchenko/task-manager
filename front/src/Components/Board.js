@@ -29,7 +29,7 @@ const Board = () => {
         <AppContext.Consumer>
             {value =>
                 <div className={value.state.isHiddenSidebar ? 'Board boardWithHiddenSidebar' : 'Board'}>
-                    <div id='addTaskButton' onClick={() => AddTask(value.state.activeProjectName)}>awgagawgwagwawwww</div>
+                    <div id='addTaskButton' onClick={() => AddTask(value.state.activeProjectName)}>Add</div>
                     <GetTasks />
                 </div>
             }
