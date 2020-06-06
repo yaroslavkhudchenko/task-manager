@@ -8,12 +8,23 @@ export const GetTasks = () => {
 
     const [tasksState, setTaskState] = useState([]);
     const [openDescr, setOpenDescr] = useState(false);
-
+    const [goodSubTask, setGoodSubTask] = useState({
+        name:undefined,
+        descr:undefined
+    })
     // to delete single tasks
     const deleteSingleTask = (id) => {
         console.log('delete')
         console.log(id)
         axios.delete(`http://localhost:5000/tasks/${id}`);
+    }
+
+    const handleOpenModalClick = (good) => {
+        setOpenDescr(true);
+        setGoodSubTask({
+            name:good.name,
+            descr:good.descr
+        })
     }
 
     useEffect(() => {
@@ -36,21 +47,24 @@ export const GetTasks = () => {
                         <div className='taskBody'>
                             {single.subtasks.map(one =>
                                 <div className='singleSubTask'>
-                                    <div className='subTaskTitle' onClick={()=>setOpenDescr(true)}>
+                                    <div className='subTaskTitle' onClick={()=>handleOpenModalClick(one)}>
                                         {one.name}
-                                    </div>
-                                    <div id='singleSubTaskModal'>
-                                        <div id='singleSubTaskModalTitle'>
-                                            {one.name}
-                                        </div>
-                                        <div id='singleSubTaskModalBody'>
-                                            {one.descr}
-                                        </div>
                                     </div>
                                 </div>
                             )}
                         </div>
                         <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}></div>
+                        {openDescr ?
+                            <div id='singleSubTaskModal'>
+                                <div id='singleSubTaskModalTitle'>
+                                    {goodSubTask.name}
+                                </div>
+                                <div id='singleSubTaskModalBody'>
+                                    {goodSubTask.descr}
+                                </div>
+                            </div>
+                            : false
+                        }
                     </div>
                 :false
             }
