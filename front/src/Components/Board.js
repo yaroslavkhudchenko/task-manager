@@ -6,17 +6,17 @@ import { AppContext } from './../Components/App';
 const Board = () => {
 
 
-    const AddTask = () => {
-
+    const AddTask = (pn) => {
+        console.log(pn)
         let name = 'heh';//document.querySelector('.addNameModule input').value;
-
+        console.log('add task running')
         // if name is not empty
         if (name) {
             axios.post('http://localhost:5000/tasks/addtask',
                 {
                     name: name,
                     subtasks: [],
-                    projectName: undefined,
+                    projectName: pn,
                     archived: false
                 }
             )

@@ -15,7 +15,7 @@ router.route('/addtask').post((req, res) => {
     const name = 'adefaultq task name :(' // req.body.name; // from the input - the rest are the default values for the new empty task
     const subtasks = [];
     const archived = false;
-    const projectName = 'faw';//req.body.projectName;
+    const projectName = req.body.projectName;
 
 
     const newTask = new tasks({
