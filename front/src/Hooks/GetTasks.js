@@ -43,7 +43,7 @@ export const GetTasks = () => {
         <AppContext.Consumer>
             {value => value.state.activeProjectName === single.projectName ?
                     <div className='singeTask'>
-                        <div className='taskTitle'>{single.name}</div>
+                        <div className='taskTitle'><input value={single.name} /></div>
                         <div className='taskBody'>
                             {single.subtasks.map(one =>
                                 <div className='singleSubTask'>

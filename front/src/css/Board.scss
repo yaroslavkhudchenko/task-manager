@@ -15,17 +15,29 @@
     .singeTask {
         width: 275px;
         min-width: 275px;
-        background: #a3a3a3a1;
+        background: #ff9800;
         min-height: 270px;
         margin: 20px 15px;
         height: fit-content;
         .taskTitle {
-            font-weight: 500;
-            font-size: 25px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            padding: 5px;
+            // font-weight: 500;
+            // font-size: 25px;
+            // text-overflow: ellipsis;
+            // white-space: nowrap;
+            // overflow: hidden;
+            // padding: 5px;
+            input {
+                font-weight: 500;
+                font-size: 20px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                padding: 5px;
+                max-width: 100%;
+                margin: 5px 0;
+                background: #ff9800;
+                border: none;
+            }
         }
         .taskBody {
             display: flex;
