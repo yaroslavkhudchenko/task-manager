@@ -55,6 +55,14 @@
             #singleSubTaskModalTitle {
                 
             }
+            #singleSubTaskModalClose {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 40px;
+                height: 20px;
+                background:red;
+            }
         }
     }
 }

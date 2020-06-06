@@ -62,6 +62,9 @@ export const GetTasks = () => {
                                 <div id='singleSubTaskModalBody'>
                                     {goodSubTask.descr}
                                 </div>
+                                <div id='singleSubTaskModalClose' onClick={()=>setOpenDescr(false)}>
+                                    close
+                                </div>
                             </div>
                             : false
                         }
