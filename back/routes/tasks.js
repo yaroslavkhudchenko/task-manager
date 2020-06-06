@@ -9,6 +9,17 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message
 });
 
+// route => handles imcoming http post requests -> to edit
+router.route('/').post((req, res) => {
+    console.log('wwssaa')
+    console.log(res)
+    console.log(req)
+    return;
+    tasks.save() // get list of all the users from mongodb database 
+        .then(user => res.json(user)) // in json
+        .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message
+});
+
 // route => if url /users/add run this post(if post only)
 router.route('/addtask').post((req, res) => {
 
