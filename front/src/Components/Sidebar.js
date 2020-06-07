@@ -2,7 +2,6 @@ import React,{useEffect, useState, useContext} from 'react';
 import '../css/Sidebar.scss';
 import { GetProjects } from './../Hooks/GetProjects';
 import { AppContext } from './../Components/App';
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
 const Sidebar = () => {
     const [SidebarState, setSidebarState] = useState(false);
