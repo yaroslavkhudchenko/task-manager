@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from './../Components/App';
+import CloseIcon from "@material-ui/icons/Close";
 
 export const GetProjects = () => {
    
@@ -42,7 +43,9 @@ export const GetProjects = () => {
                 }
             )}>
             <div className='projectTitle'>{single.name}</div>
-            <div className='deleteSingleProject' onClick={() => deleteSingleProject(single._id)}></div>
+            <div className='deleteSingleProjectButton' onClick={() => deleteSingleProject(single._id)}>
+                <CloseIcon />
+            </div>
         </div>
           
     ))

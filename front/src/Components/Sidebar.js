@@ -12,19 +12,46 @@ const Sidebar = () => {
     const appContext = useContext(AppContext);
 
     return (
-        <div 
-            className={appContext.state.isHiddenSidebar ? 'Sidebar hiddenSidebar' : 'Sidebar'} // hide or show based on global variable
-            onClick={appContext.state.isHiddenSidebar ? () => appContext.changeState({ ...appContext.state, isHiddenSidebar: false }) : undefined}
+      <div
+        className={
+          appContext.state.isHiddenSidebar ? "Sidebar hiddenSidebar" : "Sidebar"
+        } // hide or show based on global variable
+        onClick={
+          appContext.state.isHiddenSidebar
+            ? () =>
+                appContext.changeState({
+                  ...appContext.state,
+                  isHiddenSidebar: false,
+                })
+            : undefined
+        }
+      >
+        <div
+          id="sidebarCloser"
+          onClick={() =>
+            appContext.changeState({
+              ...appContext.state,
+              isHiddenSidebar: true,
+            })
+          }
         >
-            <div id='sidebarCloser' onClick={() =>appContext.changeState({...appContext.state,isHiddenSidebar:true})}><CloseIcon/></div> {/* button to close the sidebar */}
-            <div className='title'>
-                Projects: 
-            </div>
-            <div className='content'>
-                <GetProjects />
-            </div>
+          <CloseIcon
+            style={{
+              fontSize: "3em",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%,-50%)",
+              color: "white",
+            }}
+          />
+        </div>{" "}
+        {/* button to close the sidebar */}
+        <div className="title">Projects:</div>
+        <div className="content">
+          <GetProjects />
         </div>
-           
+      </div>
     );
 }
 
