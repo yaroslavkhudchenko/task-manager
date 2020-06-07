@@ -1,12 +1,14 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import '../css/Header.scss';
 import axios from 'axios';
-import { AppContext } from './../Components/App';
+import App, { AppContext } from './../Components/App';
 
 const Header = () => {
 
     const [nameNeeded, nameNeededSet] = useState(false)
 
+    const appContext = useContext(AppContext);
+    
     // add new project to the database
     const AddProject = () => {
 
@@ -21,8 +23,9 @@ const Header = () => {
                     tasks: [],
                     archived: false
                 }
-            )
+            ).catch(err=>console.log('errror____' + err))
             nameNeededSet(false);
+            appContext.changeState({...appContext.state, refreshProjects:true})
         }        
     }
     return (
