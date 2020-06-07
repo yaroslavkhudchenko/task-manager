@@ -12,7 +12,7 @@ const Tasks = new Schema({ // create new schema
         type: String,
         required: true,
         trim: true, // white space at the end
-        minlength: 3 // min length for name
+        minlength: 0 // min length for name
     },
     subtasks: {
         type: Array,

@@ -12,6 +12,8 @@ export const GetTasks = () => {
         name:undefined,
         descr:undefined
     })
+
+    const [updatePage,setUpdatePage] = useState(true);
     // to delete single tasks
     const deleteSingleTask = (id) => {
         console.log('delete')
@@ -53,6 +55,7 @@ export const GetTasks = () => {
     }
 
     useEffect(() => {
+        if (!updatePage) return;
 
         axios.get('http://localhost:5000/tasks')
             .then(res => {
@@ -61,13 +64,10 @@ export const GetTasks = () => {
             });
 
             console.log(tasksState)
-    }, []);
+            setUpdatePage(false);
+    }, [tasksState]);
 
-    useEffect(() => {
-
-        console.log('changed')
-        console.log(tasksState)
-    }, [tasksState])
+   
     // addProject();
 
     return (tasksState.map((single, index) =>
@@ -75,7 +75,7 @@ export const GetTasks = () => {
             {value => value.state.activeProjectName === single.projectName ?
                     <div className='singeTask'>
                         <div className='taskTitle'>
-                        <input value={single.name} onChange={(e) => handleTitleChange({ single: single, name: e.target.value })} />
+                        <input value={single.name} onFocusOut={(e) => handleTitleChange({ single: single, name: e.target.value })} />
                         </div>
                         <div className='taskBody'>
                             {single.subtasks.map((one,index) =>
