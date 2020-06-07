@@ -1,18 +1,21 @@
+
+
+
 .Sidebar {
     height: calc(100% - 50px);
-    width: 300px;
+    // width: 300px;
     background:orange;
-
+    transition: ease-in .5s;
     position: fixed;
     left: 0;
     top: 50px;
-
+    width: 250px;
     .singleProject {
         background: teal;
         display: flex;
         justify-content: space-evenly;
         margin: 10px 0;
-        padding: 20px 12px;
+        padding: 10px 0px;
         cursor: pointer;
         .projectTitle {
             font-size: 20px;
@@ -47,21 +50,25 @@
     }
     #sidebarCloser {
         position: absolute;
-        right: 0;
+        right: -50px;
         height: 100vh;
         width: 50px;
         background: red;
         cursor: pointer;
+        transition: ease-in .5s;
+
     }
     .singleProjectActive {
         background: lightgrey;
     }
 }
 .Sidebar.hiddenSidebar {
-    left:-300px;
-   
+    left:-250px;
+    #sidebarCloser {
+        right: -50px!important;
+    }
 }
-.hiddenSidebar::after {
+/* .hiddenSidebar::after {
     content: '';
     background: yellow;
     position: absolute;
@@ -70,4 +77,4 @@
     width: 50px;
     height: 100vh;
     cursor: pointer;
-}
+} */

@@ -6,6 +6,7 @@
     height: calc(100% - 50px);
     display: flex;
     overflow-x: scroll;
+    transition: ease-in .5s;
     #ghostTask {
         width: 240px;
         min-width: 240px;
