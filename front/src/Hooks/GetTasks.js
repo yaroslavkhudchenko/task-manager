@@ -77,9 +77,8 @@ export const GetTasks = () => {
     // addProject();
 
     return (tasksState.map((single, index) =>
-        <AppContext.Consumer>
-            {value => value.state.activeProjectName === single.projectName ?
-                    <div className='singeTask'>
+            appContext.state.activeProjectName === single.projectName ?
+                    <div key={index} className='singeTask'>
                         <div className='taskTitle'>
                         <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
                         </div>
@@ -109,8 +108,6 @@ export const GetTasks = () => {
                         }
                     </div>
                 :false
-            }
-        </AppContext.Consumer>
-               
+            
     ))
 };
