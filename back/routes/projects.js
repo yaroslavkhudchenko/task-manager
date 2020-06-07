@@ -39,9 +39,18 @@ router.route('/:id').delete((req, res) => {
     projects.findByIdAndDelete(req.params.id)// will find the exact project in the db and delete it
         .then(() => res.json('Project successfully deleted.'))
         .catch(err => res.status(400).json('Error: ' + err));
-    console.log('--------------------------------------------------------')
-    console.log(project)
-    console.log(project.name)
+
+    // console.log('--------------------------------------------------------')
+    // console.log(project)
+    // console.log(project.name)
+    // 
+    // tasks.find({projectName:project.name}).map(one=>console.log(one))
+    /* tasks.getCollectionNames().forEach(function (collname) {
+        var count = db[collname].find({ "projectName": { $exists: true } }).count();
+        if (count > 0) {
+            print(collname);
+        }
+    }) */
 });
 
 
