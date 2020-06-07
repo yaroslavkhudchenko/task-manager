@@ -6,15 +6,29 @@
     height: calc(100% - 100px);
     display: flex;
     overflow-x: scroll;
-    #addTaskButton {
-        position: absolute;
-        bottom: 0;
-        right: 0;
+    #ghostTask {
+        width: 240px;
+        min-width: 240px;
+        background: #ff980024;
+        min-height: 270px;
+        margin: 20px 15px;
+        height: -moz-fit-content;
+        height: fit-content;
+        position: relative;
+        cursor: pointer;
+        #addTaskButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
     }
-    
+    #ghostTask:hover {
+        background: #1f688524;
+    }
     .singeTask {
-        width: 275px;
-        min-width: 275px;
+        width: 240px;
+        min-width: 240px;
         background: #ff9800;
         min-height: 270px;
         margin: 20px 15px;

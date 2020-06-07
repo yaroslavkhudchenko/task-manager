@@ -35,8 +35,12 @@ const Board = () => {
     return (
         
         <div className={appContext.state.isHiddenSidebar ? 'Board boardWithHiddenSidebar' : 'Board'}>
-            <div id='addTaskButton' onClick={() => AddTask(appContext.state.activeProjectName)}>Add</div>
             <GetTasks />
+            <div id='ghostTask'>
+                <div id='addTaskButton' onClick={() => AddTask(appContext.state.activeProjectName)}>
+                    add task
+                </div>
+            </div>
         </div>
            
     );
