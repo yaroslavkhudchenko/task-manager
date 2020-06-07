@@ -11,11 +11,10 @@ const App = () => {
     activeProjectNb:null,
     activeProjectName:"",
     isHiddenSidebar: false,
-    refreshProjects:true,
-    refreshTasks:true,
-    refreshSubTasks:true
+    refreshProjects:false,
+    refreshTasks:false,
+    refreshSubTasks:false
   });
-  
 
   return (
     <AppContext.Provider value={{

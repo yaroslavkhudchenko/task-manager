@@ -33,13 +33,13 @@ export const GetProjects = () => {
                 
             });
         appContext.changeState({ ...appContext.state, refreshProjects:false});
-        
+
     }, [appContext.state.refreshProjects]);
     // addProject();
 
     return (projectsState.map((single, index)=> 
         
-        <div className={appContext.state.activeProjectNb == index ? 'singleProject singleProjectActive' : 'singleProject'} 
+        <div key={index} className={appContext.state.activeProjectNb == index ? 'singleProject singleProjectActive' : 'singleProject'} 
             onClick={() => appContext.changeState(
                 {
                     ...appContext.state,

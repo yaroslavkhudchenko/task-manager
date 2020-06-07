@@ -48,7 +48,10 @@ export const GetTasks = () => {
         ).then(res => {
                 console.log(res.data);
                 console.log('ww udaczno')
-               //  appContext.changeState({ ...appContext.state, refreshTasks: true })
+                
+            appContext.changeState({ ...appContext.state, refreshTasks: true })
+            
+            
         }).catch((error) => {
             console.log('rrorroor')
             console.error(error);
@@ -56,7 +59,7 @@ export const GetTasks = () => {
 
         console.log(tasksState)
     }
-
+    
     useEffect(() => {
         console.log('update page rerender taskssssssssssssssssssssssssssssssssssssssssssssss')
         axios.get('http://localhost:5000/tasks')
@@ -64,12 +67,15 @@ export const GetTasks = () => {
                 console.log(res.data);
                 setTaskState(res.data);
             });
-
-            console.log(tasksState)
-       // appContext.changeState({ ...appContext.state, refreshTasks: false });
-
-    }, []);
-
+        
+            appContext.changeState({ ...appContext.state, refreshTasks: false });
+        
+            
+    }, [appContext.state.refreshTasks]);
+    useEffect(() => {
+        console.log('every fame use get task')
+        console.log(appContext.state)
+    })
    
     // addProject();
 
