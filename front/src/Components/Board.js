@@ -21,9 +21,11 @@ const Board = () => {
                     projectName: pn,
                     archived: false
                 }
+            ).then(()=>
+                appContext.changeState({ ...appContext.state, refreshTasks: true })
             )
             // nameNeededSet(false);
-            appContext.changeState({ ...appContext.state, refreshTasks: true })
+            
 
         }
 
@@ -31,14 +33,12 @@ const Board = () => {
    
 
     return (
-        <AppContext.Consumer>
-            {value =>
-                <div className={value.state.isHiddenSidebar ? 'Board boardWithHiddenSidebar' : 'Board'}>
-                    <div id='addTaskButton' onClick={() => AddTask(value.state.activeProjectName)}>Add</div>
-                    <GetTasks />
-                </div>
-            }
-        </AppContext.Consumer>
+        
+        <div className={appContext.state.isHiddenSidebar ? 'Board boardWithHiddenSidebar' : 'Board'}>
+            <div id='addTaskButton' onClick={() => AddTask(appContext.state.activeProjectName)}>Add</div>
+            <GetTasks />
+        </div>
+           
     );
 }
 

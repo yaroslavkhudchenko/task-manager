@@ -14,7 +14,6 @@ export const GetTasks = () => {
     })
     const appContext = useContext(AppContext);
 
-    const [updatePage,setUpdatePage] = useState(true);
     // to delete single tasks
     const deleteSingleTask = (id) => {
         console.log('delete')
@@ -49,7 +48,7 @@ export const GetTasks = () => {
         ).then(res => {
                 console.log(res.data);
                 console.log('ww udaczno')
-                //setUpdatePage(true)
+                appContext.changeState({ ...appContext.state, refreshTasks: true })
         }).catch((error) => {
             console.log('rrorroor')
             console.error(error);
@@ -59,7 +58,6 @@ export const GetTasks = () => {
     }
 
     useEffect(() => {
-        //if (!updatePage) return;
         console.log('update page rerender taskssssssssssssssssssssssssssssssssssssssssssssss')
         axios.get('http://localhost:5000/tasks')
             .then(res => {
@@ -68,7 +66,6 @@ export const GetTasks = () => {
             });
 
             console.log(tasksState)
-           // setUpdatePage(false);
         appContext.changeState({ ...appContext.state, refreshTasks: false });
 
     }, [appContext.state.refreshTasks]);

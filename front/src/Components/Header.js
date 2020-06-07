@@ -23,18 +23,22 @@ const Header = () => {
                     tasks: [],
                     archived: false
                 }
-            ).catch(err=>console.log('errror____' + err))
+            ).then(()=>
+                console.log('success add project'))
+            .catch((err)=>
+                console.log('errror____' + err)
+            )
             nameNeededSet(false);
-            appContext.changeState({...appContext.state, refreshProjects:true})
+            console.log('iiiiiiiiiiiiiiiiiiiiiiiiiii')
+            appContext.changeState({ ...appContext.state, refreshProjects: true})
         }        
     }
     return (
-        <AppContext.Consumer>
-            {value =>
+       
                 <div className="Header">
                     <div className='addBoard' onClick={() => nameNeededSet(true)}>Add</div>
                     <div className='projectHeaderName'>
-                        {value.state.activeProjectName}
+                        {appContext.state.activeProjectName}
                     </div>
                     {nameNeeded ?
                         <div className='addNameModule'>
@@ -47,8 +51,7 @@ const Header = () => {
                         : false
                     }
                 </div>
-            }
-        </AppContext.Consumer>
+           
     )
 }
 

@@ -23,14 +23,18 @@ export const GetProjects = () => {
     }
 
     useEffect(()=>{
-        
+        console.log('awf uwdfawpdate page rerender use effeCt in GETPROJECTSSSSSSsss')
+        console.log(appContext.state.refreshProjects)
         axios.get('http://localhost:5000/projects')
             .then(res=>{
+                console.log('successsssssssssssssssssssssss!')
                 console.log(res.data);
                 setProjectsState(res.data);
+                
             });
         appContext.changeState({ ...appContext.state, refreshProjects:false});
-    }, [appContext.state.refreshProjects])
+        
+    }, [appContext.state.refreshProjects]);
     // addProject();
 
     return (projectsState.map((single, index)=> 
