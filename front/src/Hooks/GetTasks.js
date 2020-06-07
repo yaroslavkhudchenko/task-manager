@@ -29,12 +29,12 @@ export const GetTasks = () => {
 
     const handleTitleChange = (e) => {
         console.log('hnadlea wgawgwa')
-        console.log(e.single.id)
+        console.log(e)
         //tasksState[0].name = e.target.value;
        /*  setTaskState(tasksState)
         console.log(tasksState) */
         
-        axios.post(`http://localhost:5000/tasks/edit/${e.single.id}`,
+        axios.post(`http://localhost:5000/tasks/edit/${e.single._id}`,
         {
             name: e.name/* ,
             subtasks: e.single.subtasks,

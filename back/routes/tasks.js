@@ -11,15 +11,19 @@ router.route('/').get((req, res) => {
 
 // route => handles imcoming http post requests -> to edit
 router.route('/edit/:id').post((req, res) => {
-    console.log('wwssaa')
+    console.log('wwssaa+/=wgw+++awgaw++= gwagawg+++')
     console.log(res)
     console.log(req)
     
     tasks.findById(req.params.id) // get correct query based on the id passed
-        .then(task =>
-            task.name = req.body.name
-        ) // in json
-        .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message */
+        .then(task => {
+            task.name = req.body.name;
+        
+        task.save()
+            .then(() => res.json('Exercise updated!'))
+            .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message */
 });
 
 // route => if url /users/add run this post(if post only)
