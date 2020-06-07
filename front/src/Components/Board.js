@@ -3,6 +3,8 @@ import '../css/Board.scss';
 import axios from 'axios';
 import { GetTasks } from './../Hooks/GetTasks';
 import { AppContext } from './../Components/App';
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+
 const Board = () => {
 
     const appContext = useContext(AppContext);
@@ -32,16 +34,25 @@ const Board = () => {
    
 
     return (
-        
-        <div className={appContext.state.isHiddenSidebar ? 'Board boardWithHiddenSidebar' : 'Board'}>
-            <GetTasks />
-            <div id='ghostTask'>
-                <div id='addTaskButton' onClick={() => AddTask(appContext.state.activeProjectName)}>
-                    add task
-                </div>
-            </div>
+      <div
+        className={
+          appContext.state.isHiddenSidebar
+            ? "Board boardWithHiddenSidebar"
+            : "Board"
+        }
+      >
+        <GetTasks />
+        <div id="ghostTask">
+          <div
+            id="addTaskButton"
+            onClick={() => AddTask(appContext.state.activeProjectName)}
+          >
+            <AddCircleOutlineIcon
+              style={{ fontSize: 120, color: "#1de9b6", opacity: "1" }}
+            />
+          </div>
         </div>
-           
+      </div>
     );
 }
 

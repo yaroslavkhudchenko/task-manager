@@ -7,10 +7,10 @@
     display: flex;
     overflow-x: scroll;
     transition: ease-in .5s;
+    background: #424242;
     #ghostTask {
         width: 240px;
         min-width: 240px;
-        background: #ff980024;
         min-height: 270px;
         margin: 20px 15px;
         height: -moz-fit-content;
@@ -30,7 +30,7 @@
     .singeTask {
         width: 240px;
         min-width: 240px;
-        background: #ff9800;
+        background: #ff980024;
         min-height: 270px;
         margin: 20px 15px;
         height: fit-content;
@@ -59,7 +59,7 @@
                 padding: 5px;
                 max-width: 100%;
                 margin: 5px 0;
-                background: #ff9800;
+                background: #ff980024;
                 border: none;
             }
         }
