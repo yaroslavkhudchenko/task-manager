@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import axios from 'axios';
 import { AppContext } from './../Components/App';
@@ -12,13 +12,16 @@ export const GetTasks = () => {
         name:undefined,
         descr:undefined
     })
+    const appContext = useContext(AppContext);
 
     const [updatePage,setUpdatePage] = useState(true);
     // to delete single tasks
     const deleteSingleTask = (id) => {
         console.log('delete')
         console.log(id)
-        axios.delete(`http://localhost:5000/tasks/${id}`);
+        axios.delete(`http://localhost:5000/tasks/${id}`).then(()=>
+            appContext.changeState({ ...appContext.state, refreshTasks: true })
+        )
     }
 
     const handleOpenModalClick = (good) => {
@@ -46,7 +49,7 @@ export const GetTasks = () => {
         ).then(res => {
                 console.log(res.data);
                 console.log('ww udaczno')
-                setUpdatePage(true)
+                //setUpdatePage(true)
         }).catch((error) => {
             console.log('rrorroor')
             console.error(error);
@@ -56,8 +59,8 @@ export const GetTasks = () => {
     }
 
     useEffect(() => {
-        if (!updatePage) return;
-        console.log('update page rerender')
+        //if (!updatePage) return;
+        console.log('update page rerender taskssssssssssssssssssssssssssssssssssssssssssssss')
         axios.get('http://localhost:5000/tasks')
             .then(res => {
                 console.log(res.data);
@@ -65,8 +68,10 @@ export const GetTasks = () => {
             });
 
             console.log(tasksState)
-            setUpdatePage(false);
-    }, [tasksState]);
+           // setUpdatePage(false);
+        appContext.changeState({ ...appContext.state, refreshTasks: false });
+
+    }, [appContext.state.refreshTasks]);
 
    
     // addProject();
