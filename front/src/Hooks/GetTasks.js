@@ -48,7 +48,7 @@ export const GetTasks = () => {
         ).then(res => {
                 console.log(res.data);
                 console.log('ww udaczno')
-                appContext.changeState({ ...appContext.state, refreshTasks: true })
+               //  appContext.changeState({ ...appContext.state, refreshTasks: true })
         }).catch((error) => {
             console.log('rrorroor')
             console.error(error);
@@ -66,9 +66,9 @@ export const GetTasks = () => {
             });
 
             console.log(tasksState)
-        appContext.changeState({ ...appContext.state, refreshTasks: false });
+       // appContext.changeState({ ...appContext.state, refreshTasks: false });
 
-    }, [appContext.state.refreshTasks]);
+    }, []);
 
    
     // addProject();

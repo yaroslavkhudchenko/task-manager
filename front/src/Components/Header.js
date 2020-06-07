@@ -1,15 +1,14 @@
 import React,{useState, useContext} from 'react';
 import '../css/Header.scss';
 import axios from 'axios';
-import App, { AppContext } from './../Components/App';
-
+import { AppContext } from './../Components/App';
 const Header = () => {
 
     const [nameNeeded, nameNeededSet] = useState(false)
 
     const appContext = useContext(AppContext);
     
-    // add new project to the database
+    // add new projecat to the database
     const AddProject = () => {
 
         let name = document.querySelector('.addNameModule input').value;
@@ -29,7 +28,6 @@ const Header = () => {
                 console.log('errror____' + err)
             )
             nameNeededSet(false);
-            console.log('iiiiiiiiiiiiiiiiiiiiiiiiiii')
             appContext.changeState({ ...appContext.state, refreshProjects: true})
         }        
     }
