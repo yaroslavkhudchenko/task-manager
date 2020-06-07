@@ -19,7 +19,12 @@ export const GetProjects = () => {
     useEffect(()=>{
         
         axios.get('http://localhost:5000/projects')
-            .then(res=> setProjectsState(res.data))
+            .then(res=> {
+                setProjectsState(res.data);
+                if (appContext.state.activeProjectName === null && res.data.length) { // to run only at the very beginning when name is not set and check if there are any project to grab name from
+                    appContext.changeState({ ...appContext.state, activeProjectName: res.data[0].name })
+                };
+            })
             .catch(err => console.log('error on getting projects ' + err));
 
         appContext.changeState({ ...appContext.state, refreshProjects:false});

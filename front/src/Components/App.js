@@ -8,8 +8,8 @@ export const AppContext = React.createContext();
 
 const App = () => {
   const [appState, setAppState] = useState({
-    activeProjectNb:null,
-    activeProjectName:"",
+    activeProjectNb:0,
+    activeProjectName:null,
     isHiddenSidebar: false,
     // if need refresh
     refreshProjects:false,
