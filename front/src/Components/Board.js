@@ -18,8 +18,7 @@ const Board = () => {
                 {
                     name: name,
                     subtasks: [],
-                    projectName: pn,
-                    archived: false
+                    projectName: pn
                 }
             ).then(()=>
                 appContext.changeState({ ...appContext.state, refreshTasks: true })

@@ -21,10 +21,6 @@ const addProjectScheme = new Schema({ // create new schema
     tasks: {
         type: Array,
         required: true
-    },
-    archived : {
-        type: Boolean,
-        required: true
     }
 }, {
     timestamps: true // stamps when created/modified

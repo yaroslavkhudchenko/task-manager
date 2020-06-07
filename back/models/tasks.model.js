@@ -18,10 +18,6 @@ const Tasks = new Schema({ // create new schema
         type: Array,
         required: true
     },
-    archived: {
-        type: Boolean,
-        required: true
-    },
     projectName: {
         type: String,
         required:true

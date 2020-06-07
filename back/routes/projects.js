@@ -16,14 +16,12 @@ router.route('/addproject').post((req, res) => {
     const name = req.body.name; // from the input - the rest are the default values for the new empty project
     const nbTask = 0;
     const tasks = []; 
-    const archived = false; 
 
 
     const newProject = new projects({
         name,
         nbTask,
         tasks,
-        archived
     }); // create the projects with the given values
 
     newProject.save() // save to databse
@@ -31,12 +29,19 @@ router.route('/addproject').post((req, res) => {
         .catch(err => res.status(400).json('Errorц: ' + err)); // if error return 400 with err message
 });
 
+let tasks = require('../models/tasks.model'); // import mongoose model
+
 
 // to delete project with id
 router.route('/:id').delete((req, res) => {
+    let project = projects.findById(req.params.id);
+
     projects.findByIdAndDelete(req.params.id)// will find the exact project in the db and delete it
         .then(() => res.json('Project successfully deleted.'))
         .catch(err => res.status(400).json('Error: ' + err));
+    console.log('--------------------------------------------------------')
+    console.log(project)
+    console.log(project.name)
 });
 
 
