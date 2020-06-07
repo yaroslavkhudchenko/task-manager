@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import '../css/App.scss';
+import "../css/App.scss";
+
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Board from "./Board";
