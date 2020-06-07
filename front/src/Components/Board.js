@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../css/Board.scss';
 import axios from 'axios';
 import { GetTasks } from './../Hooks/GetTasks';
 import { AppContext } from './../Components/App';
 const Board = () => {
-
 
     const AddTask = (pn) => {
         console.log(pn)
@@ -22,8 +21,9 @@ const Board = () => {
             )
             // nameNeededSet(false);
         }
-    }
 
+    }
+   
 
     return (
         <AppContext.Consumer>

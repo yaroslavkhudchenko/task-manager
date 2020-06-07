@@ -46,6 +46,7 @@ export const GetTasks = () => {
         ).then(res => {
                 console.log(res.data);
                 console.log('ww udaczno')
+                setUpdatePage(true)
         }).catch((error) => {
             console.log('rrorroor')
             console.error(error);
@@ -56,7 +57,7 @@ export const GetTasks = () => {
 
     useEffect(() => {
         if (!updatePage) return;
-
+        console.log('update page rerender')
         axios.get('http://localhost:5000/tasks')
             .then(res => {
                 console.log(res.data);

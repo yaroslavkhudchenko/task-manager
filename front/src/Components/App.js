@@ -10,7 +10,10 @@ const App = () => {
   const [appState, setAppState] = useState({
     activeProjectNb:null,
     activeProjectName:"",
-    isHiddenSidebar: false
+    isHiddenSidebar: false,
+    refreshProjects:true,
+    refreshTasks:true,
+    refreshSubTasks:true
   });
   
 
