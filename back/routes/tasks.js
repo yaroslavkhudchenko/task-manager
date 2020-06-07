@@ -9,11 +9,8 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message
 });
 
-// route => handles imcoming http post requests -> to edit
+// route => handles imcoming http post requests -> to edit name
 router.route('/edit/:id').post((req, res) => {
-    console.log('wwssaa+/=wgw+++awgaw++= gwagawg+++')
-    console.log(res)
-    console.log(req)
     
     tasks.findById(req.params.id) // get correct query based on the id passed
         .then(task => {
@@ -33,7 +30,6 @@ router.route('/addtask').post((req, res) => {
     const subtasks = [];
     const archived = false;
     const projectName = req.body.projectName;
-
 
     const newTask = new tasks({
         name,

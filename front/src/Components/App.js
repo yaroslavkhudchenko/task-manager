@@ -11,6 +11,7 @@ const App = () => {
     activeProjectNb:null,
     activeProjectName:"",
     isHiddenSidebar: false,
+    // if need refresh
     refreshProjects:false,
     refreshTasks:false,
     refreshSubTasks:false

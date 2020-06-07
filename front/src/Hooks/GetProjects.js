@@ -1,46 +1,35 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { fakeData } from './../fakeData/fakeData';
 import axios from 'axios';
 import { AppContext } from './../Components/App';
 
 export const GetProjects = () => {
    
-    const [projectsState, setProjectsState] = useState([]);
+    const [projectsState, setProjectsState] = useState([]); // state for projects
 
-    // const [updatePage, setUpdatePage] = useState(true);
+    const appContext = useContext(AppContext); // global context
 
-    const appContext = useContext(AppContext);
-
-    // to delete single project
+    // to delete single project based on it's id
     const deleteSingleProject = (id) => {
-        console.log('delete')
-        console.log(id)
-        axios.delete(`http://localhost:5000/projects/${id}`).then(()=>
-            appContext.changeState({ ...appContext.state, refreshProjects: true })
-        )
         
+        axios.delete(`http://localhost:5000/projects/${id}`)
+        .then(()=> appContext.changeState({ ...appContext.state, refreshProjects: true }));
 
     }
 
     useEffect(()=>{
-        console.log('awf uwdfawpdate page rerender use effeCt in GETPROJECTSSSSSSsss')
-        console.log(appContext.state.refreshProjects)
+        
         axios.get('http://localhost:5000/projects')
-            .then(res=>{
-                console.log('successsssssssssssssssssssssss!')
-                console.log(res.data);
-                setProjectsState(res.data);
-                
-            });
+            .then(res=> setProjectsState(res.data))
+            .catch(err => console.log('error on getting projects ' + err));
+
         appContext.changeState({ ...appContext.state, refreshProjects:false});
 
-    }, [appContext.state.refreshProjects]);
-    // addProject();
+    }, [appContext.state.refreshProjects]); // if refresProject value from appContext is changed refresh the list
 
     return (projectsState.map((single, index)=> 
         
-        <div key={index} className={appContext.state.activeProjectNb == index ? 'singleProject singleProjectActive' : 'singleProject'} 
-            onClick={() => appContext.changeState(
+        <div key={index} className={appContext.state.activeProjectNb == index ? 'singleProject singleProjectActive' : 'singleProject'}  // check current project is active
+            onClick={() => appContext.changeState( // onClick change active project
                 {
                     ...appContext.state,
                     activeProjectNb: index,

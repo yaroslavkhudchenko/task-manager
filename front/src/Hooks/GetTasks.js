@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-
 import axios from 'axios';
 import { AppContext } from './../Components/App';
 
 export const GetTasks = () => {
-    console.log('in hook I am tasks')
 
     const [tasksState, setTaskState] = useState([]);
     const [openDescr, setOpenDescr] = useState(false);
@@ -32,55 +30,28 @@ export const GetTasks = () => {
     };
 
     const handleTitleChange = (e) => {
-        console.log('hnadlea wgawgwa')
-        console.log(e)
-        //tasksState[0].name = e.target.value;
-       /*  setTaskState(tasksState)
-        console.log(tasksState) */
         
         axios.post(`http://localhost:5000/tasks/edit/${e.single._id}`,
         {
-            name: e.name/* ,
-            subtasks: e.single.subtasks,
-            archived: e.single.archived,
-            projectName: e.single.projectName */
-        }
-        ).then(res => {
-                console.log(res.data);
-                console.log('ww udaczno')
-                
-            appContext.changeState({ ...appContext.state, refreshTasks: true })
-            
-            
-        }).catch((error) => {
-            console.log('rrorroor')
-            console.error(error);
-        });;
+            name: e.name
+        })
+        .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
+        .catch(error => console.error('error while title change ' + error));
 
-        console.log(tasksState)
     }
     
     useEffect(() => {
-        console.log('update page rerender taskssssssssssssssssssssssssssssssssssssssssssssss')
+
         axios.get('http://localhost:5000/tasks')
-            .then(res => {
-                console.log(res.data);
-                setTaskState(res.data);
-            });
+            .then(res => setTaskState(res.data));
         
             appContext.changeState({ ...appContext.state, refreshTasks: false });
         
             
-    }, [appContext.state.refreshTasks]);
-    useEffect(() => {
-        console.log('every fame use get task')
-        console.log(appContext.state)
-    })
+    }, [appContext.state.refreshTasks]); // if refreshTasks value from appContext is changed refresh the list
    
-    // addProject();
-
     return (tasksState.map((single, index) =>
-            appContext.state.activeProjectName === single.projectName ?
+            appContext.state.activeProjectName === single.projectName ? // display tasks only for active project
                     <div key={index} className='singeTask'>
                         <div className='taskTitle'>
                         <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
