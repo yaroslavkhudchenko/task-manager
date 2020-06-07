@@ -75,7 +75,7 @@ export const GetTasks = () => {
             {value => value.state.activeProjectName === single.projectName ?
                     <div className='singeTask'>
                         <div className='taskTitle'>
-                        <input value={single.name} onFocusOut={(e) => handleTitleChange({ single: single, name: e.target.value })} />
+                        <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
                         </div>
                         <div className='taskBody'>
                             {single.subtasks.map((one,index) =>
