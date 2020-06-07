@@ -1,11 +1,11 @@
 .Sidebar {
-    height: calc(100% - 100px);
+    height: calc(100% - 50px);
     width: 300px;
     background:orange;
 
     position: fixed;
     left: 0;
-    top: 100px;
+    top: 50px;
 
     .singleProject {
         background: teal;
@@ -45,6 +45,14 @@
         }
 
     }
+    #sidebarCloser {
+        position: absolute;
+        right: 0;
+        height: 100vh;
+        width: 50px;
+        background: red;
+        cursor: pointer;
+    }
     .singleProjectActive {
         background: lightgrey;
     }
@@ -60,6 +68,6 @@
     top: 0;
     right: -50px;
     width: 50px;
-    height: 50px;
+    height: 100vh;
     cursor: pointer;
 }

@@ -1,9 +1,9 @@
 .Board {
     position: fixed;
-    top: 100px;
+    top: 50px;
     left: 300px;
     width: calc(100% - 300px);
-    height: calc(100% - 100px);
+    height: calc(100% - 50px);
     display: flex;
     overflow-x: scroll;
     #ghostTask {
