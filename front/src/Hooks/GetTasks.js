@@ -29,18 +29,27 @@ export const GetTasks = () => {
 
     const handleTitleChange = (e) => {
         console.log('hnadlea wgawgwa')
-        console.log(e)
+        console.log(e.single.id)
         //tasksState[0].name = e.target.value;
        /*  setTaskState(tasksState)
         console.log(tasksState) */
         
-   /*      axios.post('http://localhost:5000/tasks')
-            .then(res => {
+        axios.post(`http://localhost:5000/tasks/edit/${e.single.id}`,
+        {
+            name: e.name/* ,
+            subtasks: e.single.subtasks,
+            archived: e.single.archived,
+            projectName: e.single.projectName */
+        }
+        ).then(res => {
                 console.log(res.data);
-                setTaskState(res.data);
-            });
+                console.log('ww udaczno')
+        }).catch((error) => {
+            console.log('rrorroor')
+            console.error(error);
+        });;
 
-        console.log(tasksState) */
+        console.log(tasksState)
     }
 
     useEffect(() => {
@@ -66,7 +75,7 @@ export const GetTasks = () => {
             {value => value.state.activeProjectName === single.projectName ?
                     <div className='singeTask'>
                         <div className='taskTitle'>
-                        <input value={single.name} onChange={() => handleTitleChange(single._id)}/>
+                        <input value={single.name} onChange={(e) => handleTitleChange({ single: single, name: e.target.value })} />
                         </div>
                         <div className='taskBody'>
                             {single.subtasks.map((one,index) =>

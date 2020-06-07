@@ -19,6 +19,15 @@
         min-height: 270px;
         margin: 20px 15px;
         height: fit-content;
+        position: relative;
+        .deleteSingleTask {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: teal;
+            width: 40px;
+            height: 40px;
+        }
         .taskTitle {
             // font-weight: 500;
             // font-size: 25px;

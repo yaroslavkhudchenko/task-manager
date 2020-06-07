@@ -5,19 +5,21 @@ let tasks = require('../models/tasks.model'); // import mongoose model
 // route => handles imcoming http get requests
 router.route('/').get((req, res) => {
     tasks.find() // get list of all the users from mongodb database 
-        .then(user => res.json(user)) // in json
+        .then(tasks => res.json(tasks)) // in json
         .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message
 });
 
 // route => handles imcoming http post requests -> to edit
-router.route('/').post((req, res) => {
+router.route('/edit/:id').post((req, res) => {
     console.log('wwssaa')
     console.log(res)
     console.log(req)
-    return;
-    tasks.save() // get list of all the users from mongodb database 
-        .then(user => res.json(user)) // in json
-        .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message
+    
+    tasks.findById(req.params.id) // get correct query based on the id passed
+        .then(task =>
+            task.name = req.body.name
+        ) // in json
+        .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message */
 });
 
 // route => if url /users/add run this post(if post only)
