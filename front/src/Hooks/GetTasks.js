@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from './../Components/App';
+import AddIcon from '@material-ui/icons/Add';
 
 export const GetTasks = () => {
 
@@ -21,10 +22,20 @@ export const GetTasks = () => {
         )
     }
 
+
+    const AddSubTask = (param) => {
+        console.log('ss')
+        console.log(param)
+        axios.post(`http://localhost:5000/tasks/edit/${param}`, {subtasks:'new'})
+            .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
+            .catch(error => console.error('error while title change ' + error));
+    }
+
+
     const handleOpenModalClick = (good) => {
         setOpenDescr(true);
         setGoodSubTask({
-            name:good.name,
+            name:good.title,
             descr:good.descr
         })
     };
@@ -37,6 +48,17 @@ export const GetTasks = () => {
         })
         .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
         .catch(error => console.error('error while title change ' + error));
+
+    }
+    const handleSubTaskTitleChange = (e) => {
+
+        console.log(e);
+        axios.post(`http://localhost:5000/tasks/edit/${e.single._id}`,
+            {
+                name: e.name
+            })
+            .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
+            .catch(error => console.error('error while title change ' + error));
 
     }
     
@@ -60,16 +82,23 @@ export const GetTasks = () => {
                             {single.subtasks.map((one,index) =>
                                 <div key={index} className='singleSubTask'>
                                     <div className='subTaskTitle' onClick={()=>handleOpenModalClick(one)}>
-                                        {one.name}
+                                        <input 
+                                            defaultValue={single.name} 
+                                            onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} />
                                     </div>
                                 </div>
                             )}
+                            <div className='ghostSubTask'>
+                                <AddIcon 
+                            onClick={() => AddSubTask(single._id)}
+                                />
+                            </div>
                         </div>
                         <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}></div>
                         {openDescr ?
                             <div id='singleSubTaskModal'>
                                 <div id='singleSubTaskModalTitle'>
-                                    {goodSubTask.name}
+                                    {goodSubTask.title}
                                 </div>
                                 <div id='singleSubTaskModalBody'>
                                     {goodSubTask.descr}

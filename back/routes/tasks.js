@@ -14,7 +14,11 @@ router.route('/edit/:id').post((req, res) => {
     
     tasks.findById(req.params.id) // get correct query based on the id passed
         .then(task => {
-            task.name = req.body.name;
+            req.body.name ? task.name = req.body.name  : false
+            req.body.subtasks ? task.subtasks.push({
+                title:'default',
+                descr:'write smth pleaes'
+            }) : false
         
         task.save()
             .then(() => res.json('Exercise updated!'))
