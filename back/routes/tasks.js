@@ -19,6 +19,7 @@ router.route('/edit/:id').post((req, res) => {
                 title:'default',
                 descr:'write smth pleaes'
             }) : false
+            req.body.subtasksNewArray ? task.subtasks = req.body.subtasksNewArray : false
         
         task.save()
             .then(() => res.json('Exercise updated!'))

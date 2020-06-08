@@ -52,10 +52,13 @@ export const GetTasks = () => {
     }
     const handleSubTaskTitleChange = (e) => {
 
+        let good = e.single.subtasks;
+        good[e.subtaskNb].title = e.title;
+
         console.log(e);
         axios.post(`http://localhost:5000/tasks/edit/${e.single._id}`,
             {
-                name: e.name
+                subtasksNewArray: good
             })
             .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
             .catch(error => console.error('error while title change ' + error));
@@ -83,7 +86,7 @@ export const GetTasks = () => {
                                 <div key={index} className='singleSubTask'>
                                     <div className='subTaskTitle' onClick={()=>handleOpenModalClick(one)}>
                                         <input 
-                                            defaultValue={single.name} 
+                                            defaultValue={one.title} 
                                             onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} />
                                     </div>
                                 </div>
