@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from './../Components/App';
 import AddIcon from '@material-ui/icons/Add';
-
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 export const GetTasks = () => {
 
     const [tasksState, setTaskState] = useState([]);
@@ -84,10 +84,12 @@ export const GetTasks = () => {
                         <div className='taskBody'>
                             {single.subtasks.map((one,index) =>
                                 <div key={index} className='singleSubTask'>
-                                    <div className='subTaskTitle' onClick={()=>handleOpenModalClick(one)}>
+                                    
                                         <input 
                                             defaultValue={one.title} 
                                             onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} />
+                                    <div className='subTaskOpenModal' onClick={() => handleOpenModalClick(one)}>
+                                        <OpenInNewIcon />
                                     </div>
                                 </div>
                             )}
