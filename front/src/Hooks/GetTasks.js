@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from './../Components/App';
+
 import AddIcon from '@material-ui/icons/Add';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import CancelIcon from '@material-ui/icons/Cancel';
+
 export const GetTasks = () => {
 
     const [tasksState, setTaskState] = useState([]);
@@ -99,7 +102,14 @@ export const GetTasks = () => {
                                 />
                             </div>
                         </div>
-                        <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}></div>
+                        <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}>
+                            <CancelIcon 
+                                style={{
+                                    color:'white',
+                                    fontSize: '30'
+                                }}
+                            />
+                        </div>
                         {openDescr ?
                             <div id='singleSubTaskModal'>
                                 <div id='singleSubTaskModalTitle'>
