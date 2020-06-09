@@ -39,13 +39,19 @@ router.route('/:id').delete((req, res) => {
     console.log(req.body)
     // console.log(req)
     console.log(req.params.id)
-    let tasksToDelete = tasks.find({ "projectName": req.body.projectName })
-    if(tasksToDelete.length) {
-        tasksToDelete.deleteMany()
-            .then(() => res.json('Project tasks successfully deleted'))
-            .catch(err => res.status(400).json('errorq ' + err))
 
-    }
+    tasks.deleteMany({ "projectName": req.body.projectName }).
+        then(result => console.log(result))
+        .catch((err) => console.log('error on deleing project tasks ', err))
+        
+        
+        /* result.deleteMany()
+        .then(() => res.json('Project tasks successfully deleted'))
+            .catch(err => res.status(400).json('errorq ' + err))
+        ).catch((err)=>console.log('error on deleing project tasks ', err));
+ */
+
+   
 /* 
     tasksToDelete.deleteMany()
     .then(() => res.json('Project tasks successfully deleted'))
