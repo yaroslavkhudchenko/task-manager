@@ -11,7 +11,7 @@ router.route('/').get((req, res) => {
 
 // route => if url /users/add run this post(if post only)
 router.route('/addproject').post((req, res) => {
-
+    
 
     const name = req.body.name; // from the input - the rest are the default values for the new empty project
     const nbTask = 0;

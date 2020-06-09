@@ -14,7 +14,7 @@ const Header = () => {
         let name = document.querySelector('.addNameModule input').value;
 
         // if name is not empty
-        if(name) {
+        if(name.length >= 3) {
             axios.post('http://localhost:5000/projects/addproject',
                 {
                     name: name,
@@ -23,13 +23,15 @@ const Header = () => {
                     archived: false
                 }
             ).then(()=>
-                console.log('success add project'))
+                
+                appContext.changeState({ ...appContext.state, refreshProjects: true })    // refresh project list after one is added
+            )
             .catch((err)=>
-                console.log('errror____' + err)
+                console.log('error on adding project request ' + err)
             )
             nameNeededSet(false);
-            appContext.changeState({ ...appContext.state, refreshProjects: true})
-        }        
+            
+        }       
     }
     return (
        
@@ -42,7 +44,7 @@ const Header = () => {
                         <div className='addNameModule'>
                             <div className='addNameModuleContent'>
                                 <div className='addNameModuleTitle'>Provide the name</div>
-                                <input type='text' required />
+                                <input type='text' minLength='3' required />
                                 <div className='saveNamebutton' onClick={AddProject}>Save</div>
                             </div>
                         </div>

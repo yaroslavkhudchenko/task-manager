@@ -16,8 +16,9 @@ export const GetProjects = () => {
         .then(()=> 
             appContext.changeState(
                 { ...appContext.state, refreshProjects: true, refreshTasks:true }
-                )
-            ).catch(err => console.log('error while deleting project ', err))
+            )
+        )
+        .catch(err => console.log('error while deleting project ', err))
     }
 
     useEffect(()=>{
