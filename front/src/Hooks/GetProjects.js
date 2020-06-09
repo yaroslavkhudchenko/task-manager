@@ -28,6 +28,9 @@ export const GetProjects = () => {
                 if (appContext.state.activeProjectName === null && res.data.length) { // to run only at the very beginning when name is not set and check if there are any project to grab name from
                     appContext.changeState({ ...appContext.state, activeProjectName: res.data[0].name })
                 };
+                if(!res.data.length) {
+                    appContext.changeState({ ...appContext.state, activeProjectName: null })
+                }
             })
             .catch(err => console.log('error on getting projects ' + err));
 
