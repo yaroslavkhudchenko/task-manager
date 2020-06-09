@@ -41,14 +41,17 @@ const Board = () => {
             : "Board"
         }
       >
+      
         <GetTasks />
-        <div id="ghostTask" onClick={() => AddTask(appContext.state.activeProjectName)}>
+        {appContext.state.activeProjectName ? 
+          <div id="ghostTask" onClick={() => AddTask(appContext.state.activeProjectName)}>
           <div id="addTaskButton">
             <AddCircleOutlineIcon
               style={{ fontSize: 120, color: "#1de9b6", opacity: "1" }}
             />
           </div>
         </div>
+          : false}
       </div>
     );
 }

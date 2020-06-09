@@ -35,28 +35,10 @@ router.route('/addproject').post((req, res) => {
 router.route('/:id').delete((req, res) => {
     let tasks = require('../models/tasks.model'); // import mongoose model
 
-    console.log('pizdec')
-    console.log(req.body)
-    // console.log(req)
-    console.log(req.params.id)
-
     tasks.deleteMany({ "projectName": req.body.projectName }).
-        then(result => console.log(result))
+        then(() => res.json('success deleting project tasks'))
         .catch((err) => console.log('error on deleing project tasks ', err))
         
-        
-        /* result.deleteMany()
-        .then(() => res.json('Project tasks successfully deleted'))
-            .catch(err => res.status(400).json('errorq ' + err))
-        ).catch((err)=>console.log('error on deleing project tasks ', err));
- */
-
-   
-/* 
-    tasksToDelete.deleteMany()
-    .then(() => res.json('Project tasks successfully deleted'))
-    .catch(err=>res.status(400).json('errorq ' + err))
- */
     projects.findByIdAndDelete(req.params.id)// will find the exact project in the db and delete it
         .then(() => res.json('Project successfully deleted.'))
         .catch(err => res.status(400).json('wError: ' + err));
