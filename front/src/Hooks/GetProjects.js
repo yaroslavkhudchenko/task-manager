@@ -10,9 +10,10 @@ export const GetProjects = () => {
     const appContext = useContext(AppContext); // global context
 
     // to delete single project based on it's id
-    const deleteSingleProject = (id) => {
+    const deleteSingleProject = (id, name) => {
+        console.log(name)
         
-        axios.delete(`http://localhost:5000/projects/${id}`)
+        axios.delete(`http://localhost:5000/projects/${id}`, {"projectName": name})
         .then(()=> appContext.changeState({ ...appContext.state, refreshProjects: true }));
 
     }
@@ -43,7 +44,7 @@ export const GetProjects = () => {
                 }
             )}>
             <div className='projectTitle'>{single.name}</div>
-            <div className='deleteSingleProjectButton' onClick={() => deleteSingleProject(single._id)}>
+            <div className='deleteSingleProjectButton' onClick={() => deleteSingleProject(single._id, single.name)}>
                 <CloseIcon />
             </div>
         </div>

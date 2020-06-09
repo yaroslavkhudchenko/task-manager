@@ -36,10 +36,20 @@ let tasks = require('../models/tasks.model'); // import mongoose model
 router.route('/:id').delete((req, res) => {
     let project = projects.findById(req.params.id);
 
+    console.log(req.body.projectName)
+
+    tasks.find({
+        "projectName": req.body.projectName})
+        .then((good) => res.json(good))
+        .catch(err=>res.status(400).json('errorq'))
+
+/* 
+
     projects.findByIdAndDelete(req.params.id)// will find the exact project in the db and delete it
         .then(() => res.json('Project successfully deleted.'))
         .catch(err => res.status(400).json('Error: ' + err));
-
+ */
+    
     // console.log('--------------------------------------------------------')
     // console.log(project)
     // console.log(project.name)
