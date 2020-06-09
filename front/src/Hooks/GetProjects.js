@@ -13,8 +13,8 @@ export const GetProjects = () => {
     const deleteSingleProject = (id, name) => {
         console.log(name)
         
-        axios.delete(`http://localhost:5000/projects/${id}`, {"projectName": name})
-        .then(()=> appContext.changeState({ ...appContext.state, refreshProjects: true }));
+        axios.delete(`http://localhost:5000/projects/${id}`, {data:{projectName: name}})
+        .then(()=> appContext.changeState({ ...appContext.state, refreshProjects: true, refreshTasks:true }));
 
     }
 

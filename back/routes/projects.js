@@ -35,32 +35,20 @@ let tasks = require('../models/tasks.model'); // import mongoose model
 // to delete project with id
 router.route('/:id').delete((req, res) => {
     let project = projects.findById(req.params.id);
+    console.log('pizdec')
+    console.log(req.body)
+    // console.log(req)
+    console.log(req.params.id)
 
-    console.log(req.body.projectName)
-
-    tasks.find({
-        "projectName": req.body.projectName})
-        .then((good) => res.json(good))
-        .catch(err=>res.status(400).json('errorq'))
-
-/* 
+    tasks.find({"projectName": req.body.projectName})
+    .remove()
+    .then(() => res.json('Project tasks successfully deleted'))
+    .catch(err=>res.status(400).json('errorq ' + err))
 
     projects.findByIdAndDelete(req.params.id)// will find the exact project in the db and delete it
         .then(() => res.json('Project successfully deleted.'))
         .catch(err => res.status(400).json('Error: ' + err));
- */
-    
-    // console.log('--------------------------------------------------------')
-    // console.log(project)
-    // console.log(project.name)
-    // 
-    // tasks.find({projectName:project.name}).map(one=>console.log(one))
-    /* tasks.getCollectionNames().forEach(function (collname) {
-        var count = db[collname].find({ "projectName": { $exists: true } }).count();
-        if (count > 0) {
-            print(collname);
-        }
-    }) */
+ 
 });
 
 
