@@ -11,8 +11,13 @@ export const GetProjects = () => {
 
     // to delete single project based on it's id
     const deleteSingleProject = (id, name) => {
-        axios.delete(`http://localhost:5000/projects/${id}`, {data:{projectName: name}})
-        .then(()=> appContext.changeState({ ...appContext.state, refreshProjects: true, refreshTasks:true }));
+        axios.delete(`http://localhost:5000/projects/${id}`, 
+            {data:{projectName: name}})
+        .then(()=> 
+            appContext.changeState(
+                { ...appContext.state, refreshProjects: true, refreshTasks:true }
+                )
+            ).catch(err => console.log('error while deleting project ', err))
     }
 
     useEffect(()=>{

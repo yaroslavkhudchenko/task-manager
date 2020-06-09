@@ -40,11 +40,17 @@ router.route('/:id').delete((req, res) => {
     // console.log(req)
     console.log(req.params.id)
     let tasksToDelete = tasks.find({ "projectName": req.body.projectName })
-    
-/*     tasksToDelete.deleteMany()
-    .then(() => res.json('Project tasks successfully deleted'))
-    .catch(err=>res.status(400).json('errorq ' + err)) */
+    if(tasksToDelete.length) {
+        tasksToDelete.deleteMany()
+            .then(() => res.json('Project tasks successfully deleted'))
+            .catch(err => res.status(400).json('errorq ' + err))
 
+    }
+/* 
+    tasksToDelete.deleteMany()
+    .then(() => res.json('Project tasks successfully deleted'))
+    .catch(err=>res.status(400).json('errorq ' + err))
+ */
     projects.findByIdAndDelete(req.params.id)// will find the exact project in the db and delete it
         .then(() => res.json('Project successfully deleted.'))
         .catch(err => res.status(400).json('wError: ' + err));
