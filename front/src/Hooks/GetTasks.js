@@ -4,7 +4,9 @@ import { AppContext } from './../Components/App';
 
 import AddIcon from '@material-ui/icons/Add';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+
 import CancelIcon from '@material-ui/icons/Cancel';
+import { Draggable } from 'react-beautiful-dnd';
 
 export const GetTasks = () => {
 
@@ -80,51 +82,69 @@ export const GetTasks = () => {
    
     return (tasksState.map((single, index) =>
             appContext.state.activeProjectName === single.projectName ? // display tasks only for active project
-                    <div key={index} className='singeTask'>
-                        <div className='taskTitle'>
-                        <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
-                        </div>
-                        <div className='taskBody'>
-                            {single.subtasks.map((one,index) =>
-                                <div key={index} className='singleSubTask'>
-                                    
-                                        <input 
-                                            defaultValue={one.title} 
-                                            onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} />
-                                    <div className='subTaskOpenModal' onClick={() => handleOpenModalClick(one)}>
-                                        <OpenInNewIcon />
+           
+            <Draggable
+                key={single._id}
+                draggableId={single._id}
+                index={index}
+            >
+                {(provided, snapshot) => (
+                    <div key={index} className='SingleTaskContainer' ref={provided.innerRef}
+                        {...provided.dragHandleProps}
+                        {...provided.draggableProps}>
+
+                        <div key={index} className='singeTask'
+                            
+                        >
+                                <div className='taskTitle'>
+                                <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
+                                </div>
+                                <div className='taskBody'>
+                                    {single.subtasks.map((one,index) =>
+                                        <div key={index} className='singleSubTask'>
+                                            
+                                                <input 
+                                                    defaultValue={one.title} 
+                                                    onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} />
+                                            <div className='subTaskOpenModal' onClick={() => handleOpenModalClick(one)}>
+                                                <OpenInNewIcon />
+                                            </div>
+                                        </div>
+                                    )}
+                                    <div className='ghostSubTask'>
+                                        <AddIcon 
+                                    onClick={() => AddSubTask(single._id)}
+                                        />
                                     </div>
                                 </div>
-                            )}
-                            <div className='ghostSubTask'>
-                                <AddIcon 
-                            onClick={() => AddSubTask(single._id)}
-                                />
+                                <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}>
+                                    <CancelIcon 
+                                        style={{
+                                            color:'white',
+                                            fontSize: '30'
+                                        }}
+                                    />
+                                </div>
+                                {openDescr ?
+                                    <div id='singleSubTaskModal'>
+                                        <div id='singleSubTaskModalTitle'>
+                                            {goodSubTask.title}
+                                        </div>
+                                        <div id='singleSubTaskModalBody'>
+                                            {goodSubTask.descr}
+                                        </div>
+                                        <div id='singleSubTaskModalClose' onClick={()=>setOpenDescr(false)}>
+                                            close
+                                        </div>
+                                    </div>
+                                    
+                                    : false
+                                }
                             </div>
-                        </div>
-                        <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}>
-                            <CancelIcon 
-                                style={{
-                                    color:'white',
-                                    fontSize: '30'
-                                }}
-                            />
-                        </div>
-                        {openDescr ?
-                            <div id='singleSubTaskModal'>
-                                <div id='singleSubTaskModalTitle'>
-                                    {goodSubTask.title}
-                                </div>
-                                <div id='singleSubTaskModalBody'>
-                                    {goodSubTask.descr}
-                                </div>
-                                <div id='singleSubTaskModalClose' onClick={()=>setOpenDescr(false)}>
-                                    close
-                                </div>
-                            </div>
-                            : false
-                        }
+                        {provided.placeholder}
                     </div>
+                )}
+            </Draggable>
                 :false
             
     ))
