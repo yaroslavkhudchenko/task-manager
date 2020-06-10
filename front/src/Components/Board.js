@@ -35,25 +35,26 @@ const Board = () => {
 
 	}
 	 	// function to reorder on dragend
-		/* const reorder = (list, startIndex, endIndex) => {
+		const reorder = (list, startIndex, endIndex) => {
 			const result = Array.from(list);
 			const [removed] = result.splice(startIndex, 1);
 			result.splice(endIndex, 0, removed);
 
 			return result;
-		};*/
+		};
 		const onDragFinish = (e) => {
 			console.log('s');
-			/* const items = reorder(
-				this.tasks.items,
-				result.source.index,
-				result.destination.index
-			);  */
+			const items = reorder(
+				tasksState,
+				e.source.index,
+				e.destination.index
+			);
  
+			setTaskState(items)
 		} 
 
 	return (
-		<DragDropContext onDragEnd={(e) => onDragFinish}>
+		<DragDropContext onDragEnd={onDragFinish}>
 			<div
 				className={
 					appContext.state.isHiddenSidebar
