@@ -50,8 +50,8 @@ const Board = () => {
 /* 
       this.setState({
         items
-      }); */
-    }
+      }); 
+    }*/
 
     return (
       <DragDropContext onDragEnd={(e)=>console.log(e)}>
@@ -62,7 +62,7 @@ const Board = () => {
             : "Board"
         }
       >
-          <Droppable droppableId="droppable">
+          <Droppable droppableId="droppable" direction="horizontal">
             {(provided, snapshot) => (
           <div id='TasksContainer'
                 ref={provided.innerRef}
