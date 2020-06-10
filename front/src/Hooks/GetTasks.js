@@ -93,28 +93,24 @@ export const GetTasks = () => {
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}>
 
-                        <div key={index} className='singeTask'
-                            
-                        >
+                        <div key={index} className='singeTask' >
                                 <div className='taskTitle'>
-                                <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
+                                    <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
                                 </div>
                                 <div className='taskBody'>
                                     {single.subtasks.map((one,index) =>
                                         <div key={index} className='singleSubTask'>
-                                            
-                                                <input 
-                                                    defaultValue={one.title} 
-                                                    onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} />
+                                            <input 
+                                                defaultValue={one.title} 
+                                                onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} 
+                                            />
                                             <div className='subTaskOpenModal' onClick={() => handleOpenModalClick(one)}>
                                                 <OpenInNewIcon />
                                             </div>
                                         </div>
                                     )}
                                     <div className='ghostSubTask'>
-                                        <AddIcon 
-                                    onClick={() => AddSubTask(single._id)}
-                                        />
+                                        <AddIcon onClick={() => AddSubTask(single._id)} />
                                     </div>
                                 </div>
                                 <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}>
@@ -137,7 +133,6 @@ export const GetTasks = () => {
                                             close
                                         </div>
                                     </div>
-                                    
                                     : false
                                 }
                             </div>
@@ -145,7 +140,7 @@ export const GetTasks = () => {
                     </div>
                 )}
             </Draggable>
-                :false
+        :false
             
-    ))
+    ));
 };
