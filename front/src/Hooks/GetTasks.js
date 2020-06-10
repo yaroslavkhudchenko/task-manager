@@ -8,9 +8,8 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { Draggable } from 'react-beautiful-dnd';
 
-export const GetTasks = () => {
+export const GetTasks = ({tasksState, setTaskState}) => {
 
-    const [tasksState, setTaskState] = useState([]);
     const [openDescr, setOpenDescr] = useState(false);
     const [goodSubTask, setGoodSubTask] = useState({
         name:undefined,

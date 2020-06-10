@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../css/Board.scss';
 import axios from 'axios';
 import { GetTasks } from './../Hooks/GetTasks';
@@ -8,6 +8,7 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 const Board = () => {
+	const [tasksState, setTaskState] = useState([]);
 
 	const appContext = useContext(AppContext);
 	const AddTask = (pn) => {
@@ -63,7 +64,7 @@ const Board = () => {
 				<Droppable droppableId="droppable" direction="horizontal">
 					{(provided, snapshot) => (
 						<div id='TasksContainer' ref={provided.innerRef} {...provided.droppableProps} >
-							<GetTasks />
+							<GetTasks tasksState={tasksState} setTaskState={setTaskState} />
 							{provided.placeholder}
 						</div>
 					)}
