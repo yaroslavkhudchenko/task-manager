@@ -14,9 +14,7 @@ export const GetProjects = () => {
         axios.delete(`http://localhost:5000/projects/${id}`, 
             {data:{projectName: name}})
         .then(()=> 
-            appContext.changeState(
-                { ...appContext.state, refreshProjects: true, refreshTasks:true }
-            )
+            appContext.changeState({ ...appContext.state, refreshProjects: true, refreshTasks:true }) // refresg projects and tasks lists
         )
         .catch(err => console.log('error while deleting project ', err))
     }
