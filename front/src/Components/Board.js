@@ -43,7 +43,7 @@ const Board = () => {
   };
     const onDragFinish = (e) => {
       const items = reorder(
-        this.state.items,
+        this.tasks.items,
         result.source.index,
         result.destination.index
       ); */
