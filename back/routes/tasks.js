@@ -4,9 +4,13 @@ let tasks = require('../models/tasks.model'); // import mongoose model
 
 // route => handles imcoming http get requests
 router.route('/').get((req, res) => {
-    tasks.find() // get list of all the users from mongodb database 
+    tasks.find() // get list of all the tasks from mongodb database 
         .then(tasks => res.json(tasks)) // in json
         .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message
+});
+// one rule to save them all
+router.route('/').post((req, res) => {
+        
 });
 
 // route => handles imcoming http post requests -> to edit name
@@ -22,7 +26,7 @@ router.route('/edit/:id').post((req, res) => {
             req.body.subtasksNewArray ? task.subtasks = req.body.subtasksNewArray : false
         
         task.save()
-            .then(() => res.json('Exercise updated!'))
+            .then(() => res.json('TASKS updated!'))
             .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message */

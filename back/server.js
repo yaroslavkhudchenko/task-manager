@@ -21,6 +21,7 @@ mongoose.connect(
 );
 
 const connection = mongoose.connection;
+
 connection.once("open", () => {
   console.log("MONGODB database connection established");
 });

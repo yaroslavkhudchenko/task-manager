@@ -10,6 +10,9 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 const Board = () => {
 	const [tasksState, setTaskState] = useState([]);
 
+	const [tasksShouldBeSaved, setTasksToBeSaved] = useState(false)
+
+
 	const appContext = useContext(AppContext);
 	const AddTask = (pn) => {
 			console.log(pn)
@@ -50,9 +53,20 @@ const Board = () => {
 				e.destination.index
 			);
  
-			setTaskState(items)
+			setTaskState(items);
+			setTasksToBeSaved(true);
 		} 
 
+	useEffect(()=>{
+		if (tasksShouldBeSaved) {
+			console.log('tasksshouldbesaved');
+			axios.post('http://localhost:5000/tasks', tasksState)
+				.then((e)=> console.log('success saving all tasks together'))
+				.catch((err) => console.log(`error => ${err}`))
+			setTasksToBeSaved(false);
+
+		}
+	}, [tasksShouldBeSaved])
 	return (
 		<DragDropContext onDragEnd={onDragFinish}>
 			<div
