@@ -77,15 +77,23 @@ export const GetTasks = ({tasksState, setTaskState}) => {
                 console.log('-gggggod')
                 console.log(goodD)
                 setTaskState(goodD)
-                if(goodD && goodD[0]) {
+                if(goodD.length) {
                     console.log('true')
-                    appContext.changeState({ ...appContext.state, highestCurrentOrder: goodD[0].order, refreshTasks:false})
+                    appContext.changeState(
+                        { 
+                            ...appContext.state, 
+                            highestCurrentOrder: goodD[goodD.length-1].order, 
+                            refreshTasks:false
+                        }
+                    )
+                } else {
+                    appContext.changeState({ ...appContext.state, refreshTasks: false });
                 }
                 // setTaskState(goodD)
                 
             });
             
-            appContext.changeState({ ...appContext.state, refreshTasks: false });
+            
         
             
     }, [appContext.state.refreshTasks]); // if refreshTasks value from appContext is changed refresh the list
