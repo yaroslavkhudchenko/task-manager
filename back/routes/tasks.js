@@ -12,10 +12,11 @@ router.route('/').get((req, res) => {
 router.route('/').post((req, res) => {
 
     let newC = req.body;
-
+    // looping through the data from the front end(sorted)
     newC.map((one,index) => {
-
-        tasks.findOneAndUpdate({ _id: one._id },
+        // find the exact document in the collection and update it's order value
+        tasks.findOneAndUpdate(
+            { _id: one._id },
             {order:one.order},
             { upsert: true },
             (err, doc) => {
@@ -24,22 +25,6 @@ router.route('/').post((req, res) => {
             .catch((err) => console.log('error updating tasks -> ' + err))
 
     })
-
-    
-
-    // console.log(database.collection("tasks"))
-
- /* 
-    database.collection("tasks").updateMany(
-        {
-            update: database.collection("tasks"),
-            updates : [
-                req.body
-            ]
-        }
-    ).
-    then(()=>console.log('success updating the tasks collection')).
-    catch((err)=>console.log(`err while updating the tasks collection ${err}`))  */
 
 });
 

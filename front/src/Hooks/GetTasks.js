@@ -7,6 +7,7 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import { Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 export const GetTasks = ({tasksState, setTaskState}) => {
 
@@ -69,6 +70,10 @@ export const GetTasks = ({tasksState, setTaskState}) => {
 
     }
     
+    const onDragFinishTasks = (e) => {
+        console.log('finish dragging')
+    }
+
     useEffect(() => {
 
         axios.get('http://localhost:5000/tasks')
@@ -115,22 +120,45 @@ export const GetTasks = ({tasksState, setTaskState}) => {
                                 <div className='taskTitle'>
                                     <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
                                 </div>
-                                <div className='taskBody'>
-                                    {single.subtasks.map((one,index) =>
-                                        <div key={index} className='singleSubTask'>
-                                            <input 
-                                                defaultValue={one.title} 
-                                                onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} 
-                                            />
-                                            <div className='subTaskOpenModal' onClick={() => handleOpenModalClick(one)}>
-                                                <OpenInNewIcon />
+                                <DragDropContext onDragEnd={onDragFinishTasks}>
+                                <Droppable droppableId="droppable">
+                                    {(provided, snapshot) => (
+                                        <div className='taskBody' ref={provided.innerRef} {...provided.droppableProps}>
+                                            {single.subtasks.map((one,index) =>
+
+                                                <Draggable
+                                                    key={index+'key'}
+                                                    draggableId={index +'index'}
+                                                    index={index}
+                                                >
+                                                    {(provided, snapshot) => (
+                                                        <div className='singleSubTaskContainer'>
+                                                            <div key={index} className='singleSubTask' ref={provided.innerRef}
+                                                                {...provided.dragHandleProps}
+                                                                {...provided.draggableProps}>
+                                                                <input 
+                                                                    defaultValue={one.title} 
+                                                                    onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} 
+                                                                />
+                                                                <div className='subTaskOpenModal' onClick={() => handleOpenModalClick(one)}>
+                                                                    <OpenInNewIcon />
+                                                                </div>
+                                                                {provided.placeholder}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </Draggable>
+
+                                            )}
+                                            <div className='ghostSubTask'>
+                                                <AddIcon onClick={() => AddSubTask(single._id)} />
                                             </div>
+                                            {provided.placeholder}
                                         </div>
                                     )}
-                                    <div className='ghostSubTask'>
-                                        <AddIcon onClick={() => AddSubTask(single._id)} />
-                                    </div>
-                                </div>
+					                </Droppable>
+
+                                </DragDropContext>
                                 <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}>
                                     <CancelIcon 
                                         style={{
