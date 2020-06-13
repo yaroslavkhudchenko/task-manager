@@ -100,7 +100,7 @@ export const GetTasks = ({tasksState, setTaskState}) => {
     }
 
     useEffect(() => {
-
+        console.log('use effect refresh tasks hehehe')
         axios.get('http://localhost:5000/tasks')
             .then(res => {
                 let goodD = res.data.sort((a, b)=>a.order - b.order);
@@ -109,6 +109,7 @@ export const GetTasks = ({tasksState, setTaskState}) => {
                 setTaskState(goodD)
                 if(goodD.length) {
                     console.log('true')
+                    console.log(goodD[1].subtasks)
                     appContext.changeState(
                         { 
                             ...appContext.state, 

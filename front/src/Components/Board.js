@@ -54,6 +54,7 @@ const Board = () => {
 		};
 		const onDragFinish = (e) => {
 			console.log('s');
+			if(!e.source || !e.destination)return;
 			const items = reorder(
 				tasksState,
 				e.source.index,
@@ -61,7 +62,7 @@ const Board = () => {
 			);
  
 			items.map((e,index) => e.order = index);
-			
+
 			setTaskState(items);
 			setTasksToBeSaved(true);
 		} 
