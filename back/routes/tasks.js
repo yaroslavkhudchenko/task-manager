@@ -11,14 +11,21 @@ router.route('/').get((req, res) => {
 // one rule to save them all
 router.route('/').post((req, res) => {
 
-    let newC = new tasks(req.body);
-    tasks.findOneAndUpdate({}, 
-        newC.toObject(), 
-        { upsert: true }, 
-        function (err, doc) { 
-            console.log('smthsmiagn i s here')
-        }).then((s)=>console.log('success'))
-        .catch((err)=>console.log('error '+err))
+    let newC = req.body;
+
+    newC.map((one,index) => {
+
+        tasks.findOneAndUpdate({ _id: one._id },
+            {order:one.order},
+            { upsert: true },
+            (err, doc) => {
+                console.log('here we update the tasks')
+            }).then((doc) => console.log('success updating tasks'))
+            .catch((err) => console.log('error updating tasks -> ' + err))
+
+    })
+
+    
 
     // console.log(database.collection("tasks"))
 
