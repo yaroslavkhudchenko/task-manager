@@ -60,6 +60,8 @@ const Board = () => {
 				e.destination.index
 			);
  
+			items.map((e,index) => e.order = index);
+			
 			setTaskState(items);
 			setTasksToBeSaved(true);
 		} 
