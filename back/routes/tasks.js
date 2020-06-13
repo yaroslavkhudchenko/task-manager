@@ -10,7 +10,30 @@ router.route('/').get((req, res) => {
 });
 // one rule to save them all
 router.route('/').post((req, res) => {
-        
+
+    let newC = new tasks(req.body);
+    tasks.findOneAndUpdate({}, 
+        newC.toObject(), 
+        { upsert: true }, 
+        function (err, doc) { 
+            console.log('smthsmiagn i s here')
+        }).then((s)=>console.log('success'))
+        .catch((err)=>console.log('error '+err))
+
+    // console.log(database.collection("tasks"))
+
+ /* 
+    database.collection("tasks").updateMany(
+        {
+            update: database.collection("tasks"),
+            updates : [
+                req.body
+            ]
+        }
+    ).
+    then(()=>console.log('success updating the tasks collection')).
+    catch((err)=>console.log(`err while updating the tasks collection ${err}`))  */
+
 });
 
 // route => handles imcoming http post requests -> to edit name
@@ -38,11 +61,12 @@ router.route('/addtask').post((req, res) => {
     const name = 'adefaultq task name :(' // req.body.name; // from the input - the rest are the default values for the new empty task
     const subtasks = [];
     const projectName = req.body.projectName;
-
+    const order = req.body.order;
     const newTask = new tasks({
         name,
         subtasks,
-        projectName
+        projectName,
+        order
     }); // create the tasks with the given values
 
     newTask.save() // save to databse

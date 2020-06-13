@@ -15,7 +15,8 @@ const App = () => {
     // if need refresh
     refreshProjects:false,
     refreshTasks:false,
-    refreshSubTasks:false
+    refreshSubTasks:false,
+    highestCurrentOrder:0
   });
 
   return (

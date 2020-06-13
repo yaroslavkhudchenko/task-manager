@@ -72,8 +72,19 @@ export const GetTasks = ({tasksState, setTaskState}) => {
     useEffect(() => {
 
         axios.get('http://localhost:5000/tasks')
-            .then(res => setTaskState(res.data));
-        
+            .then(res => {
+                let goodD = res.data.sort((a, b)=>a.order - b.order);
+                console.log('-gggggod')
+                console.log(goodD)
+                setTaskState(goodD)
+                if(goodD && goodD[0]) {
+                    console.log('true')
+                    appContext.changeState({ ...appContext.state, highestCurrentOrder: goodD[0].order, refreshTasks:false})
+                }
+                // setTaskState(goodD)
+                
+            });
+            
             appContext.changeState({ ...appContext.state, refreshTasks: false });
         
             

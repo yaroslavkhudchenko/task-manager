@@ -23,13 +23,20 @@ const Board = () => {
 			// if name is not empty
 			if (name) {
 					axios.post('http://localhost:5000/tasks/addtask',
-							{
-									name: name,
-									subtasks: [],
-									projectName: pn
-							}
+						{
+							name: name,
+							subtasks: [],
+							projectName: pn,
+							order: appContext.state.highestCurrentOrder+1
+						}
 					).then(()=>
-							appContext.changeState({ ...appContext.state, refreshTasks: true })
+						appContext.changeState(
+							{ 
+								...appContext.state, 
+								refreshTasks: true, 
+								highestCurrentOrder:appContext.state.highestCurrentOrder+1 
+							}
+						)
 					)
 					// nameNeededSet(false);
 					
@@ -60,6 +67,7 @@ const Board = () => {
 	useEffect(()=>{
 		if (tasksShouldBeSaved) {
 			console.log('tasksshouldbesaved');
+			console.log(tasksState)
 			axios.post('http://localhost:5000/tasks', tasksState)
 				.then((e)=> console.log('success saving all tasks together'))
 				.catch((err) => console.log(`error => ${err}`))
