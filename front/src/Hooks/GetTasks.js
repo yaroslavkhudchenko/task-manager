@@ -90,6 +90,11 @@ export const GetTasks = ({tasksState, setTaskState}) => {
 
         items.map((e, index) => e.order = index);
 
+
+        axios.post(`http://localhost:5000/tasks/edit/${b._id}`, { reorder: items })
+            .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
+            .catch(error => console.error('error while title change ' + error));
+
         //setTaskState(items);
         //setTasksToBeSaved(true);
     }

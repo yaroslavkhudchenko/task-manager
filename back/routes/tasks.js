@@ -30,9 +30,11 @@ router.route('/').post((req, res) => {
 
 // route => handles imcoming http post requests -> to edit name
 router.route('/edit/:id').post((req, res) => {
-    
+    console.log('edit task')
     tasks.findById(req.params.id) // get correct query based on the id passed
         .then(task => {
+            console.log('edit task1')
+            console.log(req.body.reorder)
             req.body.name ? task.name = req.body.name  : false
             req.body.subtasks ? task.subtasks.push({
                 title:'default',
@@ -40,6 +42,7 @@ router.route('/edit/:id').post((req, res) => {
             }) : false
             req.body.subtasksNewArray ? task.subtasks = req.body.subtasksNewArray : false
         
+            req.body.reorder ? task.subtasks = req.body.reorder : false
         task.save()
             .then(() => res.json('TASKS updated!'))
             .catch(err => res.status(400).json('Error: ' + err));
