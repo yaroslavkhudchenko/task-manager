@@ -17,7 +17,7 @@ router.route('/').post((req, res) => {
         // find the exact document in the collection and update it's order value
         tasks.findOneAndUpdate(
             { _id: one._id },
-            {order:one.order},
+            { order:one.order },
             { upsert: true },
             (err, doc) => {
                 console.log('here we update the tasks')

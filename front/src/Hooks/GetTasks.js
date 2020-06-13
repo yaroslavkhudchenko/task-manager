@@ -69,9 +69,29 @@ export const GetTasks = ({tasksState, setTaskState}) => {
             .catch(error => console.error('error while title change ' + error));
 
     }
-    
-    const onDragFinishTasks = (e) => {
-        console.log('finish dragging')
+    // function to reorder on dragend
+    const reorder = (list, startIndex, endIndex) => {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        return result;
+    };
+    const onDragFinishTasks = (e,b) => {
+        console.log(e)
+        console.log(b._id)
+        console.log('finish dragging subtasks')
+        
+        const items = reorder(
+            b.subtasks,
+            e.source.index,
+            e.destination.index
+        );
+
+        items.map((e, index) => e.order = index);
+
+        //setTaskState(items);
+        //setTasksToBeSaved(true);
     }
 
     useEffect(() => {
@@ -120,7 +140,7 @@ export const GetTasks = ({tasksState, setTaskState}) => {
                                 <div className='taskTitle'>
                                     <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
                                 </div>
-                                <DragDropContext onDragEnd={onDragFinishTasks}>
+                                <DragDropContext onDragEnd={(e)=> onDragFinishTasks(e,single)}>
                                 <Droppable droppableId="droppable">
                                     {(provided, snapshot) => (
                                         <div className='taskBody' ref={provided.innerRef} {...provided.droppableProps}>
