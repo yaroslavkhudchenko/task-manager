@@ -17,7 +17,7 @@ const Sidebar = () => {
         className={
           appContext.state.isHiddenSidebar ? "Sidebar hiddenSidebar" : "Sidebar"
         } // hide or show based on global variable
-        onClick={
+        /*  onClick={
           appContext.state.isHiddenSidebar
             ? () =>
                 appContext.changeState({
@@ -25,14 +25,14 @@ const Sidebar = () => {
                   isHiddenSidebar: false,
                 })
             : undefined
-        }
+        } */
       >
         <div
           id="sidebarCloser"
           onClick={() =>
             appContext.changeState({
               ...appContext.state,
-              isHiddenSidebar: true,
+              isHiddenSidebar: !appContext.state.isHiddenSidebar,
             })
           }
         >

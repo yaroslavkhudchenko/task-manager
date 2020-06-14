@@ -42,7 +42,7 @@
         
             .singeTask {
                 width: 100%;
-                background: #e91d4c;
+                background: #e91d4c;//#e91d4c;
                 position: absolute;
                 height: fit-content;
                 min-height: 270px;
@@ -70,9 +70,9 @@
                         padding: 5px;
                         max-width: 90%;
                         // margin: 5px 0;
-                        background: #1de9b6;
+                        background: inherit;
                         border: none;
-
+color: white;
                         // width: 100%;
                         // padding: 5px;
                         // margin: 0;
@@ -94,6 +94,7 @@
                         background: cadetblue;
                         margin: 5px 0;
                         background: yellow;
+                        background: darksalmon;
                         padding: 20px 5px;
                         input { 
                             width: 75%;
