@@ -12,21 +12,25 @@ const app = express(); // create express server
 
 
 app.use(require("body-parser").urlencoded({ extended: true }));
+// Express session
 app.use(
-  require("express-session")({
-    secret: "keyboard cat",
-    resave: true,
+  session({
+    secret: 'secret this',
+    resave:false,
     saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
+app.use(cors()); // app to use cors
+app.use(express.json());
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 const port = process.env.PORT || 5000; // specify the port
 
-app.use(cors()); // app to use cors
-// Bodyparser middleware, extended false does not allow nested payloads
-app.use(express.json());
-//app.use(require('body-parser').urlencoded({ extended: true }));
+
 
 const uri = process.env.ATLAS_URI; // database uri
 mongoose.connect(
@@ -46,27 +50,9 @@ connection.once("open", () => {
 });
 
 // require routes
-const ProjectsRouter = require("./routes/projects");
-const TasksRouter = require("./routes/tasks");
-const Auth = require("./routes/auth");
-
-app.use("/projects", ProjectsRouter);
-app.use("/tasks", TasksRouter);
-app.use("/auth", Auth);
-
-// Express session
-app.use(
-  session({
-    secret: 'secret this',
-    resave:false,
-    saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
-  })
-);
-
-// Passport middleware
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.use("/projects", require("./routes/projects"));
+app.use("/tasks", require("./routes/tasks"));
+app.use("/auth", require("./routes/auth"));
 
 
 // listen to the server(start server on port)

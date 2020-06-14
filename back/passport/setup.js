@@ -38,7 +38,7 @@ passport.use(
 		.then((user) => {
 			// Create new User in not found
 			if (!user) {
-				const newUser = new User({ email, password });
+				const newUser = new User({ email, password, name });
 
 				// Hash password before saving in database
 				bcrypt.genSalt(10, (err, salt) => {
