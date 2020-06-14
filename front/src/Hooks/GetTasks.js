@@ -10,13 +10,14 @@ import { Draggable } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 export const GetTasks = ({ tasksState, setTasksState}) => {
-    const [tasksShouldBeSaved1, setTasksToBeSaved1] = useState(false)
 
     const [openDescr, setOpenDescr] = useState(false);
     const [goodSubTask, setGoodSubTask] = useState({
         name:undefined,
         descr:undefined
     })
+
+    // get appContext
     const appContext = useContext(AppContext);
 
     // to delete single tasks
@@ -30,8 +31,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
 
 
     const AddSubTask = (param) => {
-        console.log('ss')
-        console.log(param)
+        
         axios.post(`http://localhost:5000/tasks/edit/${param}`, {subtasks:'new'})
             .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
             .catch(error => console.error('error while title change ' + error));
@@ -80,24 +80,21 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
     };
     const onDragFinishTasks = (e,b) => {
         if (!e.source || !e.destination) return; // not to have an error when destination is not correct
-        console.log('finish dragging subtasks')
 
+        // reorder after drag
         const items = reorder(
             b.subtasks,
             e.source.index,
             e.destination.index
         );
-        console.log(items)
-        // tasksState.map((e) => e._id === b._id ? e.subtasks = items : console.log('fasle'))
-        /* console.log(items)
-        items.map((e, index) => e.order = index);
-        console.log(items) */
-
+        
         let allTasks = tasksState;
 
-        allTasks.map((e) => e._id === b._id ? e.subtasks = items : console.log('fasle'))
-        setTasksState(allTasks)
-console.log(tasksState)
+        // set good subtasks to the correct task
+        allTasks.map((e) => e._id === b._id ? e.subtasks = items : console.log('fasle'));
+
+        setTasksState(allTasks); // save good order for the front
+        // save good subtasks order to the db
         axios.post(`http://localhost:5000/tasks/edit/${b._id}`, { reorder: items })
             .then(res => {
                 console.log('drag drop single subtask')
@@ -109,14 +106,10 @@ console.log(tasksState)
         axios.get('http://localhost:5000/tasks')
             .then(res => {
                 let goodD = res.data.sort((a, b)=>a.order - b.order);
-                console.log('use effect get tasks list')
-                console.log(goodD)
                 setTasksState(goodD)
-                console.log('------------')
-                console.log(tasksState);
+                
                 if(goodD.length) {
-                    console.log('true goodD length')
-                    console.log(goodD)
+                    
                     appContext.changeState(
                         { 
                             ...appContext.state, 
@@ -133,12 +126,7 @@ console.log(tasksState)
                         }
                     );
                 }
-                // setTasksState(goodD)
-                
             });
-            
-            
-        
             
     }, [appContext.state.refreshTasks]); // if refreshTasks value from appContext is changed refresh the list
    

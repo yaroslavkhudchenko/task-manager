@@ -69,13 +69,10 @@ const Board = () => {
 
 	useEffect(()=>{
 		if (tasksShouldBeSaved) {
-			console.log('tasksshouldbesaved');
-			console.log(tasksState)
 			axios.post('http://localhost:5000/tasks', tasksState)
 				.then((e)=> console.log('success saving all tasks together'))
 				.catch((err) => console.log(`error => ${err}`))
 			setTasksToBeSaved(false);
-
 		}
 	}, [tasksShouldBeSaved])
 	return (
