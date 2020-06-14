@@ -8,15 +8,25 @@ const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 
 const passport = require("./passport/setup");
-
-
-
-
 const app = express(); // create express server
+
+
+app.use(require("body-parser").urlencoded({ extended: true }));
+app.use(
+  require("express-session")({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+
 const port = process.env.PORT || 5000; // specify the port
 
 app.use(cors()); // app to use cors
-app.use(express.json()); // allow to parse json
+// Bodyparser middleware, extended false does not allow nested payloads
+app.use(express.json());
+//app.use(require('body-parser').urlencoded({ extended: true }));
 
 const uri = process.env.ATLAS_URI; // database uri
 mongoose.connect(
@@ -55,8 +65,8 @@ app.use(
 );
 
 // Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 
 // listen to the server(start server on port)

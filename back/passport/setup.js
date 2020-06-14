@@ -32,11 +32,16 @@ passport.deserializeUser((id, done) => {
 // Local Strategy
 passport.use(
 	new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
+
+		console.log('NEW LOCAL STRATEGY')
 		// Match User
 		User.findOne({ email: email })
 		.then((user) => {
+					console.log("2L STRATEGY");
+
 			// Create new User in not found
 			if (!user) {
+				console.log('ttt')
 				const newUser = new User({ email, password });
 
 				// Hash password before saving in database
@@ -57,6 +62,8 @@ passport.use(
 				});
 			// Return other user
 			} else {
+									console.log("3L STRATEGY");
+
 				// if the user is found
 				// Match password
 				bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -71,6 +78,8 @@ passport.use(
 			}
 		})
 		.catch((err) => {
+			console.log("catch STRATEGY");
+			console.log(err)
 		return done(null, false, { message: err });
 		});
 	})
