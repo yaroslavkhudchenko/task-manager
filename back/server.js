@@ -30,11 +30,8 @@ app.use(passport.session());
 
 const port = process.env.PORT || 5000; // specify the port
 
-
-
-const uri = process.env.ATLAS_URI; // database uri
 mongoose.connect(
-  uri, // start conection to db
+  process.env.ATLAS_URI, // start conection to db
   {
     useNewUrlParser: true, // check
     useCreateIndex: true, // check

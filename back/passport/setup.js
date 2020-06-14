@@ -5,7 +5,12 @@ const passport = require("passport");
 // define local strategy for auth
 const LocalStrategy = require("passport-local").Strategy;
 
+/*
 
+	This is what allows us to know whos communicated with the server without having 
+	to send the authentication data like username and password at each request for a new page. 
+
+*/
 /* 
 	serializeUser determines which data of the user object should be stored 
 	in the session. The result of the serializeUser method is attached to the 
