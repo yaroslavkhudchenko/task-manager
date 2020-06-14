@@ -4,7 +4,6 @@ import "../css/App.scss";
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Board from "./Board";
-import SignUpLoginScreen from "./SignUpLoginScreen";
 export const AppContext = React.createContext();
 
 
@@ -26,7 +25,7 @@ const App = () => {
       changeState: setAppState
     }}>
       <div className="App">
-        <SignUpLoginScreen />
+       
         <Header />
         <Sidebar />
         <Board />
