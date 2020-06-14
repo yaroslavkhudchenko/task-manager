@@ -8,7 +8,7 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 const Board = () => {
-	const [tasksState, setTaskState] = useState([]);
+	const [tasksState, setTasksState] = useState([]);
 
 	const [tasksShouldBeSaved, setTasksToBeSaved] = useState(false)
 
@@ -54,7 +54,7 @@ const Board = () => {
 		};
 		const onDragFinish = (e) => {
 			console.log('s');
-			if(!e.source || !e.destination)return;
+			if (!e.source || !e.destination) return; // not to have an error when destination is not correct
 			const items = reorder(
 				tasksState,
 				e.source.index,
@@ -63,7 +63,7 @@ const Board = () => {
  
 			items.map((e,index) => e.order = index);
 
-			setTaskState(items);
+			setTasksState(items);
 			setTasksToBeSaved(true);
 		} 
 
@@ -90,7 +90,10 @@ const Board = () => {
 				<Droppable droppableId="droppable" direction="horizontal">
 					{(provided, snapshot) => (
 						<div id='TasksContainer' ref={provided.innerRef} {...provided.droppableProps} >
-							<GetTasks tasksState={tasksState} setTaskState={setTaskState} />
+							<GetTasks 
+								tasksState={tasksState} 
+								setTasksState={setTasksState}
+							/>
 							{provided.placeholder}
 						</div>
 					)}

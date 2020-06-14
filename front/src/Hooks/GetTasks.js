@@ -9,7 +9,8 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import { Draggable } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-export const GetTasks = ({tasksState, setTaskState}) => {
+export const GetTasks = ({ tasksState, setTasksState}) => {
+    const [tasksShouldBeSaved1, setTasksToBeSaved1] = useState(false)
 
     const [openDescr, setOpenDescr] = useState(false);
     const [goodSubTask, setGoodSubTask] = useState({
@@ -78,38 +79,44 @@ export const GetTasks = ({tasksState, setTaskState}) => {
         return result;
     };
     const onDragFinishTasks = (e,b) => {
-        console.log(e)
-        console.log(b._id)
+        if (!e.source || !e.destination) return; // not to have an error when destination is not correct
         console.log('finish dragging subtasks')
-        
+
         const items = reorder(
             b.subtasks,
             e.source.index,
             e.destination.index
         );
-
+        console.log(items)
+        // tasksState.map((e) => e._id === b._id ? e.subtasks = items : console.log('fasle'))
+        /* console.log(items)
         items.map((e, index) => e.order = index);
+        console.log(items) */
 
+        let allTasks = tasksState;
 
+        allTasks.map((e) => e._id === b._id ? e.subtasks = items : console.log('fasle'))
+        setTasksState(allTasks)
+console.log(tasksState)
         axios.post(`http://localhost:5000/tasks/edit/${b._id}`, { reorder: items })
-            .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
-            .catch(error => console.error('error while title change ' + error));
-
-        //setTaskState(items);
-        //setTasksToBeSaved(true);
+            .then(res => {
+                console.log('drag drop single subtask')
+                }
+            )
     }
 
     useEffect(() => {
-        console.log('use effect refresh tasks hehehe')
         axios.get('http://localhost:5000/tasks')
             .then(res => {
                 let goodD = res.data.sort((a, b)=>a.order - b.order);
-                console.log('-gggggod')
+                console.log('use effect get tasks list')
                 console.log(goodD)
-                setTaskState(goodD)
+                setTasksState(goodD)
+                console.log('------------')
+                console.log(tasksState);
                 if(goodD.length) {
-                    console.log('true')
-                    console.log(goodD[1].subtasks)
+                    console.log('true goodD length')
+                    console.log(goodD)
                     appContext.changeState(
                         { 
                             ...appContext.state, 
@@ -118,9 +125,15 @@ export const GetTasks = ({tasksState, setTaskState}) => {
                         }
                     )
                 } else {
-                    appContext.changeState({ ...appContext.state, refreshTasks: false });
+                    console.log('not true goodD length')
+                    appContext.changeState(
+                        { 
+                            ...appContext.state, 
+                            refreshTasks: false 
+                        }
+                    );
                 }
-                // setTaskState(goodD)
+                // setTasksState(goodD)
                 
             });
             
@@ -129,6 +142,7 @@ export const GetTasks = ({tasksState, setTaskState}) => {
             
     }, [appContext.state.refreshTasks]); // if refreshTasks value from appContext is changed refresh the list
    
+
     return (tasksState.map((single, index) =>
             appContext.state.activeProjectName === single.projectName ? // display tasks only for active project
            
@@ -158,10 +172,10 @@ export const GetTasks = ({tasksState, setTaskState}) => {
                                                     index={index}
                                                 >
                                                     {(provided, snapshot) => (
-                                                        <div className='singleSubTaskContainer'>
-                                                            <div key={index} className='singleSubTask' ref={provided.innerRef}
-                                                                {...provided.dragHandleProps}
-                                                                {...provided.draggableProps}>
+                                                        <div key={index+one.title+'22'} className='singleSubTaskContainer' ref={provided.innerRef}
+                                                            {...provided.dragHandleProps}
+                                                            {...provided.draggableProps}>
+                                                            <div  className='singleSubTask' >
                                                                 <input 
                                                                     defaultValue={one.title} 
                                                                     onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} 
