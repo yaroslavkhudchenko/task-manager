@@ -15,10 +15,10 @@ app.use(require("body-parser").urlencoded({ extended: true }));
 // Express session
 app.use(
   session({
-    secret: 'secret this',
-    resave:false,
+    secret: process.env.SESSION_SECRET,
+    resave: false,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 app.use(cors()); // app to use cors
