@@ -75,38 +75,45 @@ const Board = () => {
 			setTasksToBeSaved(false);
 		}
 	}, [tasksShouldBeSaved])
+	
 	return (
-		<DragDropContext onDragEnd={onDragFinish}>
-			<div
-				className={
-					appContext.state.isHiddenSidebar
-						? "Board boardWithHiddenSidebar"
-						: "Board"
-				}
-			>
-				<Droppable droppableId="droppable" direction="horizontal">
-					{(provided, snapshot) => (
-						<div id='TasksContainer' ref={provided.innerRef} {...provided.droppableProps} >
-							<GetTasks 
-								tasksState={tasksState} 
-								setTasksState={setTasksState}
-							/>
-							{provided.placeholder}
-						</div>
-					)}
-					</Droppable>
-					{appContext.state.activeProjectName ? 
-						<div id="ghostTask" onClick={() => AddTask(appContext.state.activeProjectName)}>
-							<div id="addTaskButton">
-								<AddCircleOutlineIcon
-									style={{ fontSize: 120, color: "#1de9b6", opacity: "1" }}
-								/>
-							</div>
-						</div>
-					: false}
-			</div>
-		</DragDropContext>
-	);
+    <DragDropContext onDragEnd={onDragFinish}>
+      <div
+        className={
+          appContext.state.isHiddenSidebar
+            ? "Board boardWithHiddenSidebar"
+            : "Board"
+        }
+      >
+        <Droppable droppableId="droppable" direction="horizontal">
+          {(provided, snapshot) => (
+            <div
+              id="TasksContainer"
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              <GetTasks tasksState={tasksState} setTasksState={setTasksState} />
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+        {appContext.state.activeProjectName ? (
+          <div
+            id="ghostTask"
+            onClick={() => AddTask(appContext.state.activeProjectName)}
+          >
+            <div id="addTaskButton">
+              <AddCircleOutlineIcon
+                style={{ fontSize: 120, color: "#77865B", opacity: "1" }}
+              />
+            </div>
+          </div>
+        ) : (
+          false
+        )}
+      </div>
+    </DragDropContext>
+  );
 }
 
 export default Board;

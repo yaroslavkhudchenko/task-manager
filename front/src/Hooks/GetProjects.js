@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from './../Components/App';
-import CloseIcon from "@material-ui/icons/Close";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 export const GetProjects = () => {
    
@@ -37,22 +37,33 @@ export const GetProjects = () => {
 
     }, [appContext.state.refreshProjects]); // if refresProject value from appContext is changed refresh the list
 
-    return (projectsState.map((single, index)=> 
-        
-        <div key={index} className={appContext.state.activeProjectNb == index ? 'singleProject singleProjectActive' : 'singleProject'}  // check current project is active
-            onClick={() => appContext.changeState( // onClick change active project
-                {
-                    ...appContext.state,
-                    activeProjectNb: index,
-                    activeProjectName: single.name
-                }
-            )}>
-            <div className='projectTitle'>{single.name}</div>
-            <div className='deleteSingleProjectButton' onClick={() => deleteSingleProject(single._id, single.name)}>
-                <CloseIcon />
-            </div>
+    return projectsState.map((single, index) => (
+      <div
+        key={index}
+        className={
+          appContext.state.activeProjectNb == index
+            ? "singleProject singleProjectActive"
+            : "singleProject"
+        } // check current project is active
+        onClick={() =>
+          appContext.changeState(
+            // onClick change active project
+            {
+              ...appContext.state,
+              activeProjectNb: index,
+              activeProjectName: single.name,
+            }
+          )
+        }
+      >
+        <div className="projectTitle">{single.name}</div>
+        <div
+          className="deleteSingleProjectButton"
+          onClick={() => deleteSingleProject(single._id, single.name)}
+        >
+          <DeleteForeverIcon style={{ color: "#F4F3F4" }} />
         </div>
-          
-    ))
+      </div>
+    ));
 };
 

@@ -44,7 +44,7 @@ const Sidebar = () => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%,-50%)",
-                color: "white",
+                color: '#F4F3F4',
               }}
             />
           ) : (
@@ -55,7 +55,7 @@ const Sidebar = () => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%,-50%)",
-                color: "white",
+                color: '#F4F3F4',
               }}
             />
           )}

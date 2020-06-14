@@ -46,6 +46,9 @@
                 position: absolute;
                 height: fit-content;
                 min-height: 270px;
+                box-shadow: 8px 7px 5px 1px #403030;
+                background: #77865B;
+                color: #F4F3F4;
                 .deleteSingleTask {
                     position: absolute;
                     top: -15px;
@@ -72,7 +75,7 @@
                         // margin: 5px 0;
                         background: inherit;
                         border: none;
-color: white;
+                        color: white;
                         // width: 100%;
                         // padding: 5px;
                         // margin: 0;
@@ -87,33 +90,47 @@ color: white;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    .singleSubTask {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background: cadetblue;
-                        margin: 5px 0;
-                        background: yellow;
-                        background: darksalmon;
-                        padding: 20px 5px;
-                        input { 
-                            width: 75%;
-                            padding: 10px;
-                            height: -moz-fit-content;
-                            height: fit-content;
-                            cursor: pointer;
-                            background: cadetblue;
-                            border: none;
+                    .singleSubTaskContainer {
+                        width: 90%;
+                    
+                        .singleSubTask {
+                            display: flex;
+                            align-items: center;
+                            margin: 5px 0;
+                            background: #52664c8c;
+                            padding: 5px 5px;
+                            #input { 
+                                width: 75%;
+                                padding: 10px;
+                                height: -moz-fit-content;
+                                height: fit-content;
+                                cursor: pointer;
+                                background: cadetblue;
+                                border: none;
+                            }
+                            .subTaskOpenModal {
+                                // background: yellow;
+                                cursor: pointer;
+                            }
+                            .subTaskOpenModal:hover {
+                                // background:orange;
+                                transform: scale(1.2);
+                                color: orange;;
+                            }
+                             .singleSubIcon {
+                                display:none;
+                                position: absolute;
+                                right: 15px;
+                            }
                         }
-                        .subTaskOpenModal {
-                            // background: yellow;
-                            cursor: pointer;
+                    }
+                    .singleSubTask:hover {
+                    
+                        background: #98b06b;
+                        .singleSubIcon {
+                            display:block;
                         }
-                        .subTaskOpenModal:hover {
-                            // background:orange;
-                            transform: scale(1.2);
-                            color: orange;;
-                        }
+
                     }
                 }
                 #singleSubTaskModal {

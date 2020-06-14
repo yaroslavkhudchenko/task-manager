@@ -4,19 +4,29 @@
 .Sidebar {
     height: calc(100% - 50px);
     // width: 300px;
-    background:dimgray;//orange;
+    background:#009688;//dimgray;//orange; (pos -> #27483E)
+    background: #8AA9B0;
     transition: ease-in .5s;
     position: fixed;
     left: 0;
     top: 50px;
     width: 250px;
+
+    .title {
+        margin: 20px 0;
+        color:#F4F3F4;
+        font-size: 30px;
+    }
     .singleProject {
-        background: #1de9b6;//teal;
+        background: #755B69;//teal;
         display: flex;
         justify-content: space-evenly;
-        margin: 10px 0;
         padding: 10px 0px;
         cursor: pointer;
+        
+        width: 95%;
+        margin: 10px auto;
+
         .projectTitle {
             font-size: 20px;
             font-weight: 700;
@@ -27,12 +37,14 @@
             left: -2px;
             margin-right: 20px;
             word-break: break-word;
+            color: #F4F3F4;
+            
         }
         .deleteSingleProjectButton {
             position: absolute;
-            right: 5px;
+            right: 10px;
         }
-        .deleteSingleProject {
+       /*  .deleteSingleProject {
             position: absolute;
             right: 25px;
             z-index: 11;
@@ -56,7 +68,7 @@
             border-left: 2px solid red;
             position: absolute;
             transform: rotate(-45deg);
-        }
+        } */
 
     }
     #sidebarCloser {
@@ -67,7 +79,8 @@
         background: #009688; // black;
         cursor: pointer;
         transition: ease-in .5s;
-
+        box-shadow: 5px 2px 20px 2px #323131;
+        background: #8AA9B0;
     }
     .singleProjectActive {
         background: #424242;// lightgrey;

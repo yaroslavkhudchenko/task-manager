@@ -3,8 +3,7 @@ import axios from 'axios';
 import { AppContext } from './../Components/App';
 
 import AddIcon from '@material-ui/icons/Add';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-
+import EditIcon from "@material-ui/icons/Edit";
 import CancelIcon from '@material-ui/icons/Cancel';
 import { Draggable } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -58,6 +57,14 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
     }
     const handleSubTaskTitleChange = (e) => {
 
+
+        /*  onBlur={(e) =>
+                                      handleSubTaskTitleChange({
+                                        single: single,
+                                        subtaskNb: index,
+                                        title: e.target.value,
+                                      })
+                                    } */
         let good = e.single.subtasks;
         good[e.subtaskNb].title = e.title;
 
@@ -129,92 +136,113 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
             });
             
     }, [appContext.state.refreshTasks]); // if refreshTasks value from appContext is changed refresh the list
-   
-
-    return (tasksState.map((single, index) =>
-            appContext.state.activeProjectName === single.projectName ? // display tasks only for active project
-           
-            <Draggable
-                key={single._id}
-                draggableId={single._id}
-                index={index}
+  
+    return tasksState.map((single, index) =>
+      appContext.state.activeProjectName === single.projectName ? ( // display tasks only for active project
+        <Draggable key={single._id} draggableId={single._id} index={index}>
+          {(provided, snapshot) => (
+            <div
+              key={index}
+              className="SingleTaskContainer"
+              ref={provided.innerRef}
+              {...provided.dragHandleProps}
+              {...provided.draggableProps}
             >
-                {(provided, snapshot) => (
-                    <div key={index} className='SingleTaskContainer' ref={provided.innerRef}
-                        {...provided.dragHandleProps}
-                        {...provided.draggableProps}>
-
-                        <div key={index} className='singeTask' >
-                                <div className='taskTitle'>
-                                    <input defaultValue={single.name} onBlur={(e) => handleTitleChange({ single: single, name: e.target.value })} />
+              <div key={index} className="singeTask">
+                <div className="taskTitle">
+                  <input
+                    defaultValue={single.name}
+                    onBlur={(e) =>
+                      handleTitleChange({
+                        single: single,
+                        name: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+                <DragDropContext
+                  onDragEnd={(e) => onDragFinishTasks(e, single)}
+                >
+                  <Droppable droppableId="droppable">
+                    {(provided, snapshot) => (
+                      <div
+                        className="taskBody"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                      >
+                        {single.subtasks.map((one, index) => (
+                          <Draggable
+                            key={index + "key"}
+                            draggableId={index + "index"}
+                            index={index}
+                          >
+                            {(provided, snapshot) => (
+                              <div
+                                key={index + one.title + "22"}
+                                className="singleSubTaskContainer"
+                                ref={provided.innerRef}
+                                {...provided.dragHandleProps}
+                                {...provided.draggableProps}
+                              >
+                                <div
+                                  className="singleSubTask"
+                                  onClick={() => handleOpenModalClick(one)}
+                                >
+                                  <div className="singleSubTitle">
+                                    {one.title}
+                                  </div>
+                                  <div className="singleSubIcon">
+                                    <EditIcon />
+                                  </div>
+                                  {provided.placeholder}
                                 </div>
-                                <DragDropContext onDragEnd={(e)=> onDragFinishTasks(e,single)}>
-                                <Droppable droppableId="droppable">
-                                    {(provided, snapshot) => (
-                                        <div className='taskBody' ref={provided.innerRef} {...provided.droppableProps}>
-                                            {single.subtasks.map((one,index) =>
-
-                                                <Draggable
-                                                    key={index+'key'}
-                                                    draggableId={index +'index'}
-                                                    index={index}
-                                                >
-                                                    {(provided, snapshot) => (
-                                                        <div key={index+one.title+'22'} className='singleSubTaskContainer' ref={provided.innerRef}
-                                                            {...provided.dragHandleProps}
-                                                            {...provided.draggableProps}>
-                                                            <div  className='singleSubTask' >
-                                                                <input 
-                                                                    defaultValue={one.title} 
-                                                                    onBlur={(e) => handleSubTaskTitleChange({ single: single, subtaskNb: index, title: e.target.value })} 
-                                                                />
-                                                                <div className='subTaskOpenModal' onClick={() => handleOpenModalClick(one)}>
-                                                                    <OpenInNewIcon />
-                                                                </div>
-                                                                {provided.placeholder}
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                </Draggable>
-
-                                            )}
-                                            <div className='ghostSubTask'>
-                                                <AddIcon onClick={() => AddSubTask(single._id)} />
-                                            </div>
-                                            {provided.placeholder}
-                                        </div>
-                                    )}
-					                </Droppable>
-
-                                </DragDropContext>
-                                <div className='deleteSingleTask' onClick={() => deleteSingleTask(single._id)}>
-                                    <CancelIcon 
-                                        style={{
-                                            color:'white',
-                                            fontSize: '30'
-                                        }}
-                                    />
-                                </div>
-                                {openDescr ?
-                                    <div id='singleSubTaskModal'>
-                                        <div id='singleSubTaskModalTitle'>
-                                            {goodSubTask.title}
-                                        </div>
-                                        <div id='singleSubTaskModalBody'>
-                                            {goodSubTask.descr}
-                                        </div>
-                                        <div id='singleSubTaskModalClose' onClick={()=>setOpenDescr(false)}>
-                                            close
-                                        </div>
-                                    </div>
-                                    : false
-                                }
-                            </div>
+                              </div>
+                            )}
+                          </Draggable>
+                        ))}
+                        <div className="ghostSubTask">
+                          <AddIcon
+                            
+                            onClick={() => AddSubTask(single._id)}
+                          />
+                        </div>
                         {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                </DragDropContext>
+                <div
+                  className="deleteSingleTask"
+                  onClick={() => deleteSingleTask(single._id)}
+                >
+                  <CancelIcon
+                    style={{
+                      color: "white",
+                      fontSize: "30",
+                    }}
+                  />
+                </div>
+                {openDescr ? (
+                  <div id="singleSubTaskModal">
+                    <div id="singleSubTaskModalTitle">{goodSubTask.title}</div>
+                    <div id="singleSubTaskModalBody">{goodSubTask.descr}</div>
+                    <div
+                      id="singleSubTaskModalClose"
+                      onClick={() => setOpenDescr(false)}
+                    >
+                      close
                     </div>
+                  </div>
+                ) : (
+                  false
                 )}
-            </Draggable>
-        :false
-            
-    ));
+              </div>
+              {provided.placeholder}
+            </div>
+          )}
+        </Draggable>
+      ) : (
+        false
+      )
+    );
 };
