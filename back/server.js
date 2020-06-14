@@ -1,7 +1,16 @@
 const express = require("express");
+const session = require("express-session");
+
 const cors = require("cors");
-const mongoose = require("mongoose");
 require("dotenv").config(); // to have variables in dotenv file
+
+const MongoStore = require("connect-mongo")(session);
+const mongoose = require("mongoose");
+
+const passport = require("./passport/setup");
+
+
+
 
 const app = express(); // create express server
 const port = process.env.PORT || 5000; // specify the port
@@ -29,9 +38,26 @@ connection.once("open", () => {
 // require routes
 const ProjectsRouter = require("./routes/projects");
 const TasksRouter = require("./routes/tasks");
+const Auth = require("./routes/auth");
 
 app.use("/projects", ProjectsRouter);
 app.use("/tasks", TasksRouter);
+app.use("/auth", Auth);
+
+// Express session
+app.use(
+  session({
+    secret: 'secret this',
+    resave:false,
+    saveUninitialized: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // listen to the server(start server on port)
 app.listen(port, () => {
