@@ -77,7 +77,7 @@ const Board = () => {
 	}, [tasksShouldBeSaved])
 	
 	return (
-    <DragDropContext onDragEnd={onDragFinish}>
+		<DragDropContext onDragEnd={onDragFinish}>
       <div
         className={
           appContext.state.isHiddenSidebar

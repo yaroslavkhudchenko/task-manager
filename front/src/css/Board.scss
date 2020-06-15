@@ -40,7 +40,7 @@
             height: fit-content;
             position: relative;
         
-            .singeTask {
+            .singleTask {
                 width: 100%;
                 background: #e91d4c;//#e91d4c;
                 position: absolute;
@@ -48,7 +48,8 @@
                 min-height: 270px;
                 box-shadow: 8px 7px 5px 1px #403030;
                 background: #77865B;
-                color: #F4F3F4;
+                color: #F4F3F4;    
+                box-shadow: 0 10px 20px rgb(0, 0, 0), 0 6px 6px rgb(66, 66, 66);
                 .deleteSingleTask {
                     position: absolute;
                     top: -15px;
@@ -64,6 +65,9 @@
                     // white-space: nowrap;
                     // overflow: hidden;
                     // padding: 5px;
+                    background: yellow;
+                    min-height: 30px;
+                    padding-bottom: 20px;
                     input {
                         font-weight: 500;
                         font-size: 20px;

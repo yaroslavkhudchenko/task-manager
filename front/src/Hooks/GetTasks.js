@@ -108,7 +108,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                 }
             )
     }
-
+   
     useEffect(() => {
         axios.get('http://localhost:5000/tasks')
             .then(res => {
@@ -136,20 +136,23 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
             });
             
     }, [appContext.state.refreshTasks]); // if refreshTasks value from appContext is changed refresh the list
-  
+   
     return tasksState.map((single, index) =>
       appContext.state.activeProjectName === single.projectName ? ( // display tasks only for active project
-        <Draggable key={single._id} draggableId={single._id} index={index}>
+        <Draggable key={single._id} draggableId={single._id} index={index} >
           {(provided, snapshot) => (
             <div
-              key={index}
+              
               className="SingleTaskContainer"
               ref={provided.innerRef}
-              {...provided.dragHandleProps}
               {...provided.draggableProps}
             >
-              <div key={index} className="singeTask">
-                <div className="taskTitle">
+              <div key={index} className="singleTask">
+                <div className="taskTitle"
+                  key={index}
+                  {...provided.dragHandleProps}
+
+                >
                   <input
                     defaultValue={single.name}
                     onBlur={(e) =>
