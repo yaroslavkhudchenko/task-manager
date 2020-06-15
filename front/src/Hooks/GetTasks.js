@@ -145,7 +145,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
               
               className="SingleTaskContainer"
               ref={provided.innerRef}
-              {...provided.draggableProps}
+              {...provided.draggableProps} 
             >
               <div key={index} className="singleTask">
                 <div className="taskTitle"
@@ -160,6 +160,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                         single: single,
                         name: e.target.value,
                       })
+                    
                     }
                   />
                 </div>

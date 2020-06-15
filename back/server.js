@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require("express-session");
+var bodyParser = require('body-parser');
 
 const cors = require("cors");
 require("dotenv").config(); // to have variables in dotenv file
@@ -11,7 +12,6 @@ const passport = require("./passport/setup");
 const app = express(); // create express server
 
 
-app.use(require("body-parser").urlencoded({ extended: true }));
 // Express session
 app.use(
   session({
@@ -27,6 +27,7 @@ app.use(express.json());
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const port = process.env.PORT || 5000; // specify the port
 
