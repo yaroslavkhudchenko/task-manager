@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
 /* import App from './App';
  */import axios from 'axios';
-import { Redirect } from 'react-router';
 
-import { 
-    BrowserRouter as Router,
-    Switch, 
-    Route, 
-    Link 
-} from "react-router-dom";
 
 const SignUpLoginScreen = () => {
 
@@ -35,57 +28,55 @@ const SignUpLoginScreen = () => {
 
     })
     return (
-        <Router>
-            <div className="signUpPage">
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Name:
-                        <input
-                            type="text"
-                            required
-                            defaultValue={inputState.name}
-                            onChange={(e) => setInputState({
-                                ...inputState, name: e.target.value
+        <div className="signUpPage">
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Name:
+                    <input
+                        type="text"
+                        required
+                        defaultValue={inputState.name}
+                        onChange={(e) => setInputState({
+                            ...inputState, name: e.target.value
+                        })}
+                        name="name"
+                    />
+                </label>
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        required
+                        defaultValue={inputState.email}
+                        onChange={(e) => setInputState({
+                            ...inputState, 
+                            email: e.target.value 
+                        })}
+                        name="email"
+                    />
+                </label>
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        required
+                        defaultValue={inputState.password}
+                        onChange={(e) =>setInputState(
+                            {
+                                ...inputState,
+                                password: e.target.value,
                             })}
-                            name="name"
-                        />
-                    </label>
-                    <label>
-                        Email:
-                        <input
-                            type="email"
-                            required
-                            defaultValue={inputState.email}
-                            onChange={(e) => setInputState({
-                                ...inputState, 
-                                email: e.target.value 
-                            })}
-                            name="email"
-                        />
-                    </label>
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            required
-                            defaultValue={inputState.password}
-                            onChange={(e) =>setInputState(
-                                {
-                                    ...inputState,
-                                    password: e.target.value,
-                                })}
-                             name="password"
-                        />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
-                {/* <Link to="/app">APP</Link>
-                <Route path="/app">
-                    <App />
-                </Route>
-                            {loggedin && <Redirect push to="/app" /> } */}
-            </div>
-        </Router>
+                            name="password"
+                    />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+            {/* <Link to="/app">APP</Link>
+            <Route path="/app">
+                <App />
+            </Route>
+                        {loggedin && <Redirect push to="/app" /> } */}
+        </div>
     );
 
 

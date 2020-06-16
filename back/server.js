@@ -11,7 +11,6 @@ const mongoose = require("mongoose");
 const passport = require("./passport/setup");
 const app = express(); // create express server
 
-
 // Express session
 app.use(
   session({
