@@ -8,6 +8,7 @@
     overflow-x: scroll;
     transition: ease-in .5s;
     background: #424242;
+    z-index: 1;
     #ghostTask {
         width: 240px;
         min-width: 240px;
@@ -58,6 +59,23 @@
                     width: 40px;
                     height: 40px; */
                 }
+                /* .confirmDeleteSingleTask {
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: red;
+                    svg {
+                        color: white;
+                        font-size: 30px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%,-50%);
+                        font-size: 170px;
+                        cursor: pointer;
+                    }
+                } */
                 .taskTitle {
                     // font-weight: 500;
                     // font-size: 25px;
@@ -141,25 +159,87 @@
                 }
                 #singleSubTaskModal {
                     position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    display: flex;
-                    flex-direction: column;
-                    width: 600px;
-                    height: 700px;
-                    transform: translate(-50%,-50%);
-                    background: #98ad87;
-                    cursor: default;
-                    #singleSubTaskModalTitle {
-                        
-                    }
-                    #singleSubTaskModalClose {
+                    height: 100vh;
+                    width: 100vw;
+                    top: 0;
+                    left: 0;
+                    background: #00000044;
+                    z-index: 2;
+                    #singleSubTaskModalContent {
                         position: absolute;
-                        top: 0;
-                        right: 0;
-                        width: 40px;
-                        height: 20px;
-                        background:red;
+                        top: 50%;
+                        left: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        width: 600px;
+                        height: 700px;
+                        transform: translate(-50%,-50%);
+                        background: #98ad87;
+                        cursor: default;
+                        #singleSubTaskModalTitle {
+                            height: 10%;
+                            width: 100%;
+                            position: absolute;
+                            top: 0;
+                            background: #8AA9B0;
+                            textarea {
+                                width: 80%;
+                                position: absolute;
+                                top:50%;
+                                left: 50%;
+                                transform: translate(-50%,-50%);
+                                outline:none;
+                                border:none;
+                                font-size: 20px;
+                                background: #F4F3F4;
+                                padding: 5px;
+                                box-sizing: border-box;
+                                z-index: 1;
+                                min-height: 80%;
+                            }
+                            textarea:focus {
+                                background: teal;
+                                color:white;
+                            }
+                        }
+                        #singleSubTaskModalBody {
+                            height: 90%;
+                            width:100%;
+                            position: absolute;
+                            top: 10%;
+                            background: #8AA9B0;
+                            label {
+                                font-size: 20px;
+                            }
+                            textarea {
+                                position: absolute;
+                                width: 80%;
+                                height: 90%;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%,-50%);
+                                outline:none;
+                                border:none;
+                                font-size: 16px;
+                                background: #F4F3F4;
+                                padding: 5px;
+                                box-sizing: border-box;
+                                z-index: 1;
+                            }
+                            textarea:focus {
+                                background: teal;
+                                color:white;
+                            }
+                        }
+
+                        #singleSubTaskModalClose {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            width: 40px;
+                            height: 20px;
+                            background:red;
+                        }
                     }
                 }
             }
