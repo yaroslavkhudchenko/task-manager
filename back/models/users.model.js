@@ -18,10 +18,6 @@ const ThirdPartyReg = new mongoose.Schema({
 // Create Schema for the User
 const UserSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required:true
-    },
     email: {
       type: String,
       required: true,
