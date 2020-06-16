@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import App from './App';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+/* import App from './App';
+ */import axios from 'axios';
+import { Redirect } from 'react-router';
 
 import { 
     BrowserRouter as Router,
@@ -11,20 +12,28 @@ import {
 
 const SignUpLoginScreen = () => {
 
+    const [loggedin, setloggedin] = useState(false);
+
     const [inputState,setInputState] = useState({
         name:'name',
         email:'hello@gmail.com',
         password:'2afawf2ra2'
     });
     const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e);
-    axios
-      .post("http://localhost:5000/auth/reg_log", inputState)
-      .then((g) => console.log("success"))
-      .catch((err) => console.log(`err -> ${err}`));
+        e.preventDefault();
+        console.log(e);
+        axios
+        .post("http://localhost:5000/auth/reg_log", inputState)
+            .then((res) => setloggedin(true))
+            .catch((err) => console.log(`err -> ${err}`));
     };
 
+    useEffect(()=>{
+
+        console.log('here am I')
+
+
+    })
     return (
         <Router>
             <div className="signUpPage">
@@ -70,10 +79,11 @@ const SignUpLoginScreen = () => {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
-                <Link to="/app">APP</Link>
+                {/* <Link to="/app">APP</Link>
                 <Route path="/app">
                     <App />
                 </Route>
+                            {loggedin && <Redirect push to="/app" /> } */}
             </div>
         </Router>
     );
