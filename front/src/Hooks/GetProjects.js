@@ -47,6 +47,13 @@ export const GetProjects = () => {
             : "singleProject"
         } // check current project is active
       >
+        {changingProjectTitle && 
+          <div className="projectNameModal">
+            <div className="projectNameModalTitle">
+              <input defaultValue={single.name} />
+            </div>
+          </div>
+        }
         <div
           className="projectTitle"
           onClick={() =>
