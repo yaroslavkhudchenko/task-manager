@@ -11,7 +11,7 @@
     left: 0;
     top: 50px;
     width: 250px;
-
+z-index: 1;
     .title {
         margin: 20px 0;
         color:#F4F3F4;
@@ -86,6 +86,51 @@
         background: #424242;// lightgrey;
         color: white;
     }
+
+ .addNameModule {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background: #000000d6;
+        top: 0;
+        .addNameModuleContent{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            /* background: beige; */
+            padding: 19px;
+            justify-content: space-between;
+            width: 350px;
+            font-size: 40px;
+            color: white;
+            flex-direction: column;
+            input {
+                height: 40px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: inherit;
+                font-style: italic;
+                margin: 20px 0;
+            }
+            .addProjectModuleButtons {
+                display: flex;
+                justify-content: space-evenly;
+                font-size: 30px;
+                .cancelNamebutton {
+                    color: red;
+                    cursor: pointer;
+                }
+                .saveNamebutton {
+                    color: darkolivegreen;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
 }
 .Sidebar.hiddenSidebar {
     left:-250px;

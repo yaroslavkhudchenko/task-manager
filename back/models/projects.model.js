@@ -12,7 +12,7 @@ const addProjectScheme = new Schema({ // create new schema
         required: true,
         unique: true,
         trim: true, // white space at the end
-        minlength: 3 // min length for name
+        minlength: 1 // min length for name
     },
     nbTask: {
         type: Number,

@@ -3,9 +3,44 @@ import '../css/Sidebar.scss';
 import { GetProjects } from './../Hooks/GetProjects';
 import { AppContext } from './../Components/App';
 import CloseIcon from "@material-ui/icons/Close";
+import axios from "axios";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 const Sidebar = () => {
+
+
+  const [nameNeeded, nameNeededSet] = useState(false);
+
+  // add new projecat to the database
+  const AddProject = () => {
+    let name = document.querySelector(".addNameModule input").value;
+
+    // if name is not empty
+    if (name.length >= 1) {
+      axios
+        .post("http://localhost:5000/projects/addproject", {
+          name: name,
+          nbTask: 0,
+          tasks: [],
+          archived: false,
+        })
+        .then(
+          () =>
+            appContext.changeState({
+              ...appContext.state,
+              refreshProjects: true,
+            }) // refresh project list after one is added
+        )
+        .catch((err) => console.log("error on adding project request " + err));
+      nameNeededSet(false);
+    } else {
+      document.querySelector(".addNameModuleContent input").placeholder = 'minimum 1 letter';
+    }
+  };
+
+
     const [SidebarState, setSidebarState] = useState(false);
 
     //useEffect(() => console.log('adfawefawf'))
@@ -44,7 +79,7 @@ const Sidebar = () => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%,-50%)",
-                color: '#F4F3F4',
+                color: "#F4F3F4",
               }}
             />
           ) : (
@@ -55,16 +90,49 @@ const Sidebar = () => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%,-50%)",
-                color: '#F4F3F4',
+                color: "#F4F3F4",
               }}
             />
           )}
         </div>
         {/* button to close the sidebar */}
         <div className="title">Projects:</div>
+
         <div className="content">
+          <div className="addBoard" onClick={() => nameNeededSet(true)}>
+            <AddCircleOutlineIcon
+              style={{ fontSize:45, color: "#77865B", opacity: "1", cursor: 'pointer'}}
+            />
+          </div>
+
           <GetProjects />
         </div>
+        {nameNeeded ? (
+          <div className="addNameModule">
+            <div className="addNameModuleContent">
+              <input
+                autoFocus
+                type="text"
+                minLength="1"
+                required
+                placeholder="Provide the name"
+              />
+              <div className="addProjectModuleButtons">
+                <div
+                  className="cancelNamebutton"
+                  onClick={() => nameNeededSet(false)}
+                >
+                  Cancel
+                </div>
+                <div className="saveNamebutton" onClick={AddProject}>
+                  Add
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          false
+        )}
       </div>
     );
 }

@@ -15,13 +15,15 @@ const Board = () => {
 
 	const appContext = useContext(AppContext);
 	const AddTask = (pn) => {
-			console.log(pn)
+		console.log(pn)
 			let name = 'heh';//document.querySelector('.addNameModule input').value;
 			console.log('add task running')
 			
 
 			// if name is not empty
 			if (name) {
+				console.log('in name ist true')
+				console.log(pn)
 					axios.post('http://localhost:5000/tasks/addtask',
 						{
 							name: name,
@@ -38,6 +40,7 @@ const Board = () => {
 							}
 						)
 					)
+					.catch(err=>console.log(`error while adding task -> ${err}`))
 					// nameNeededSet(false);
 					
 

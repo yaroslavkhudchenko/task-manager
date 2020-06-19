@@ -8,6 +8,7 @@ router.route('/').get((req, res) => {
         .then(tasks => res.json(tasks)) // in json
         .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message
 });
+
 // one rule to save them all
 router.route('/').post((req, res) => {
 
@@ -52,7 +53,8 @@ router.route('/edit/:id').post((req, res) => {
 
 // route => if url /users/add run this post(if post only)
 router.route('/addtask').post((req, res) => {
-
+    console.log('innn')
+    console.log(req.body)
     const name = 'adefaultq task name :(' // req.body.name; // from the input - the rest are the default values for the new empty task
     const subtasks = [];
     const projectName = req.body.projectName;
