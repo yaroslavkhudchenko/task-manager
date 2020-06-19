@@ -11,7 +11,8 @@ const Sidebar = () => {
 
 
   const [nameNeeded, nameNeededSet] = useState(false);
-
+  const [changingProjectTitle, setChangingProjectTitle] = useState(false);
+  const [activeProject, setActiveProject] = useState([]);
   // add new projecat to the database
   const AddProject = () => {
     let name = document.querySelector(".addNameModule input").value;
@@ -100,11 +101,36 @@ const Sidebar = () => {
         <div className="content">
           <div className="addBoard" onClick={() => nameNeededSet(true)}>
             <AddCircleOutlineIcon
-              style={{ fontSize:45, color: "#77865B", opacity: "1", cursor: 'pointer'}}
+              style={{
+                fontSize: 45,
+                color: "#77865B",
+                opacity: "1",
+                cursor: "pointer",
+              }}
             />
           </div>
 
-          <GetProjects />
+          <GetProjects
+            changingProjectTitle={changingProjectTitle}
+            setChangingProjectTitle={setChangingProjectTitle}
+            setActiveProject={setActiveProject}
+          />
+          {changingProjectTitle && (
+            <div className="projectNameModal">
+              <div className="projectNameModalTitle">
+                <input defaultValue={activeProject.name} />
+              </div>
+              <div className="projectNameModalButtons">
+                <div className="changingNameYes">Save</div>
+                <div
+                  className="changingNameCancel"
+                  onClick={() => setChangingProjectTitle(false)}
+                >
+                  Cancel
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         {nameNeeded ? (
           <div className="addNameModule">

@@ -3,7 +3,11 @@ import axios from 'axios';
 import { AppContext } from './../Components/App';
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import CreateIcon from "@material-ui/icons/Create";
-export const GetProjects = () => {
+export const GetProjects = ({ 
+  changingProjectTitle, 
+  setChangingProjectTitle,
+  setActiveProject
+}) => {
    
     const [projectsState, setProjectsState] = useState([]); // state for projects
 
@@ -47,13 +51,7 @@ export const GetProjects = () => {
             : "singleProject"
         } // check current project is active
       >
-        {changingProjectTitle && 
-          <div className="projectNameModal">
-            <div className="projectNameModalTitle">
-              <input defaultValue={single.name} />
-            </div>
-          </div>
-        }
+       
         <div
           className="projectTitle"
           onClick={() =>
@@ -70,7 +68,11 @@ export const GetProjects = () => {
           {single.name}
         </div>
         <div className="projectTitleButtons">
-          <div className="changeSingleProjectButton">
+          <div className="changeSingleProjectButton" 
+            onClick={()=>{
+              setActiveProject(single)
+              setChangingProjectTitle(true)
+              }}>
             <CreateIcon style={{ color: "#F4F3F4" }} />
           </div>
           <div
