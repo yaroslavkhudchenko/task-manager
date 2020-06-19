@@ -12,7 +12,6 @@ import {
 const SignUpLoginScreen = () => {
 
     const [inputState,setInputState] = useState({
-        name:'name',
         email:'hello@gmail.com',
         password:'2afawf2ra2'
     });
@@ -30,16 +29,7 @@ const SignUpLoginScreen = () => {
             <div className="signUpPage">
                 <form onSubmit={handleSubmit}>
                     <label>
-                        Name:
-                        <input
-                            type="text"
-                            required
-                            defaultValue={inputState.name}
-                            onChange={(e) => setInputState({
-                                ...inputState, name: e.target.value
-                            })}
-                            name="name"
-                        />
+                       
                     </label>
                     <label>
                         Email:
