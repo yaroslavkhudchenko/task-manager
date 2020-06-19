@@ -98,19 +98,21 @@ const Sidebar = () => {
                 position: "absolute",
                 top: "50%",
                 left: "50%",
-                transform: "translate(-50%,-50%)",
+                transform: "translate(-50%, -50%)",
                 color: "#F4F3F4",
+                transition: "ease-in .5s"
               }}
             />
           ) : (
-            <CloseIcon
+            <ArrowForwardIosIcon
               style={{
                 fontSize: "3em",
                 position: "absolute",
                 top: "50%",
                 left: "50%",
-                transform: "translate(-50%,-50%)",
+                transform: "translate(-50%,-50%) rotate(180deg)",
                 color: "#F4F3F4",
+                transition: "ease-in .5s"
               }}
             />
           )}
@@ -150,13 +152,12 @@ const Sidebar = () => {
                     className="changingNameCancel"
                     onClick={() => setChangingProjectTitle(false)}
                   >
-                  <div
-                    className="changingNameYes"
-                    onClick={changeCurrentProjectName}
-                  >
-                    Save
-                  </div>
-
+                    <div
+                      className="changingNameYes"
+                      onClick={changeCurrentProjectName}
+                    >
+                      Save
+                    </div>
                     Cancel
                   </div>
                 </div>
