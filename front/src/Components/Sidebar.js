@@ -40,6 +40,11 @@ const Sidebar = () => {
     }
   };
 
+  const changeCurrentProjectName = () => {
+
+      console.log('change proejct name')
+      console.log(activeProject)
+  }
 
     const [SidebarState, setSidebarState] = useState(false);
 
@@ -117,16 +122,25 @@ const Sidebar = () => {
           />
           {changingProjectTitle && (
             <div className="projectNameModal">
-              <div className="projectNameModalTitle">
-                <input defaultValue={activeProject.name} />
-              </div>
-              <div className="projectNameModalButtons">
-                <div className="changingNameYes">Save</div>
-                <div
-                  className="changingNameCancel"
-                  onClick={() => setChangingProjectTitle(false)}
-                >
-                  Cancel
+              <div className='projectNameModalContent'>
+                <div className="projectNameModalTitle">
+                  <input 
+                    defaultValue={activeProject.name} 
+                    autoFocus
+                    placeholder='provide the title'
+                  />
+                </div>
+                <div className="projectNameModalButtons">
+                  <div 
+                    className="changingNameYes"
+                    onClick={changeCurrentProjectName}
+                  >Save</div>
+                  <div
+                    className="changingNameCancel"
+                    onClick={() => setChangingProjectTitle(false)}
+                  >
+                    Cancel
+                  </div>
                 </div>
               </div>
             </div>
@@ -140,7 +154,7 @@ const Sidebar = () => {
                 type="text"
                 minLength="1"
                 required
-                placeholder="Provide the name"
+                placeholder="Provide the title"
               />
               <div className="addProjectModuleButtons">
                 <div

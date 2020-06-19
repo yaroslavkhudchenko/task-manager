@@ -119,6 +119,51 @@ z-index: 1;
         }
     }
 
+    .projectNameModal {
+        /* position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #8aa9b0cf;
+        height: 100%; */
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background: #000000d6;
+        top: 0;
+        .projectNameModalContent {
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            .projectNameModalTitle {
+            width: 350px;
+            font-size: 40px;
+                input {
+                    height: 40px;
+                    background: none;
+                    border: none;
+                    color: white;
+                    font-size: inherit;
+                    font-style: italic;
+                    margin: 20px 0;
+                }
+            }
+            .projectNameModalButtons {
+                display: flex;
+                justify-content: space-evenly;
+                font-size: 30px;
+                .changingNameCancel {
+                    color: red;
+                    cursor: pointer;
+                }
+                .changingNameYes {
+                    color: darkolivegreen;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }
 .Sidebar.hiddenSidebar {
     left:-250px;
