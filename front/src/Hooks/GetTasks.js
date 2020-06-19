@@ -208,16 +208,17 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                             )}
                           </Draggable>
                         ))}
+
+                        {provided.placeholder}
                         <div className="ghostSubTask">
-                          <AddCircleOutlineIcon 
-                            style={{    
-                              marginTop: '20px',
-                              cursor: 'pointer'
+                          <AddCircleOutlineIcon
+                            style={{
+                              marginTop: "20px",
+                              cursor: "pointer",
                             }}
                             onClick={() => AddSubTask(single._id)}
                           />
                         </div>
-                        {provided.placeholder}
                       </div>
                     )}
                   </Droppable>
