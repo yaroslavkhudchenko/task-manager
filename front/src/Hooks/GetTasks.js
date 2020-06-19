@@ -8,6 +8,9 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import { Draggable } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import SingleSubTask from './../Components/SingleSubTask';
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+
+
 export const GetTasks = ({ tasksState, setTasksState}) => {
 
     const [openDescr, setOpenDescr] = useState(false);
@@ -142,19 +145,18 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
    
     return tasksState.map((single, index) =>
       appContext.state.activeProjectName === single.projectName ? ( // display tasks only for active project
-        <Draggable key={single._id} draggableId={single._id} index={index} >
+        <Draggable key={single._id} draggableId={single._id} index={index}>
           {(provided, snapshot) => (
             <div
-              
               className="SingleTaskContainer"
               ref={provided.innerRef}
-              {...provided.draggableProps} 
+              {...provided.draggableProps}
             >
               <div key={index} className="singleTask">
-                <div className="taskTitle"
+                <div
+                  className="taskTitle"
                   key={index}
                   {...provided.dragHandleProps}
-
                 >
                   <input
                     defaultValue={single.name}
@@ -163,7 +165,6 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                         single: single,
                         name: e.target.value,
                       })
-                    
                     }
                   />
                 </div>
@@ -208,8 +209,11 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                           </Draggable>
                         ))}
                         <div className="ghostSubTask">
-                          <AddIcon
-                            
+                          <AddCircleOutlineIcon 
+                            style={{    
+                              marginTop: '20px',
+                              cursor: 'pointer'
+                            }}
                             onClick={() => AddSubTask(single._id)}
                           />
                         </div>
@@ -229,12 +233,13 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                     }}
                   />
                 </div>
-                {openDescr &&
-                  <SingleSubTask 
-                    title={goodSubTask.title}  
+                {openDescr && (
+                  <SingleSubTask
+                    title={goodSubTask.title}
                     descr={goodSubTask.descr}
-                  setOpenDescr={setOpenDescr}
-                  />}
+                    setOpenDescr={setOpenDescr}
+                  />
+                )}
               </div>
               {provided.placeholder}
             </div>
