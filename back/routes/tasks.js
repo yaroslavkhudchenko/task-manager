@@ -29,7 +29,7 @@ router.route('/').post((req, res) => {
 
 });
 
-// route => handles imcoming http post requests -> to edit name
+// route => handles imcoming http post requests -> to edit
 router.route('/edit/:id').post((req, res) => {
     console.log('edit task')
     tasks.findById(req.params.id) // get correct query based on the id passed

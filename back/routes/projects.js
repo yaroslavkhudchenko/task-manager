@@ -29,7 +29,20 @@ router.route('/addproject').post((req, res) => {
         .catch(err => res.status(400).json('Errorц: ' + err)); // if error return 400 with err message
 });
 
-
+// route => handles imcoming http post requests -> to edit
+router.route('/edit/:id').post((req, res) => {
+    console.log('edit project')
+    projects.findById(req.params.id) // get correct query based on the id passed
+        .then(project => {
+            console.log('edit project1')
+            req.body.name ? project.name = req.body.name  : false
+            
+        project.save()
+          .then(() => res.json("project is updated!"))
+          .catch((err) => res.status(400).json("Error: " + err));
+    })
+    .catch(err => res.status(400).json('1Error: ' + err)); // if error return 400 with err message */
+});
 
 // to delete project with id
 router.route('/:id').delete((req, res) => {

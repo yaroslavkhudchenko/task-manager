@@ -44,6 +44,21 @@ const Sidebar = () => {
 
       console.log('change proejct name')
       console.log(activeProject)
+      console.log(document.querySelector('.projectNameModalTitle input').value);
+      
+      axios.post(`http://localhost:5000/projects/edit/${activeProject._id}`,
+          { 
+            name: document.querySelector(".projectNameModalTitle input").value
+          }
+        )
+        .then(() => {
+          appContext.changeState({
+            ...appContext.state,
+            refreshProjects: true,
+          }); // refresh project list after change name
+          
+          setChangingProjectTitle(false);
+        }).catch(err=>console.log(`error while changing singleproject name -> ${err}`))
   }
 
     const [SidebarState, setSidebarState] = useState(false);
@@ -122,23 +137,26 @@ const Sidebar = () => {
           />
           {changingProjectTitle && (
             <div className="projectNameModal">
-              <div className='projectNameModalContent'>
+              <div className="projectNameModalContent">
                 <div className="projectNameModalTitle">
-                  <input 
-                    defaultValue={activeProject.name} 
+                  <input
+                    defaultValue={activeProject.name}
                     autoFocus
-                    placeholder='provide the title'
+                    placeholder="provide the title"
                   />
                 </div>
                 <div className="projectNameModalButtons">
-                  <div 
-                    className="changingNameYes"
-                    onClick={changeCurrentProjectName}
-                  >Save</div>
                   <div
                     className="changingNameCancel"
                     onClick={() => setChangingProjectTitle(false)}
                   >
+                  <div
+                    className="changingNameYes"
+                    onClick={changeCurrentProjectName}
+                  >
+                    Save
+                  </div>
+
                     Cancel
                   </div>
                 </div>
