@@ -84,7 +84,8 @@
                     // overflow: hidden;
                     // padding: 5px;
                     min-height: 30px;
-                    padding-bottom: 20px;
+                    padding: 20px 0px;
+                    position: relative;
                     input {
                         font-weight: 500;
                         font-size: 20px;
@@ -104,11 +105,15 @@
                         -moz-box-sizing: border-box;
                         -o-box-sizing: border-box;
                         -ms-box-sizing: border-box;
-                        box-sizing: border-box;   
+                        box-sizing: border-box;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%,-50%);
                     }
-                    input:focus {
+                    /* input:focus {
                         background:cyan;
-                    }
+                    } */
                 }
                 .taskBody {
                     display: flex;

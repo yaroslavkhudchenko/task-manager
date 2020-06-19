@@ -5,7 +5,6 @@ import { AppContext } from './../Components/App';
 import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 const Sidebar = () => {

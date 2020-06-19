@@ -26,7 +26,9 @@ z-index: 1;
         
         width: 95%;
         margin: 10px auto;
-
+        position: relative;
+        min-height: 30px;
+        line-height: 30px;
         .projectTitle {
             font-size: 20px;
             font-weight: 700;
@@ -35,41 +37,27 @@ z-index: 1;
             /* position: absolute; */
             color: black;
             left: -2px;
-            margin-right: 20px;
             word-break: break-word;
             color: #F4F3F4;
-            
-        }
-        .deleteSingleProjectButton {
             position: absolute;
-            right: 10px;
+            left: 0;
+            width: 80%;
         }
-       /*  .deleteSingleProject {
+        .projectTitleButtons {
             position: absolute;
-            right: 25px;
-            z-index: 11;
-            width: 25px;
-            height: 25px;
+            right: 0;
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: center;
+            width: 20%;
+            .deleteSingleProjectButton:hover {
+                background: red;
+            }
+            .changeSingleProjectButton:hover {
+                background: yellow;
+            }
         }
-        .deleteSingleProject:hover {
-            background: yellow;
-        }
-        .deleteSingleProject:after {
-            content: '';
-            height: 25px;
-            border-left: 2px solid red;
-            position: absolute;
-            transform: rotate(45deg);
-        }
-
-        .deleteSingleProject:before {
-            content: '';
-            height: 25px;
-            border-left: 2px solid red;
-            position: absolute;
-            transform: rotate(-45deg);
-        } */
-
+        
     }
     #sidebarCloser {
         position: absolute;

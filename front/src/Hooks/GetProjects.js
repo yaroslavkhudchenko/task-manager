@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from './../Components/App';
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-
+import CreateIcon from "@material-ui/icons/Create";
 export const GetProjects = () => {
    
     const [projectsState, setProjectsState] = useState([]); // state for projects
@@ -10,7 +10,8 @@ export const GetProjects = () => {
     const appContext = useContext(AppContext); // global context
 
     // to delete single project based on it's id
-    const deleteSingleProject = (id, name) => {
+    const deleteSingleProject = (id, name,e) => {
+      e.preventDefault();
         axios.delete(`http://localhost:5000/projects/${id}`, 
             {data:{projectName: name}})
         .then(()=> 
@@ -45,23 +46,32 @@ export const GetProjects = () => {
             ? "singleProject singleProjectActive"
             : "singleProject"
         } // check current project is active
-        onClick={() =>
-          appContext.changeState(
-            // onClick change active project
-            {
-              ...appContext.state,
-              activeProjectNb: index,
-              activeProjectName: single.name,
-            }
-          )
-        }
       >
-        <div className="projectTitle">{single.name}</div>
         <div
-          className="deleteSingleProjectButton"
-          onClick={() => deleteSingleProject(single._id, single.name)}
+          className="projectTitle"
+          onClick={() =>
+            appContext.changeState(
+              // onClick change active project
+              {
+                ...appContext.state,
+                activeProjectNb: index,
+                activeProjectName: single.name,
+              }
+            )
+          }
         >
-          <DeleteForeverIcon style={{ color: "#F4F3F4" }} />
+          {single.name}
+        </div>
+        <div className="projectTitleButtons">
+          <div className="changeSingleProjectButton">
+            <CreateIcon style={{ color: "#F4F3F4" }} />
+          </div>
+          <div
+            className="deleteSingleProjectButton"
+            onClick={(e) => deleteSingleProject(single._id, single.name, e)}
+          >
+            <DeleteForeverIcon style={{ color: "#F4F3F4" }} />
+          </div>
         </div>
       </div>
     ));
