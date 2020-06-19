@@ -7,12 +7,12 @@ import EditIcon from "@material-ui/icons/Edit";
 import CancelIcon from '@material-ui/icons/Cancel';
 import { Draggable } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-
+import SingleSubTask from './../Components/SingleSubTask';
 export const GetTasks = ({ tasksState, setTasksState}) => {
 
     const [openDescr, setOpenDescr] = useState(false);
     const [goodSubTask, setGoodSubTask] = useState({
-        name:undefined,
+        title:undefined,
         descr:undefined
     })
 
@@ -38,11 +38,14 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
 
 
     const handleOpenModalClick = (good) => {
-        setOpenDescr(true);
+      console.log('ss');
+      console.log(good);
+        
         setGoodSubTask({
-            name:good.title,
+            title:good.title,
             descr:good.descr
         })
+      setOpenDescr(true);
     };
 
     const handleTitleChange = (e) => {
@@ -226,20 +229,12 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                     }}
                   />
                 </div>
-                {openDescr ? (
-                  <div id="singleSubTaskModal">
-                    <div id="singleSubTaskModalTitle">{goodSubTask.title}</div>
-                    <div id="singleSubTaskModalBody">{goodSubTask.descr}</div>
-                    <div
-                      id="singleSubTaskModalClose"
-                      onClick={() => setOpenDescr(false)}
-                    >
-                      close
-                    </div>
-                  </div>
-                ) : (
-                  false
-                )}
+                {openDescr &&
+                  <SingleSubTask 
+                    title={goodSubTask.title}  
+                    descr={goodSubTask.descr}
+                  setOpenDescr={setOpenDescr}
+                  />}
               </div>
               {provided.placeholder}
             </div>

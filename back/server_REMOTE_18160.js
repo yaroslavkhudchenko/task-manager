@@ -1,21 +1,15 @@
 const express = require("express");
 const session = require("express-session");
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
+
 const cors = require("cors");
 require("dotenv").config(); // to have variables in dotenv file
-const mongoose = require("mongoose");
+
 const MongoStore = require("connect-mongo")(session);
+const mongoose = require("mongoose");
 
 const passport = require("./passport/setup");
 const app = express(); // create express server
-<<<<<<< HEAD
-app.use(cors()); // app to use cors
-app.use(session({ secret: "cats" }));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(passport.initialize());
-app.use(passport.session());
-=======
->>>>>>> c741dcf76033e0f44608e1883cf3306b554f0c71
 
 // Express session
 app.use(
@@ -26,6 +20,8 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
+app.use(cors()); // app to use cors
+app.use(express.json());
 
 // Passport middleware
 app.use(passport.initialize());

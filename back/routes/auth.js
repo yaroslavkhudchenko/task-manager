@@ -9,10 +9,12 @@ router.post("/reg_log", (req, res, next) => {
     console.log('in pass')
     if (err) {
       console.log('111')
-      return res.status(400).json({ errors: err });
+      console.log(info)
+      return res.status(400).json({ errors: `error in err -> ${err}` });
     }
     if (!user) {
       console.log('222')
+      console.log(info)
       return res.status(400).json({ errors: "No user found" });
     }
     req.logIn(user, function (err) { // if user exist and no error -> log in

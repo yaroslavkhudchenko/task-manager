@@ -8,14 +8,11 @@ const MongoStore = require("connect-mongo")(session);
 
 const passport = require("./passport/setup");
 const app = express(); // create express server
-<<<<<<< HEAD
 app.use(cors()); // app to use cors
 app.use(session({ secret: "cats" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-=======
->>>>>>> c741dcf76033e0f44608e1883cf3306b554f0c71
 
 // Express session
 app.use(

@@ -36,14 +36,18 @@ passport.deserializeUser((id, done) => {
 
 // Local Strategy
 passport.use(
-	new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
+	new LocalStrategy({
+		usernameField: 'email',    // define the parameter in req.body that passport can use as username and password
+		passwordField: 'password'
+		},
+		(email, password, done) => {
 
 		// Match User
 		User.findOne({ email: email })
 		.then((user) => {
 			// Create new User in not found
 			if (!user) {
-				const newUser = new User({ email, password, name });
+				const newUser = new User({ email, password  });
 
 				// Hash password before saving in database
 				bcrypt.genSalt(10, (err, salt) => {
