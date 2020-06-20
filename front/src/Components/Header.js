@@ -1,4 +1,4 @@
-import React,{useState, useContext} from 'react';
+import React,{ useContext} from 'react';
 import '../css/Header.scss';
 import { AppContext } from './../Components/App';
 const Header = () => {
