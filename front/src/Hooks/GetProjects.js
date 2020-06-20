@@ -4,24 +4,33 @@ import { AppContext } from './../Components/App';
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import CreateIcon from "@material-ui/icons/Create";
 export const GetProjects = ({ 
-  changingProjectTitle, 
   setChangingProjectTitle,
-  setActiveProject
+  setActiveProject,
+  activeProject
 }) => {
    
     const [projectsState, setProjectsState] = useState([]); // state for projects
 
     const appContext = useContext(AppContext); // global context
 
+    const [deleteSingleProjectShow, setDeleteProjectShow] = useState(false);
+
     // to delete single project based on it's id
-    const deleteSingleProject = (id, name,e) => {
-      e.preventDefault();
-        axios.delete(`http://localhost:5000/projects/${id}`, 
-            {data:{projectName: name}})
-        .then(()=> 
-            appContext.changeState({ ...appContext.state, refreshProjects: true, refreshTasks:true }) // refresg projects and tasks lists
-        )
-        .catch(err => console.log('error while deleting project ', err))
+    const deleteSingleProject = (id, name) => {
+        axios
+          .delete(`http://localhost:5000/projects/${id}`, {
+            data: { projectName: name },
+          })
+          .then(
+            () =>
+              appContext.changeState({
+                ...appContext.state,
+                refreshProjects: true,
+                refreshTasks: true,
+              }) // refresg projects and tasks lists
+          )
+          .catch((err) => console.log("error while deleting project ", err));
+        
     }
 
     useEffect(()=>{
@@ -51,7 +60,6 @@ export const GetProjects = ({
             : "singleProject"
         } // check current project is active
       >
-       
         <div
           className="projectTitle"
           onClick={() =>
@@ -68,18 +76,43 @@ export const GetProjects = ({
           {single.name}
         </div>
         <div className="projectTitleButtons">
-          <div className="changeSingleProjectButton" 
-            onClick={()=>{
-              setActiveProject(single)
-              setChangingProjectTitle(true)
-              }}>
+          <div
+            className="changeSingleProjectButton"
+            onClick={() => {
+              setActiveProject(single);
+              setChangingProjectTitle(true);
+            }}
+          >
             <CreateIcon style={{ color: "#F4F3F4" }} />
           </div>
           <div
             className="deleteSingleProjectButton"
-            onClick={(e) => deleteSingleProject(single._id, single.name, e)}
+            /* onClick={() => deleteSingleProject(single._id, single.name)} */
+            onClick={() => {
+              setActiveProject(single);
+              setDeleteProjectShow(true);
+            }}
           >
             <DeleteForeverIcon style={{ color: "#F4F3F4" }} />
+            {(deleteSingleProjectShow && single._id === activeProject._id) && (
+              <div className="deleteSingleProjectModal">
+                <div
+                  className="deleteSingleProjectModalYes"
+                  onClick={() => deleteSingleProject(single._id, single.name)}
+                >
+                  YES
+                </div>
+                <div
+                  className="deleteSingleProjectModalCancel"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDeleteProjectShow(false);
+                  }}
+                >
+                  Cancel
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -13,14 +13,23 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 export const GetTasks = ({ tasksState, setTasksState}) => {
 
+
+
+
     const [openDescr, setOpenDescr] = useState(false);
     const [goodSubTask, setGoodSubTask] = useState({
         title:undefined,
         descr:undefined
     })
 
+    const [activeTask, setActiveTask] = useState([])
+
     // get appContext
     const appContext = useContext(AppContext);
+
+    const [deleteSingleTaskShow, setDeleteTaskShow] = useState(false);
+
+
 
     // to delete single tasks
     const deleteSingleTask = (id) => {
@@ -45,7 +54,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
       console.log(good);
         
         setGoodSubTask({
-            title:good.title,
+            title:good.title, 
             descr:good.descr
         })
       setOpenDescr(true);
@@ -63,14 +72,6 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
     }
     const handleSubTaskTitleChange = (e) => {
 
-
-        /*  onBlur={(e) =>
-                                      handleSubTaskTitleChange({
-                                        single: single,
-                                        subtaskNb: index,
-                                        title: e.target.value,
-                                      })
-                                    } */
         let good = e.single.subtasks;
         good[e.subtaskNb].title = e.title;
 
@@ -143,6 +144,12 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
             
     }, [appContext.state.refreshTasks]); // if refreshTasks value from appContext is changed refresh the list
    
+    useEffect(
+      (e) => {
+        console.log("agwaga");
+      },
+      [deleteSingleTaskShow]
+    );
     return tasksState.map((single, index) =>
       appContext.state.activeProjectName === single.projectName ? ( // display tasks only for active project
         <Draggable key={single._id} draggableId={single._id} index={index}>
@@ -213,7 +220,6 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                         <div className="ghostSubTask">
                           <AddCircleOutlineIcon
                             style={{
-                              marginTop: "20px",
                               cursor: "pointer",
                             }}
                             onClick={() => AddSubTask(single._id)}
@@ -225,8 +231,32 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                 </DragDropContext>
                 <div
                   className="deleteSingleTask"
-                  onClick={() => deleteSingleTask(single._id)}
+                  onClick={(e) => {
+                   
+                    setActiveTask(single);
+                    setDeleteTaskShow(true);
+                  }}
                 >
+                  {deleteSingleTaskShow && single._id === activeTask._id && (
+                    <div className="deleteSingleTaskModal">
+                      <div
+                        className="deleteSingleTaskModalYes"
+                        onClick={() => deleteSingleTask(single._id)}
+                      >
+                        YES
+                      </div>
+                      <div
+                        className="deleteSingleTaskModalCancel"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDeleteTaskShow(false);
+                          
+                        }}
+                      >
+                        Cancel
+                      </div>
+                    </div>
+                  )}
                   <CancelIcon
                     style={{
                       color: "white",

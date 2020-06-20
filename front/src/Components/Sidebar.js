@@ -100,7 +100,7 @@ const Sidebar = () => {
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 color: "#F4F3F4",
-                transition: "ease-in .5s"
+                transition: "ease-in .5s",
               }}
             />
           ) : (
@@ -112,7 +112,7 @@ const Sidebar = () => {
                 left: "50%",
                 transform: "translate(-50%,-50%) rotate(180deg)",
                 color: "#F4F3F4",
-                transition: "ease-in .5s"
+                transition: "ease-in .5s",
               }}
             />
           )}
@@ -121,6 +121,12 @@ const Sidebar = () => {
         <div className="title">Projects:</div>
 
         <div className="content">
+          <GetProjects
+            changingProjectTitle={changingProjectTitle}
+            setChangingProjectTitle={setChangingProjectTitle}
+            setActiveProject={setActiveProject}
+            activeProject={activeProject}
+          />
           <div className="addBoard" onClick={() => nameNeededSet(true)}>
             <AddCircleOutlineIcon
               style={{
@@ -131,12 +137,6 @@ const Sidebar = () => {
               }}
             />
           </div>
-
-          <GetProjects
-            changingProjectTitle={changingProjectTitle}
-            setChangingProjectTitle={setChangingProjectTitle}
-            setActiveProject={setActiveProject}
-          />
           {changingProjectTitle && (
             <div className="projectNameModal">
               <div className="projectNameModalContent">
@@ -152,13 +152,13 @@ const Sidebar = () => {
                     className="changingNameCancel"
                     onClick={() => setChangingProjectTitle(false)}
                   >
-                    <div
-                      className="changingNameYes"
-                      onClick={changeCurrentProjectName}
-                    >
-                      Save
-                    </div>
                     Cancel
+                  </div>
+                  <div
+                    className="changingNameYes"
+                    onClick={changeCurrentProjectName}
+                  >
+                    Save
                   </div>
                 </div>
               </div>
@@ -173,7 +173,7 @@ const Sidebar = () => {
                 type="text"
                 minLength="1"
                 required
-                placeholder="Provide the title"
+                placeholder="New project title"
               />
               <div className="addProjectModuleButtons">
                 <div

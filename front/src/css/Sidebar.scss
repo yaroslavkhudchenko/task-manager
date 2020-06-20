@@ -42,6 +42,9 @@ z-index: 1;
             position: absolute;
             left: 0;
             width: 80%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
         .projectTitleButtons {
             position: absolute;
@@ -55,6 +58,25 @@ z-index: 1;
             }
             .changeSingleProjectButton:hover {
                 background: yellow;
+            }
+            .deleteSingleProjectModal {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: #fbfbfb;
+                height: 100%;
+                width: fit-content;
+                display: flex;
+                width: 100px;
+                justify-content: space-around;
+                border-radius: 20px;
+                .deleteSingleProjectModalYes {
+                    color:red;
+                }
+                .deleteSingleProjectModalCancel {
+                    color: green;
+                }
             }
         }
         
@@ -133,12 +155,20 @@ z-index: 1;
         top: 0;
         .projectNameModalContent {
             position: absolute;
-            top:50%;
-            left:50%;
-            transform: translate(-50%,-50%);
-            .projectNameModalTitle {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            /* background: beige; */
+            padding: 19px;
+            justify-content: space-between;
             width: 350px;
             font-size: 40px;
+            color: white;
+            flex-direction: column;
+            .projectNameModalTitle {
+                width: 350px;
+                font-size: 40px;
                 input {
                     height: 40px;
                     background: none;
