@@ -38,8 +38,8 @@ router.route('/edit/:id').post((req, res) => {
             console.log(req.body.reorder)
             req.body.name ? task.name = req.body.name  : false
             req.body.subtasks ? task.subtasks.push({
-                title:'default',
-                descr:'write smth pleaes'
+                title:'title',
+                descr:'sample subtask description'
             }) : false
             req.body.subtasksNewArray ? task.subtasks = req.body.subtasksNewArray : false
         

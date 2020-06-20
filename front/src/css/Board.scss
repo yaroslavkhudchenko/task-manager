@@ -137,14 +137,11 @@
                             margin: 5px 0;
                             background: #52664c8c;
                             padding: 5px 5px;
-                            #input { 
-                                width: 75%;
-                                padding: 10px;
-                                height: -moz-fit-content;
-                                height: fit-content;
-                                cursor: pointer;
-                                background: cadetblue;
-                                border: none;
+                            .singleSubTaskTitle {
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                width: 90%;
                             }
                             .subTaskOpenModal {
                                 // background: yellow;

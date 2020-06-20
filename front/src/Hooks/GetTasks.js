@@ -49,13 +49,14 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
     }
 
 
-    const handleOpenModalClick = (good) => {
+    const handleOpenModalClick = (good,index) => {
       console.log('ss');
       console.log(good);
         
         setGoodSubTask({
             title:good.title, 
-            descr:good.descr
+            descr:good.descr,
+            index:index
         })
       setOpenDescr(true);
     };
@@ -70,7 +71,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
         .catch(error => console.error('error while title change ' + error));
 
     }
-    const handleSubTaskTitleChange = (e) => {
+    /* const handleSubTaskTitleChange = (e) => {
 
         let good = e.single.subtasks;
         good[e.subtaskNb].title = e.title;
@@ -83,7 +84,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
             .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
             .catch(error => console.error('error while title change ' + error));
 
-    }
+    } */
     // function to reorder on dragend
     const reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
@@ -201,7 +202,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                               >
                                 <div
                                   className="singleSubTask"
-                                  onClick={() => handleOpenModalClick(one)}
+                                  onClick={() => handleOpenModalClick(one,index)}
                                 >
                                   <div className="singleSubTitle">
                                     {one.title}
@@ -269,6 +270,8 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                     title={goodSubTask.title}
                     descr={goodSubTask.descr}
                     setOpenDescr={setOpenDescr}
+                    task={single}
+                    subTaskIndex={goodSubTask.index}
                   />
                 )}
               </div>
