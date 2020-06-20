@@ -175,6 +175,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                       })
                     }
                   />
+                  <EditIcon className='editTaskTitlePenIcon' />
                 </div>
                 <DragDropContext
                   onDragEnd={(e) => onDragFinishTasks(e, single)}
@@ -202,7 +203,9 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                               >
                                 <div
                                   className="singleSubTask"
-                                  onClick={() => handleOpenModalClick(one,index)}
+                                  onClick={() =>
+                                    handleOpenModalClick(one, index)
+                                  }
                                 >
                                   <div className="singleSubTitle">
                                     {one.title}
@@ -233,7 +236,6 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                 <div
                   className="deleteSingleTask"
                   onClick={(e) => {
-                   
                     setActiveTask(single);
                     setDeleteTaskShow(true);
                   }}
@@ -251,7 +253,6 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                         onClick={(e) => {
                           e.stopPropagation();
                           setDeleteTaskShow(false);
-                          
                         }}
                       >
                         Cancel

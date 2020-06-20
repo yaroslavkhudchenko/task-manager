@@ -119,10 +119,27 @@
                         top: 50%;
                         left: 50%;
                         transform: translate(-50%,-50%);
+
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        width: 80%;
                     }
+                    .editTaskTitlePenIcon {
+                        position: absolute;
+                        right: 10px;
+                        display: none;
+                    }
+                    
                     /* input:focus {
                         background:cyan;
                     } */
+                }
+                .taskTitle:hover {
+                    .editTaskTitlePenIcon {
+                        display:block;
+                    }
+                   
                 }
                 .taskBody {
                     display: flex;

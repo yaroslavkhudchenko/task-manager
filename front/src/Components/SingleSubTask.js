@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import appContext from './App';
+
 const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
     
     const handleSubTaskChange = (e, whatHasChanged) => {
 
             let good = task;
-            
+
             switch(whatHasChanged) {
                 case 'title':
                     good.subtasks[subTaskIndex].title = e.title;
