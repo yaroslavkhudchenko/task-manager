@@ -2,10 +2,11 @@ import React from 'react';
 import axios from 'axios';
 
 const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
-    
     const handleSubTaskChange = (e, whatHasChanged) => {
 
             let good = task;
+            console.log(good)
+              console.log(subTaskIndex);
 
             switch(whatHasChanged) {
                 case 'title':

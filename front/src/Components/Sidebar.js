@@ -55,6 +55,7 @@ const Sidebar = () => {
           appContext.changeState({
             ...appContext.state,
             refreshProjects: true,
+            activeProjectName: document.querySelector(".projectNameModalTitle input").value
           }); // refresh project list after change name
           
           setChangingProjectTitle(false);

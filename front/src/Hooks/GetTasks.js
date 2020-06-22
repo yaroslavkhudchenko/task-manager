@@ -48,14 +48,14 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
     }
 
 
-    const handleOpenModalClick = (good,index) => {
+    const handleOpenModalClick = (good,index, goodTask) => {
       console.log('ss');
-      console.log(good);
-        
+      console.log(goodTask);
         setGoodSubTask({
             title:good.title, 
             descr:good.descr,
-            index:index
+            index:index,
+            goodTask:goodTask
         })
       setOpenDescr(true);
     };
@@ -174,7 +174,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                       })
                     }
                   />
-                  <EditIcon className='editTaskTitlePenIcon' />
+                  <EditIcon className="editTaskTitlePenIcon" />
                 </div>
                 <DragDropContext
                   onDragEnd={(e) => onDragFinishTasks(e, single)}
@@ -203,7 +203,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                                 <div
                                   className="singleSubTask"
                                   onClick={() =>
-                                    handleOpenModalClick(one, index)
+                                    handleOpenModalClick(one, index, single)
                                   }
                                 >
                                   <div className="singleSubTitle">
@@ -270,7 +270,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                     title={goodSubTask.title}
                     descr={goodSubTask.descr}
                     setOpenDescr={setOpenDescr}
-                    task={single}
+                    task={goodSubTask.goodTask}
                     subTaskIndex={goodSubTask.index}
                   />
                 )}
