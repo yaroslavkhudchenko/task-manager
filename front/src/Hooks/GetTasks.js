@@ -245,7 +245,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                         className="deleteSingleTaskModalYes"
                         onClick={() => deleteSingleTask(single._id)}
                       >
-                        YES
+                        DELETE
                       </div>
                       <div
                         className="deleteSingleTaskModalCancel"
@@ -254,7 +254,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                           setDeleteTaskShow(false);
                         }}
                       >
-                        Cancel
+                        NO
                       </div>
                     </div>
                   )}

@@ -100,7 +100,7 @@ export const GetProjects = ({
                   className="deleteSingleProjectModalYes"
                   onClick={() => deleteSingleProject(single._id, single.name)}
                 >
-                  YES
+                  DELETE
                 </div>
                 <div
                   className="deleteSingleProjectModalCancel"
@@ -109,7 +109,7 @@ export const GetProjects = ({
                     setDeleteProjectShow(false);
                   }}
                 >
-                  Cancel
+                  NO
                 </div>
               </div>
             )}

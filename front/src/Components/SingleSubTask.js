@@ -24,25 +24,35 @@ const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
         .catch((error) => console.error("error while title change (singlesubtask)" + error)); 
     };
 
-
+    const deleteSingleSubTask = (e) => {
+      console.log(e)
+    }
+    
     return (
       <div id="singleSubTaskModal">
         <div id="singleSubTaskModalContent">
           <div id="singleSubTaskModalTitle">
             <textarea
               defaultValue={title}
-              onBlur={(e) => handleSubTaskChange({title:e.target.value}, "title")}
+              onBlur={(e) =>
+                handleSubTaskChange({ title: e.target.value }, "title")
+              }
             />
           </div>
           <div id="singleSubTaskModalBody">
             <label>Description</label>
             <textarea
               defaultValue={descr}
-              onBlur={(e) => handleSubTaskChange({descr:e.target.value}, "descr")}
+              onBlur={(e) =>
+                handleSubTaskChange({ descr: e.target.value }, "descr")
+              }
             />
           </div>
           <div id="singleSubTaskModalClose" onClick={() => setOpenDescr(false)}>
             close
+          </div>
+          <div id="deleteSingleSubTask" onClick={deleteSingleSubTask}>
+            delete
           </div>
         </div>
       </div>
