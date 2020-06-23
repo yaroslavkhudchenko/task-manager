@@ -300,3 +300,23 @@
     width: calc(100% - 50px);
     left: 50px;
 }
+
+
+
+@media (max-width: 500px) {
+    .Board {
+        z-index: 2;
+        #TasksContainer{ 
+            .SingleTaskContainer {
+                .singleTask {
+                    #singleSubTaskModal{
+                        #singleSubTaskModalContent {
+                            width: 90%;
+                            height: 90%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
