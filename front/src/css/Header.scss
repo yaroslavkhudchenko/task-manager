@@ -7,19 +7,16 @@
     background: #009688;
     background: #8AA9B0;
     box-shadow: -18px -20px 20px 20px black;
-   
     .projectHeaderName {
         height: 50px;
         line-height: 50px;
         font-size: 36px;
         color: #F4F3F4;
     }
-   
 }
+// mobile
 @media (max-width: 500px) {
     .Header {
-
-        // mobile
         .projectHeaderName {
             font-size: 20px;
             white-space: nowrap;

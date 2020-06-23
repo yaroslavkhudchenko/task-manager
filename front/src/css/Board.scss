@@ -53,14 +53,8 @@
                 box-shadow: 0 10px 20px rgb(0, 0, 0), 0 6px 6px rgb(66, 66, 66);
                 .deleteSingleTask {
                     position: absolute;
-                    /* top: -15px; */
-                    /* right: -15px; */
                     bottom: 0;
                     right: 0;
-                    
-                    /* background: teal;
-                    width: 40px;
-                    height: 40px; */
                 }
                 .deleteSingleTaskModal {
                     position: absolute;
@@ -87,14 +81,7 @@
                         cursor: pointer;
                     }
                 }
-                
                 .taskTitle {
-                    // font-weight: 500;
-                    // font-size: 25px;
-                    // text-overflow: ellipsis;
-                    // white-space: nowrap;
-                    // overflow: hidden;
-                    // padding: 5px;
                     min-height: 30px;
                     padding: 20px 0px;
                     position: relative;
@@ -106,13 +93,9 @@
                         overflow: hidden;
                         padding: 5px;
                         max-width: 90%;
-                        // margin: 5px 0;
                         background: inherit;
                         border: none;
                         color: white;
-                        // width: 100%;
-                        // padding: 5px;
-                        // margin: 0;
                         -webkit-box-sizing: border-box;
                         -moz-box-sizing: border-box;
                         -o-box-sizing: border-box;
@@ -133,16 +116,11 @@
                         right: 10px;
                         display: none;
                     }
-                    
-                    /* input:focus {
-                        background:cyan;
-                    } */
                 }
                 .taskTitle:hover {
                     .editTaskTitlePenIcon {
                         display:block;
                     }
-                   
                 }
                 .taskBody {
                     display: flex;
@@ -151,7 +129,6 @@
                     padding-bottom: 20px;
                     .singleSubTaskContainer {
                         width: 90%;
-                    
                         .singleSubTask {
                             display: flex;
                             align-items: center;
@@ -165,11 +142,9 @@
                                 width: 90%;
                             }
                             .subTaskOpenModal {
-                                // background: yellow;
                                 cursor: pointer;
                             }
                             .subTaskOpenModal:hover {
-                                // background:orange;
                                 transform: scale(1.2);
                                 color: orange;;
                             }
@@ -181,12 +156,10 @@
                         }
                     }
                     .singleSubTask:hover {
-                    
                         background: #98b06b;
                         .singleSubIcon {
                             display:block;
                         }
-
                     }
                 }
                 #singleSubTaskModal {
@@ -226,10 +199,6 @@
                         #singleSubTaskModalTitle {
                             height: 10%;
                             width: 100%;
-                            /* position: absolute; */
-                            /* top: 0; */
-                            /* background: #8AA9B0; */
-                            /* background: red; */
                             position: relative;
                             textarea {
                                 width: 80%;
@@ -244,7 +213,6 @@
                                 padding: 5px;
                                 box-sizing: border-box;
                                 z-index: 1;
-                                // min-height: 80%;
                             }
                             textarea:focus {
                                 background: teal;
@@ -254,9 +222,6 @@
                         #singleSubTaskModalBody {
                             height: 90%;
                             width: 100%;
-                            /* position: absolute; */
-                            /* top: 20px; */
-                            /* background: #8AA9B0; */
                             position: relative;
                             label {
                                 font-size: 20px;
@@ -303,8 +268,6 @@
     width: calc(100% - 50px);
     left: 50px;
 }
-
-
 
 @media (max-width: 500px) {
     .Board {
