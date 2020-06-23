@@ -6,7 +6,7 @@
 
 ## Legend
 
-<p> User can create three layers of tasks</p>
+<p> User can create three layers of tasks:</p>
 
 * First one is the main project/task which has it's own board.
     * Second are main tasks for the global project/taks
@@ -22,7 +22,12 @@
 
 ## Tech-stack
 
-    ### Backend
+### Backend
 
-    <p> Server side of the project is done with Node.js and Express.js</p>
-    <p> MondoDB is used for the database storage.</p>
+<p> Server side of the project is done with Node.js and Express.js</p>
+<p> MondoDB is used for the database storage.</p>
+
+### Frontend
+
+<p> Frontend is done entirely with React.js </p>
+<p> Hooks and Context API are used for state management </p>
