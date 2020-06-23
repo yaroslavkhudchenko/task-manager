@@ -3,6 +3,8 @@ import axios from 'axios';
 import { AppContext } from './../Components/App';
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import CreateIcon from "@material-ui/icons/Create";
+import CancelIcon from "@material-ui/icons/Cancel";
+
 export const GetProjects = ({ 
   setChangingProjectTitle,
   setActiveProject,
@@ -94,13 +96,18 @@ export const GetProjects = ({
             }}
           >
             <DeleteForeverIcon style={{ color: "#F4F3F4" }} />
-            {(deleteSingleProjectShow && single._id === activeProject._id) && (
+            {deleteSingleProjectShow && single._id === activeProject._id && (
               <div className="deleteSingleProjectModal">
                 <div
                   className="deleteSingleProjectModalYes"
                   onClick={() => deleteSingleProject(single._id, single.name)}
                 >
-                  DELETE
+                  <DeleteForeverIcon
+                    style={{
+                      color: "red",
+                      fontSize: "30",
+                    }}
+                  />
                 </div>
                 <div
                   className="deleteSingleProjectModalCancel"
@@ -109,7 +116,12 @@ export const GetProjects = ({
                     setDeleteProjectShow(false);
                   }}
                 >
-                  NO
+                  <CancelIcon
+                    style={{
+                      color: "green",
+                      fontSize: "30",
+                    }}
+                  />
                 </div>
               </div>
             )}

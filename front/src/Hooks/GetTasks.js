@@ -8,6 +8,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import SingleSubTask from './../Components/SingleSubTask';
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 
 export const GetTasks = ({ tasksState, setTasksState}) => {
@@ -245,7 +246,12 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                         className="deleteSingleTaskModalYes"
                         onClick={() => deleteSingleTask(single._id)}
                       >
-                        DELETE
+                        <DeleteForeverIcon
+                          style={{
+                            color: "red",
+                            fontSize: "30",
+                          }}
+                        />
                       </div>
                       <div
                         className="deleteSingleTaskModalCancel"
@@ -254,14 +260,20 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
                           setDeleteTaskShow(false);
                         }}
                       >
-                        NO
+                        <CancelIcon
+                          style={{
+                            color: "green",
+                            fontSize: "30",
+                          }}
+                        />
                       </div>
                     </div>
                   )}
-                  <CancelIcon
+                  <DeleteForeverIcon
                     style={{
-                      color: "white",
+                      color: "red",
                       fontSize: "30",
+                      cursor:"pointer"
                     }}
                   />
                 </div>

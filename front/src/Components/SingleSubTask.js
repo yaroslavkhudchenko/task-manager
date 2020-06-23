@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
     const handleSubTaskChange = (e, whatHasChanged) => {
@@ -25,7 +26,7 @@ const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
     };
 
     const deleteSingleSubTask = (e) => {
-      console.log(e)
+      console.log(e.target)
     }
     
     return (
@@ -51,8 +52,8 @@ const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
           <div id="singleSubTaskModalClose" onClick={() => setOpenDescr(false)}>
             close
           </div>
-          <div id="deleteSingleSubTask" onClick={deleteSingleSubTask}>
-            delete
+          <div id="deleteSingleSubTask" onClick={()=>deleteSingleSubTask()}>
+            Delete <DeleteForeverIcon />
           </div>
         </div>
       </div>
