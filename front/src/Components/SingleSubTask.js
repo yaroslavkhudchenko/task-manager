@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
+
+  const [deleteSingleSubTaskShow, setDeleteSingleSubTaskShow] = useState(false);
+
     const handleSubTaskChange = (e, whatHasChanged) => {
 
             let good = task;
@@ -26,7 +30,22 @@ const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
     };
 
     const deleteSingleSubTask = (e) => {
-      console.log(e.target)
+      // console.log(e.target)
+      let good = task
+      console.log(good.subtasks)
+      good.subtasks.splice(subTaskIndex,1)
+      console.log(good.subtasks)
+
+
+      axios.post(`http://localhost:5000/tasks/edit/${good._id}`, {
+        subtasksNewArray: good.subtasks,
+      })
+        .then((res) => {
+          console.log('edit/delete singlesubtask success');
+          setOpenDescr(false)
+        })
+        .catch((error) => console.error("error while deleting/editing (singlesubtask)" + error)); 
+
     }
     
     return (
@@ -52,8 +71,37 @@ const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
           <div id="singleSubTaskModalClose" onClick={() => setOpenDescr(false)}>
             close
           </div>
-          <div id="deleteSingleSubTask" onClick={()=>deleteSingleSubTask()}>
+          <div id="deleteSingleSubTask" onClick={() => setDeleteSingleSubTaskShow(true)}>
             Delete <DeleteForeverIcon />
+            {deleteSingleSubTaskShow && (
+              <div className="deleteSingleTaskModal deleteSingleSubTaskModal">
+                <div
+                  className="deleteSingleTaskModalYes"
+                  onClick={() => deleteSingleSubTask()}
+                >
+                  <DeleteForeverIcon
+                    style={{
+                      color: "red",
+                      fontSize: "30",
+                    }}
+                  />
+                </div>
+                <div
+                  className="deleteSingleTaskModalCancel"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDeleteSingleSubTaskShow(false);
+                  }}
+                >
+                  <CancelIcon
+                    style={{
+                      color: "green",
+                      fontSize: "30",
+                    }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
