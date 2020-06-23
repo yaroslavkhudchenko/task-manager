@@ -14,6 +14,15 @@
 
 ## Functionality
 
-1. <p> User can drag and drop second and third layer task and changing their order </p>
+1. <p> User can drag and drop second and third layer task and changing their order. </p>
 
-1. <p> User can edit all the titles in the project. All changes are real time and do not require any page reload </p>
+1. <p> User can edit all the titles in the project. All changes are real time and do not require any page reload. </p>
+
+1. <p> User can add task at any layer if the previous layer exist </p>
+
+## Tech-stack
+
+    ### Backend
+
+    <p> Server side of the project is done with Node.js and Express.js</p>
+    <p> MondoDB is used for the database storage.</p>
