@@ -211,3 +211,19 @@ z-index: 1;
     height: 100vh;
     cursor: pointer;
 } */
+
+
+
+@media (max-width: 500px) {
+    .Sidebar { 
+        .addNameModule {
+            .addNameModuleContent {
+                width: 70%;
+                left: 0;
+                transform: translateX(0);
+                transform: translate(0,-50%);
+                font-size: 25px;
+            }
+        }
+    }
+}
