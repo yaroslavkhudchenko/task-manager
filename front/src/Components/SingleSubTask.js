@@ -69,7 +69,7 @@ const SingleSubTask = ({ title, descr, setOpenDescr, task, subTaskIndex}) => {
             />
           </div>
           <div id="singleSubTaskModalClose" onClick={() => setOpenDescr(false)}>
-            close
+            <CancelIcon />
           </div>
           <div id="deleteSingleSubTask" onClick={() => setDeleteSingleSubTaskShow(true)}>
             Delete <DeleteForeverIcon />
