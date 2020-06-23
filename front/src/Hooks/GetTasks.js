@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AppContext } from './../Components/App';
-
 import EditIcon from "@material-ui/icons/Edit";
 import CancelIcon from '@material-ui/icons/Cancel';
-import { Draggable } from 'react-beautiful-dnd';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { Draggable, DragDropContext, Droppable } from 'react-beautiful-dnd';
 import SingleSubTask from './../Components/SingleSubTask';
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
@@ -13,45 +11,37 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 export const GetTasks = ({ tasksState, setTasksState}) => {
 
+	// CONTEXT
+	const appContext = useContext(AppContext);
 
-
-
+	// STATES
     const [openDescr, setOpenDescr] = useState(false);
     const [goodSubTask, setGoodSubTask] = useState({
-        title:undefined,
-        descr:undefined
+		title:undefined,
+		descr:undefined
     })
-
     const [activeTask, setActiveTask] = useState([])
+	const [deleteSingleTaskShow, setDeleteTaskShow] = useState(false);
+    
 
-    // get appContext
-    const appContext = useContext(AppContext);
+	// FUNCTIONS
 
-    const [deleteSingleTaskShow, setDeleteTaskShow] = useState(false);
-
-
-
-    // to delete single tasks
+    // delete single tasks
     const deleteSingleTask = (id) => {
-        console.log('delete')
-        console.log(id)
         axios.delete(`http://localhost:5000/tasks/${id}`).then(()=>
             appContext.changeState({ ...appContext.state, refreshTasks: true })
-        )
+		).catch(error => console.error('error while deleting single task ' + error));
     }
 
-
+	// add subtask
     const AddSubTask = (param) => {
-        
         axios.post(`http://localhost:5000/tasks/edit/${param}`, {subtasks:'new'})
             .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
             .catch(error => console.error('error while title change ' + error));
     }
 
-
+	// open modal for subtask
     const handleOpenModalClick = (good,index, goodTask) => {
-      console.log('ss');
-      console.log(goodTask);
         setGoodSubTask({
             title:good.title, 
             descr:good.descr,
@@ -61,30 +51,17 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
       setOpenDescr(true);
     };
 
+	// change single task title
     const handleTitleChange = (e) => {
         
-        axios.post(`http://localhost:5000/tasks/edit/${e.single._id}`,
-        {
-            name: e.name
-        })
-        .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
-        .catch(error => console.error('error while title change ' + error));
+        axios.post(`http://localhost:5000/tasks/edit/${e.single._id}`,{name: e.name})
+        .then(res => {
+			appContext.changeState({ ...appContext.state, refreshTasks: true });
+			console.log('success single task title change')
+		}).catch(error => console.error('error while title change ' + error));
 
     }
-    /* const handleSubTaskTitleChange = (e) => {
-
-        let good = e.single.subtasks;
-        good[e.subtaskNb].title = e.title;
-
-        console.log(e);
-        axios.post(`http://localhost:5000/tasks/edit/${e.single._id}`,
-            {
-                subtasksNewArray: good
-            })
-            .then(res => appContext.changeState({ ...appContext.state, refreshTasks: true }))
-            .catch(error => console.error('error while title change ' + error));
-
-    } */
+   
     // function to reorder on dragend
     const reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
@@ -92,7 +69,8 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
         result.splice(endIndex, 0, removed);
 
         return result;
-    };
+	};
+
     const onDragFinishTasks = (e,b) => {
         if (!e.source || !e.destination) return; // not to have an error when destination is not correct
 
@@ -108,7 +86,8 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
         // set good subtasks to the correct task
         allTasks.map((e) => e._id === b._id ? e.subtasks = items : console.log('fasle'));
 
-        setTasksState(allTasks); // save good order for the front
+		setTasksState(allTasks); // save good order for the front
+		
         // save good subtasks order to the db
         axios.post(`http://localhost:5000/tasks/edit/${b._id}`, { reorder: items })
             .then(res => {
@@ -122,9 +101,7 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
             .then(res => {
                 let goodD = res.data.sort((a, b)=>a.order - b.order);
                 setTasksState(goodD)
-                
                 if(goodD.length) {
-                    
                     appContext.changeState(
                         { 
                             ...appContext.state, 
@@ -145,36 +122,30 @@ export const GetTasks = ({ tasksState, setTasksState}) => {
             
     }, [appContext.state.refreshTasks]); // if refreshTasks value from appContext is changed refresh the list
    
-    useEffect(
-      (e) => {
-        console.log("agwaga");
-      },
-      [deleteSingleTaskShow]
-    );
     return tasksState.map((single, index) =>
       appContext.state.activeProjectName === single.projectName ? ( // display tasks only for active project
         <Draggable key={single._id} draggableId={single._id} index={index}>
-          {(provided, snapshot) => (
-            <div
-              className="SingleTaskContainer"
-              ref={provided.innerRef}
-              {...provided.draggableProps}
-            >
-              <div key={index} className="singleTask">
-                <div
-                  className="taskTitle"
-                  key={index}
-                  {...provided.dragHandleProps}
-                >
-                  <input
-                    defaultValue={single.name}
-                    onBlur={(e) =>
-                      handleTitleChange({
-                        single: single,
-                        name: e.target.value,
-                      })
-                    }
-                  />
+          	{(provided, snapshot) => (
+            	<div
+					className="SingleTaskContainer"
+					ref={provided.innerRef}
+					{...provided.draggableProps}
+            	>
+              		<div key={index} className="singleTask">
+						<div
+							className="taskTitle"
+							key={index}
+							{...provided.dragHandleProps}
+						>
+                  		<input
+							defaultValue={single.name}
+							onBlur={(e) =>
+                      			handleTitleChange({
+									single: single,
+									name: e.target.value,
+                      			})
+                    		}
+                  		/>
                   <EditIcon className="editTaskTitlePenIcon" />
                 </div>
                 <DragDropContext
