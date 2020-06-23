@@ -14,6 +14,6 @@
 
 ## Functionality
 
-<p> User can drag and drop second and third layer task and changing their order </p>
+1. <p> User can drag and drop second and third layer task and changing their order </p>
 
-<p> User can edit all the titles in the project. All changes are real time and do not require any page reload </p>
+1. <p> User can edit all the titles in the project. All changes are real time and do not require any page reload </p>
