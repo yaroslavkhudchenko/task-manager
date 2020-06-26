@@ -9,8 +9,8 @@
 <p> User can create three layers of tasks:</p>
 
 * First one is the main project/task which has it's own board.
-    * Second are main tasks for the global project/taks
-        * Third are the subtasks for the main tasks
+    * Second layer includes main tasks for the global project/task.
+        * Third layer represents subtasks for the main tasks
 
 ## Functionality
 
