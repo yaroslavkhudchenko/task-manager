@@ -10,8 +10,8 @@
 
 * First one is the main project/task which has it's own board.
     * Second layer includes main tasks for the global project/task.
-        * Third layer represents subtasks for the main tasks
-
+        * Third layer represents subtasks
+        
 ## Functionality
 
 1. <p> User can drag and drop second and third layer task and changing their order. </p>
